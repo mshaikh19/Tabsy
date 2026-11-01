@@ -49,11 +49,10 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Central API v1 router will be mounted here
-app.use("/api/v1", (req, res, next) => {
-  // If no routes matched within /api/v1 (before routes are plugged in), forward to 404
-  next();
-});
+const apiV1Routes = require("./routes");
+
+// Central API v1 router
+app.use("/api/v1", apiV1Routes);
 
 // 404 handler for unknown routes
 app.use((req, res, next) => {
