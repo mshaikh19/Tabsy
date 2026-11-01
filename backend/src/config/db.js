@@ -10,6 +10,10 @@ const connectDB = async () => {
 
     const conn = await mongoose.connect(mongoUri);
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+
+    // Seed default categories if not already present (PRD FR-13)
+    const { seedDefaultCategories } = require("../utils/seedCategories");
+    await seedDefaultCategories();
   } catch (error) {
     console.error(`❌ MongoDB connection error: ${error.message}`);
     // Do not crash server on initial connect in dev to allow debugging
