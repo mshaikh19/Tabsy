@@ -100,8 +100,25 @@
   --color-bento-purple-border: #CE93D8;
   --color-bento-peach: #FFF3E0;
   --color-bento-peach-border: #FFCC80;
-  --color-bento-rose: #FCE4EC;
-  --color-bento-rose-border: #F48FB1;
+  --color-macaron-mint: #e6f8f0;
+  --color-macaron-mint-border: #c3ecd8;
+  --color-macaron-sky: #e8f2ff;
+  --color-macaron-sky-border: #cde2fd;
+  --color-macaron-blush: #ffebee;
+  --color-macaron-blush-border: #fccfdb;
+  --color-macaron-lilac: #f1edfe;
+  --color-macaron-lilac-border: #dfd5fd;
+  --color-macaron-butter: #fef9e7;
+  --color-macaron-butter-border: #fcebb2;
+
+  --color-pastel-mint: #E8F5E9;
+  --color-pastel-mint-border: #CDEEDC;
+  --color-pastel-butter: #FEF7DA;
+  --color-pastel-butter-border: #FBEEC0;
+  --color-pastel-lavender: #F0EDFD;
+  --color-pastel-lavender-border: #DFD5FD;
+  --color-pastel-blue: #EBF4FE;
+  --color-pastel-blue-border: #CDE2FD;
 
   --spacing-space-sm: 0.5rem;
   --spacing-space-md: 1rem;

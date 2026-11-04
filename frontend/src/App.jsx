@@ -8,6 +8,8 @@ import Onboarding from "./pages/Onboarding";
 import OnboardingPersonalize from "./pages/OnboardingPersonalize";
 import ProfileSetup from "./pages/ProfileSetup";
 import ProfileSetupPreferences from "./pages/ProfileSetupPreferences";
+import Dashboard from "./pages/Dashboard";
+import Activity from "./pages/Activity";
 
 function App() {
   return (
@@ -20,9 +22,17 @@ function App() {
         <Route path="/set-new-password" element={<SetNewPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/onboarding" element={<Onboarding />} />
-        <Route path="/onboarding/personalize" element={<OnboardingPersonalize />} />
+        <Route
+          path="/onboarding/personalize"
+          element={<OnboardingPersonalize />}
+        />
         <Route path="/profile-setup" element={<ProfileSetup />} />
-        <Route path="/profile-setup/preferences" element={<ProfileSetupPreferences />} />
+        <Route
+          path="/profile-setup/preferences"
+          element={<ProfileSetupPreferences />}
+        />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/activity" element={<Activity />} />
       </Routes>
     </BrowserRouter>
   );

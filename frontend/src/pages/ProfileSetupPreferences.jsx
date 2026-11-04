@@ -23,7 +23,7 @@ export default function ProfileSetupPreferences() {
 
   const handleFinish = () => {
     setLaunching(true);
-    setTimeout(() => navigate("/"), 600);
+    setTimeout(() => navigate("/dashboard"), 600);
   };
 
   return (
