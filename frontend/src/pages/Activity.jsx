@@ -1,10 +1,9 @@
-﻿import Navbar from "../components/layout/Navbar";
+﻿import AppLayout from "../components/layout/AppLayout";
 
 export default function Activity() {
   return (
-    <div className="bg-[#fcfbfe] font-body-md text-on-surface antialiased min-h-screen">
-      <Navbar />
-      <main className="w-full pt-20 pb-16 bg-[#fcfbfe]">
+    <AppLayout>
+      <main className="w-full pt-4 pb-16 bg-[#fcfbfe]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pt-2">
             <div>
@@ -641,6 +640,6 @@ export default function Activity() {
           </div>
         </div>
       </footer>
-    </div>
+    </AppLayout>
   );
 }

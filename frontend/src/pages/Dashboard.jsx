@@ -1,169 +1,9 @@
-import { useState } from "react";
+﻿import AppLayout from "../components/layout/AppLayout";
 
 export default function Dashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   return (
-    <div className="bg-[#FAF8F5] text-zinc-900 font-sans antialiased min-h-screen p-3 md:p-5 lg:p-6 selection:bg-emerald-100 selection:text-emerald-900">
-      <div className="relative min-h-screen">
-        {sidebarOpen && (
-          <div
-            className="fixed inset-0 bg-black/40 z-40 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
-        <aside className={`fixed top-0 left-0 lg:top-3 lg:left-3 h-full lg:h-[calc(100vh-1.5rem)] w-72 bg-[#18181B] text-zinc-300 rounded-r-3xl lg:rounded-3xl p-5 flex flex-col justify-between shrink-0 shadow-xl shadow-zinc-900/5 border border-zinc-800/80 z-50 transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}>
-          <div className="flex flex-col gap-6 overflow-y-auto">
-            <div className="flex items-center justify-between px-1">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-emerald-500 flex items-center justify-center text-white shadow-sm font-bold">
-                  <span className="material-symbols-outlined text-[22px]">payments</span>
-                </div>
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-extrabold text-white text-[19px] tracking-tight">tabsy</span>
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  </div>
-                  <span className="text-[10px] tracking-wider text-zinc-400 font-semibold uppercase block font-mono">
-                    Shared Studio
-                  </span>
-                </div>
-              </div>
-              <button
-                className="w-8 h-8 rounded-xl flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all lg:hidden"
-                title="Close menu"
-                onClick={() => setSidebarOpen(false)}
-              >
-                <span className="material-symbols-outlined text-[19px]">close</span>
-              </button>
-              <button className="w-8 h-8 rounded-xl flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all hidden lg:flex" title="Collapse sidebar">
-                <span className="material-symbols-outlined text-[19px]">left_panel_close</span>
-              </button>
-            </div>
-
-            <div className="relative">
-              <span className="material-symbols-outlined absolute left-3.5 top-2.5 text-zinc-400 text-[18px]">
-                search
-              </span>
-              <input
-                className="w-full bg-zinc-800/80 text-zinc-200 text-[13px] pl-10 pr-12 py-2.5 rounded-2xl border border-zinc-700/50 focus:outline-none focus:border-emerald-500 placeholder:text-zinc-500 transition-colors"
-                placeholder="Jump to tab or friend..."
-                type="text"
-              />
-              <span className="absolute right-3 top-2.5 px-1.5 py-0.5 rounded-md bg-zinc-700/60 text-[10px] font-mono text-zinc-400">
-                ⌘K
-              </span>
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 px-3 mb-1 font-mono">
-                Main Hub
-              </span>
-              <a className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl bg-zinc-800 text-white text-[13.5px] font-semibold transition-all group" href="#">
-                <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span className="material-symbols-outlined text-[20px] text-emerald-400">space_dashboard</span>
-                  <span>Overview</span>
-                </div>
-                <span className="text-[11px] font-mono text-emerald-400/90 font-medium">Live</span>
-              </a>
-              <a className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-zinc-400 hover:text-white hover:bg-zinc-800/40 text-[13.5px] font-medium transition-all" href="#">
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-[20px]">notifications_active</span>
-                  <span>Activity</span>
-                </div>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-800 text-zinc-300">
-                  2 unread
-                </span>
-              </a>
-              <a className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-zinc-400 hover:text-white hover:bg-zinc-800/40 text-[13.5px] font-medium transition-all" href="#">
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-[20px]">account_balance_wallet</span>
-                  <span>Balances</span>
-                </div>
-                <span className="px-2 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-950/70 text-emerald-400 border border-emerald-800/30">
-                  +₹317.30
-                </span>
-              </a>
-              <a className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-zinc-400 hover:text-white hover:bg-zinc-800/40 text-[13.5px] font-medium transition-all" href="#">
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-[20px]">receipt_long</span>
-                  <span>All Receipts</span>
-                </div>
-              </a>
-              <a className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-zinc-400 hover:text-white hover:bg-zinc-800/40 text-[13.5px] font-medium transition-all" href="#">
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-[20px]">hub</span>
-                  <span>Debt Simplifier</span>
-                </div>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-950/80 text-indigo-300">
-                  Auto
-                </span>
-              </a>
-            </div>
-
-            <div className="flex flex-col gap-1.5 pt-3 border-t border-zinc-800/80">
-              <div className="flex items-center justify-between px-3 mb-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 font-mono">
-                  Shared Spaces
-                </span>
-                <button className="text-zinc-500 hover:text-zinc-300 text-[18px] leading-none" title="Create Space">
-                  +
-                </button>
-              </div>
-              <a className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-zinc-300 hover:text-white hover:bg-zinc-800/50 text-[13px] transition-all group" href="#">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0" />
-                  <span className="truncate font-medium">Lisbon Roadtrip</span>
-                </div>
-                <span className="text-sm">🌴</span>
-              </a>
-              <a className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-zinc-300 hover:text-white hover:bg-zinc-800/50 text-[13px] transition-all group" href="#">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-300 shrink-0" />
-                  <span className="truncate font-medium">Mumbai Flat 4B</span>
-                </div>
-                <span className="text-sm">🏠</span>
-              </a>
-              <a className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-zinc-300 hover:text-white hover:bg-zinc-800/50 text-[13px] transition-all group" href="#">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
-                  <span className="truncate font-medium">Delhi Weekend Tour</span>
-                </div>
-                <span className="text-sm">🗾</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-zinc-800/80">
-            <div className="p-3 bg-zinc-900/90 rounded-2xl border border-zinc-800/90 flex items-center justify-between">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white font-bold text-[13px] flex items-center justify-center shrink-0 shadow-inner">
-                  AM
-                </div>
-                <div className="min-w-0">
-                  <p className="text-white text-[13px] font-bold truncate leading-tight">Arjun Sharma</p>
-                  <p className="text-zinc-400 text-[11px] font-mono truncate">arjun@tabsy.co</p>
-                </div>
-              </div>
-              <button className="w-7 h-7 rounded-lg flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors" title="Account settings">
-                <span className="material-symbols-outlined text-[17px]">settings</span>
-              </button>
-            </div>
-          </div>
-        </aside>
-
-        <main className="flex-1 flex flex-col gap-6 min-w-0 lg:ml-[19.5rem] px-0 lg:px-2">
-          <div className="lg:hidden flex items-center justify-between mb-2">
-            <button
-              type="button"
-              onClick={() => setSidebarOpen(true)}
-              className="w-10 h-10 rounded-2xl bg-white border border-[#EFECE6] flex items-center justify-center text-zinc-700 shadow-sm"
-            >
-              <span className="material-symbols-outlined text-[22px]">menu</span>
-            </button>
-            <span className="font-extrabold text-[#18181B] text-lg">tabsy</span>
-          </div>
+    <AppLayout>
+      <main className="flex-1 flex flex-col gap-6 min-w-0">
           <header className="bg-white rounded-3xl p-6 sm:p-7 border border-[#EFECE6] shadow-sm flex flex-col xl:flex-row xl:items-center justify-between gap-6">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
@@ -186,7 +26,7 @@ export default function Dashboard() {
                   ₹ INR
                 </button>
                 <button className="px-3 py-1.5 rounded-xl text-zinc-500 hover:text-zinc-900 transition-all font-mono">
-                  € EUR
+                  ₹ INR
                 </button>
               </div>
               <button className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-zinc-900 text-white font-semibold text-[13px] hover:bg-zinc-800 transition-all shadow-sm active:scale-95">
@@ -309,7 +149,7 @@ export default function Dashboard() {
                   Collaborative group pools with synchronized settlement
                 </p>
               </div>
-              <a className="inline-flex items-center gap-1 text-[13px] font-bold text-emerald-700 hover:text-emerald-800 transition-colors" href="#">
+              <a className="inline-flex items-center gap-1 text-[13px] font-bold text-emerald-700 hover:text-emerald-800 transition-colors" href="/dashboard">
                 <span>View all 6 spaces</span>
                 <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
               </a>
@@ -399,7 +239,7 @@ export default function Dashboard() {
                     </div>
                   </div>
                   <span className="text-xs font-bold text-zinc-600 bg-zinc-100 px-2.5 py-1 rounded-xl">
-                    All square ✌️
+                    All square ✌️ï¸
                   </span>
                 </div>
               </div>
@@ -489,7 +329,7 @@ export default function Dashboard() {
                     </div>
                     <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
                       <div className="text-right">
-                        <div className="font-bold text-xs text-zinc-900">Rahul Rossi</div>
+                        <div className="font-bold text-xs text-zinc-900">Rahul Sharma</div>
                         <span className="text-[11px] text-zinc-500">Recipient</span>
                       </div>
                       <div className="w-9 h-9 rounded-xl bg-rose-100 text-rose-900 font-bold text-xs flex items-center justify-center font-mono">
@@ -501,7 +341,7 @@ export default function Dashboard() {
                     <div className="flex items-center gap-3 w-full sm:w-auto">
                       <img alt="Priya" className="w-9 h-9 rounded-xl object-cover border border-zinc-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA15o5nefBV9PSweTfltWsXdR5pbxBsaNUVAGuJqNKMvdA5cSe2GUX4Q__ldIJ2J6yqxsHiWhfmLnsV88vHHLPnbJL0xQtN1yL7FFWKV94BkGadQLzUDXiUa_N-8DDsqKWg76TZHad-egkRACvOVbDPCfYQYDqlzGL_oSFXDcjiBRYO0Gccb1OCCyMr1lhDqs1I7QliUEOUhgni8pWgXPntMdjlsMF8JkFUvGHcpSI" />
                       <div>
-                        <div className="font-bold text-xs text-zinc-900">Priya Martins</div>
+                        <div className="font-bold text-xs text-zinc-900">Priya Sharma</div>
                         <span className="text-[11px] text-zinc-500">Sender</span>
                       </div>
                     </div>
@@ -665,7 +505,6 @@ export default function Dashboard() {
             </div>
           </section>
         </main>
-      </div>
-    </div>
+    </AppLayout>
   );
 }

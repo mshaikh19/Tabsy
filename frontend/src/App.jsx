@@ -10,6 +10,8 @@ import ProfileSetup from "./pages/ProfileSetup";
 import ProfileSetupPreferences from "./pages/ProfileSetupPreferences";
 import Dashboard from "./pages/Dashboard";
 import Activity from "./pages/Activity";
+import Balances from "./pages/Balances";
+import QuickActions from "./pages/QuickActions";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/activity" element={<Activity />} />
+        <Route path="/balances" element={<Balances />} />
+        <Route path="/quick-actions" element={<QuickActions />} />
       </Routes>
     </BrowserRouter>
   );
