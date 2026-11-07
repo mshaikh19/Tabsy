@@ -276,7 +276,7 @@ export default function QuickActions() {
                         <div className="w-14 h-14 rounded-2xl bg-surface-container-lowest border border-pastel-sky-border flex items-center justify-center text-3xl shadow-xs">
                           🍋
                         </div>
-                        <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[10px] font-bold shadow-xs">
+                        <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-label-caps font-bold shadow-xs">
                           ✎
                         </span>
                       </div>
@@ -545,7 +545,7 @@ export default function QuickActions() {
                               <div className="flex flex-col">
                                 <div className="flex items-center gap-2">
                                   <span className="font-title-md text-body-md text-on-surface font-semibold">{c.name}</span>
-                                  <span className="px-2 py-0.5 rounded-full bg-pastel-peach text-tertiary font-label-caps text-[10px] font-bold uppercase">
+                                  <span className="px-2 py-0.5 rounded-full bg-pastel-peach text-tertiary font-label-caps text-label-caps font-bold uppercase">
                                     To Pay
                                   </span>
                                 </div>
@@ -580,7 +580,7 @@ export default function QuickActions() {
                             <div className="flex flex-col">
                               <div className="flex items-center gap-2">
                                 <span className="font-title-md text-body-md text-on-surface font-semibold">David Ahn</span>
-                                <span className="px-2 py-0.5 rounded-full bg-pastel-mint text-on-primary-container font-label-caps text-[10px] font-bold uppercase">
+                                <span className="px-2 py-0.5 rounded-full bg-pastel-mint text-on-primary-container font-label-caps text-label-caps font-bold uppercase">
                                   To Collect
                                 </span>
                               </div>
@@ -719,7 +719,7 @@ export default function QuickActions() {
                         </div>
                       </div>
                       <button className="px-3 py-1.5 rounded-xl bg-pastel-sky text-secondary font-body-sm text-body-sm font-semibold hover:bg-pastel-sky/80 transition-colors flex items-center gap-1 shadow-xs" type="button">
-                        <span className="material-symbols-outlined text-[14px]">send</span>
+                        <span className="material-symbols-outlined text-body-md">send</span>
                         <span>Ping</span>
                       </button>
                     </div>
@@ -753,7 +753,7 @@ export default function QuickActions() {
                         </div>
                       </div>
                       <button className="px-2.5 py-1 rounded-lg bg-surface-container-low hover:bg-error-container text-on-surface-variant hover:text-on-error-container font-body-sm text-body-sm font-semibold transition-colors flex items-center gap-1" type="button">
-                        <span className="material-symbols-outlined text-[14px]">undo</span>
+                        <span className="material-symbols-outlined text-body-md">undo</span>
                         <span>Undo</span>
                       </button>
                     </div>
@@ -845,7 +845,7 @@ export default function QuickActions() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-primary-container flex items-center justify-center">
-              <span className="material-symbols-outlined text-on-primary text-[14px]">receipt_long</span>
+              <span className="material-symbols-outlined text-on-primary text-body-md">receipt_long</span>
             </div>
             <span className="font-title-md text-title-md text-on-surface">Tabsy</span>
             <span className="font-body-sm text-body-sm text-on-surface-variant ml-2">
@@ -868,3 +868,4 @@ export default function QuickActions() {
     </AppLayout>
   );
 }
+

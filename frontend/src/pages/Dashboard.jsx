@@ -7,7 +7,7 @@ export default function Dashboard() {
           <header className="bg-white rounded-3xl p-6 sm:p-7 border border-[#EFECE6] shadow-sm flex flex-col xl:flex-row xl:items-center justify-between gap-6">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/60 text-[11px] font-mono font-bold tracking-tight">
+                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/60 text-label-caps font-mono font-bold tracking-tight">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   SYNC ACTIVE
                 </span>
@@ -29,11 +29,11 @@ export default function Dashboard() {
                   ₹ INR
                 </button>
               </div>
-              <button className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-zinc-900 text-white font-semibold text-[13px] hover:bg-zinc-800 transition-all shadow-sm active:scale-95">
+              <button className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-zinc-900 text-white font-semibold text-body-sm hover:bg-zinc-800 transition-all shadow-sm active:scale-95">
                 <span className="material-symbols-outlined text-[18px] text-emerald-400">add</span>
                 <span>Log Expense</span>
               </button>
-              <button className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-100 text-emerald-900 border border-emerald-200/70 font-semibold text-[13px] hover:bg-emerald-200/70 transition-all shadow-sm active:scale-95">
+              <button className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-100 text-emerald-900 border border-emerald-200/70 font-semibold text-body-sm hover:bg-emerald-200/70 transition-all shadow-sm active:scale-95">
                 <span className="material-symbols-outlined text-[18px]">bolt</span>
                 <span>Settle Up</span>
               </button>
@@ -47,10 +47,10 @@ export default function Dashboard() {
           <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
             <div className="bg-white rounded-3xl p-6 border border-[#EFECE6] shadow-sm flex flex-col justify-between hover:border-emerald-200 transition-all">
               <div className="flex items-start justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider font-bold text-zinc-500">
+                <span className="text-label-caps font-mono uppercase tracking-wider font-bold text-zinc-500">
                   Net Position
                 </span>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200/50">
+                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-label-caps font-bold border border-emerald-200/50">
                   Surplus
                 </span>
               </div>
@@ -59,7 +59,7 @@ export default function Dashboard() {
                   +₹317.30
                 </div>
                 <p className="text-[12px] text-zinc-500 mt-1 flex items-center gap-1.5 font-medium">
-                  <span className="material-symbols-outlined text-[15px] text-emerald-600">auto_graph</span>
+                  <span className="material-symbols-outlined text-body-md text-emerald-600">auto_graph</span>
                   Optimized by Tabsy Graph
                 </p>
               </div>
@@ -71,7 +71,7 @@ export default function Dashboard() {
 
             <div className="bg-pastel-rose rounded-3xl p-6 border border-[#FCD6D3] shadow-sm flex flex-col justify-between hover:border-rose-300 transition-all">
               <div className="flex items-start justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider font-bold text-rose-800">
+                <span className="text-label-caps font-mono uppercase tracking-wider font-bold text-rose-800">
                   You Owe
                 </span>
                 <div className="w-7 h-7 rounded-xl bg-white/80 flex items-center justify-center text-rose-600">
@@ -94,7 +94,7 @@ export default function Dashboard() {
 
             <div className="bg-pastel-mint rounded-3xl p-6 border border-[#CDEEDC] shadow-sm flex flex-col justify-between hover:border-emerald-300 transition-all">
               <div className="flex items-start justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider font-bold text-emerald-800">
+                <span className="text-label-caps font-mono uppercase tracking-wider font-bold text-emerald-800">
                   Owed to You
                 </span>
                 <div className="w-7 h-7 rounded-xl bg-white/80 flex items-center justify-center text-emerald-700">
@@ -117,10 +117,10 @@ export default function Dashboard() {
 
             <div className="bg-pastel-butter rounded-3xl p-6 border border-[#FBEEC0] shadow-sm flex flex-col justify-between hover:border-amber-300 transition-all">
               <div className="flex items-start justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider font-bold text-amber-900">
+                <span className="text-label-caps font-mono uppercase tracking-wider font-bold text-amber-900">
                   Active Pool Spend
                 </span>
-                <span className="px-2.5 py-0.5 rounded-full bg-white/80 text-amber-900 font-mono font-bold text-[11px] border border-amber-200/60">
+                <span className="px-2.5 py-0.5 rounded-full bg-white/80 text-amber-900 font-mono font-bold text-label-caps border border-amber-200/60">
                   84% Settled
                 </span>
               </div>
@@ -145,11 +145,11 @@ export default function Dashboard() {
                 <h2 className="text-xl font-extrabold text-zinc-900 tracking-tight">
                   Active Shared Tabs
                 </h2>
-                <p className="text-[13px] text-zinc-500 font-medium">
+                <p className="text-body-sm text-zinc-500 font-medium">
                   Collaborative group pools with synchronized settlement
                 </p>
               </div>
-              <a className="inline-flex items-center gap-1 text-[13px] font-bold text-emerald-700 hover:text-emerald-800 transition-colors" href="/dashboard">
+              <a className="inline-flex items-center gap-1 text-body-sm font-bold text-emerald-700 hover:text-emerald-800 transition-colors" href="/dashboard">
                 <span>View all 6 spaces</span>
                 <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
               </a>
@@ -178,7 +178,7 @@ export default function Dashboard() {
                     <div className="w-full bg-zinc-200/70 rounded-full h-2 overflow-hidden">
                       <div className="bg-emerald-500 h-2 rounded-full w-[92%]" />
                     </div>
-                    <div className="flex justify-between items-center text-[11px] text-zinc-400 mt-2 font-mono">
+                    <div className="flex justify-between items-center text-label-caps text-zinc-400 mt-2 font-mono">
                       <span>Pool: ₹1,840.00</span>
                       <span className="text-emerald-700 font-bold">₹148 open</span>
                     </div>
@@ -188,7 +188,7 @@ export default function Dashboard() {
                   <div className="flex -space-x-2 items-center">
                     <img alt="Priya" className="w-7 h-7 rounded-full border-2 border-white object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqwYPcROfR5-TXCBDtxQHPPn7Y00TamIr6bkfmyp7arJc5u3RCo6SOoSP96Jn6ABfApaOEaHrQByxEXhGbdoQQNu3KDs9iqN2dyADSug95BqdoRtB2mNtsIzCmt8hREaPOtCRBW2IhyY77jVPqsLmj6BRw7g_cRGzsLmg-89ZiJdKi_WNLq0WFE360E1p_Jl4A4KZDRhCU5gD1GjRXhUT4VGvizGG3gvP2B5wVRJ8" />
                     <img alt="Rahul" className="w-7 h-7 rounded-full border-2 border-white object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtWb9_4JtaLMOszPUMT1aEMKP5HK_Q1-q6j9PzurVQubgV-MPjohj0fC5O0mnA_9uqCqiYwpeWr1LJXxAoZtxqvSyz1r1QVDOIZjOD1_M92xNypwjz7xc75_jaK0DQDUcNqhTtGbNjVnfjlwdK7BSLw7C-WGnU0B4IktXkWkRrP9GdQhdhvdrhN4ZpKqLuuAIgh83A05iexvMjJyvrlVsMzG-15x96O4T-i0gvqnY" />
-                    <div className="w-7 h-7 rounded-full border-2 border-white bg-indigo-100 text-indigo-800 text-[10px] font-bold font-mono flex items-center justify-center">
+                    <div className="w-7 h-7 rounded-full border-2 border-white bg-indigo-100 text-indigo-800 text-label-caps font-bold font-mono flex items-center justify-center">
                       +2
                     </div>
                   </div>
@@ -220,7 +220,7 @@ export default function Dashboard() {
                     <div className="w-full bg-zinc-200/70 rounded-full h-2 overflow-hidden">
                       <div className="bg-zinc-700 h-2 rounded-full w-full" />
                     </div>
-                    <div className="flex justify-between items-center text-[11px] text-zinc-400 mt-2 font-mono">
+                    <div className="flex justify-between items-center text-label-caps text-zinc-400 mt-2 font-mono">
                       <span>Pool: ₹3,420.00</span>
                       <span className="text-zinc-600 font-bold">All clear</span>
                     </div>
@@ -228,13 +228,13 @@ export default function Dashboard() {
                 </div>
                 <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between">
                   <div className="flex -space-x-2 items-center">
-                    <div className="w-7 h-7 rounded-full border-2 border-white bg-emerald-100 text-emerald-800 text-[10px] font-bold font-mono flex items-center justify-center">
+                    <div className="w-7 h-7 rounded-full border-2 border-white bg-emerald-100 text-emerald-800 text-label-caps font-bold font-mono flex items-center justify-center">
                       JD
                     </div>
-                    <div className="w-7 h-7 rounded-full border-2 border-white bg-zinc-200 text-zinc-800 text-[10px] font-bold font-mono flex items-center justify-center">
+                    <div className="w-7 h-7 rounded-full border-2 border-white bg-zinc-200 text-zinc-800 text-label-caps font-bold font-mono flex items-center justify-center">
                       SL
                     </div>
-                    <div className="w-7 h-7 rounded-full border-2 border-white bg-indigo-100 text-indigo-800 text-[10px] font-bold font-mono flex items-center justify-center">
+                    <div className="w-7 h-7 rounded-full border-2 border-white bg-indigo-100 text-indigo-800 text-label-caps font-bold font-mono flex items-center justify-center">
                       ME
                     </div>
                   </div>
@@ -266,7 +266,7 @@ export default function Dashboard() {
                     <div className="w-full bg-zinc-200/70 rounded-full h-2 overflow-hidden">
                       <div className="bg-rose-500 h-2 rounded-full w-[68%]" />
                     </div>
-                    <div className="flex justify-between items-center text-[11px] text-zinc-400 mt-2 font-mono">
+                    <div className="flex justify-between items-center text-label-caps text-zinc-400 mt-2 font-mono">
                       <span>Pool: ₹544.00</span>
                       <span className="text-rose-700 font-bold">₹174 pending</span>
                     </div>
@@ -275,7 +275,7 @@ export default function Dashboard() {
                 <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between">
                   <div className="flex -space-x-2 items-center">
                     <img alt="Vikram" className="w-7 h-7 rounded-full border-2 border-white object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz9scSz__8rgDEmPB-vj-7V5IngekUkMOdETiRHg69SX_LHoxAnXCLfGjiEF1hZOtl7DRwFXhLVo7CV12YDa8yCiYM4pGmTOo5UEnZgCCSIuHh9TNH-QAkhJBLO5BwpFj2lp-sgIEx3BFr4BzRpyIvuLOnKuZpdjrn6oCJuBfQQwHyIv-hQAzT2Djk_AbRMGXMB9y6aNIobaAOWBh5ZHpWVbKC_1sXgUoIw67q-1k" />
-                    <div className="w-7 h-7 rounded-full border-2 border-white bg-rose-100 text-rose-800 text-[10px] font-bold font-mono flex items-center justify-center">
+                    <div className="w-7 h-7 rounded-full border-2 border-white bg-rose-100 text-rose-800 text-label-caps font-bold font-mono flex items-center justify-center">
                       +6
                     </div>
                   </div>
@@ -292,7 +292,7 @@ export default function Dashboard() {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider font-bold text-emerald-700 block">
+                    <span className="text-label-caps font-mono uppercase tracking-wider font-bold text-emerald-700 block">
                       Tabsy Graph Engine
                     </span>
                     <h3 className="text-lg font-extrabold text-zinc-900 tracking-tight">
@@ -309,7 +309,7 @@ export default function Dashboard() {
                   ledger in 2 direct hops.
                 </p>
                 <div className="mt-6 p-5 rounded-3xl bg-[#FAF8F5] border border-[#EFECE6] space-y-4">
-                  <div className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider flex items-center justify-between">
+                  <div className="text-label-caps font-mono font-bold text-zinc-400 uppercase tracking-wider flex items-center justify-between">
                     <span>Calculated Route</span>
                     <span className="text-emerald-700">Zero Fees • Instant Settlement</span>
                   </div>
@@ -320,17 +320,17 @@ export default function Dashboard() {
                       </div>
                       <div>
                         <div className="font-bold text-xs text-zinc-900">Arjun Sharma</div>
-                        <span className="text-[11px] text-zinc-500">Sender</span>
+                        <span className="text-label-caps text-zinc-500">Sender</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-50 text-rose-900 border border-rose-200/60 font-mono text-xs font-bold">
-                      <span className="material-symbols-outlined text-[15px] text-rose-600">arrow_forward</span>
+                      <span className="material-symbols-outlined text-body-md text-rose-600">arrow_forward</span>
                       <span>₹165.20</span>
                     </div>
                     <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
                       <div className="text-right">
                         <div className="font-bold text-xs text-zinc-900">Rahul Sharma</div>
-                        <span className="text-[11px] text-zinc-500">Recipient</span>
+                        <span className="text-label-caps text-zinc-500">Recipient</span>
                       </div>
                       <div className="w-9 h-9 rounded-xl bg-rose-100 text-rose-900 font-bold text-xs flex items-center justify-center font-mono">
                         MR
@@ -342,17 +342,17 @@ export default function Dashboard() {
                       <img alt="Priya" className="w-9 h-9 rounded-xl object-cover border border-zinc-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA15o5nefBV9PSweTfltWsXdR5pbxBsaNUVAGuJqNKMvdA5cSe2GUX4Q__ldIJ2J6yqxsHiWhfmLnsV88vHHLPnbJL0xQtN1yL7FFWKV94BkGadQLzUDXiUa_N-8DDsqKWg76TZHad-egkRACvOVbDPCfYQYDqlzGL_oSFXDcjiBRYO0Gccb1OCCyMr1lhDqs1I7QliUEOUhgni8pWgXPntMdjlsMF8JkFUvGHcpSI" />
                       <div>
                         <div className="font-bold text-xs text-zinc-900">Priya Sharma</div>
-                        <span className="text-[11px] text-zinc-500">Sender</span>
+                        <span className="text-label-caps text-zinc-500">Sender</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-900 border border-emerald-200/60 font-mono text-xs font-bold">
-                      <span className="material-symbols-outlined text-[15px] text-emerald-600">arrow_forward</span>
+                      <span className="material-symbols-outlined text-body-md text-emerald-600">arrow_forward</span>
                       <span>₹482.50</span>
                     </div>
                     <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
                       <div className="text-right">
                         <div className="font-bold text-xs text-zinc-900">Arjun Sharma</div>
-                        <span className="text-[11px] text-zinc-500">Recipient (You)</span>
+                        <span className="text-label-caps text-zinc-500">Recipient (You)</span>
                       </div>
                       <div className="w-9 h-9 rounded-xl bg-zinc-900 text-white font-bold text-xs flex items-center justify-center font-mono">
                         YOU
@@ -374,7 +374,7 @@ export default function Dashboard() {
             <div className="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-7 border border-[#EFECE6] shadow-sm">
               <div className="flex items-center justify-between mb-5">
                 <div>
-                  <span className="text-[11px] font-mono uppercase tracking-wider font-bold text-zinc-400 block">
+                  <span className="text-label-caps font-mono uppercase tracking-wider font-bold text-zinc-400 block">
                     Realtime Stream
                   </span>
                   <h3 className="text-lg font-extrabold text-zinc-900 tracking-tight">
@@ -397,23 +397,23 @@ export default function Dashboard() {
                         <span className="font-bold text-[13.5px] text-zinc-900 group-hover:text-emerald-700 transition-colors">
                           Pastéis de Belém
                         </span>
-                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 text-[10px] font-mono font-bold border border-emerald-200/50">
-                          <span className="material-symbols-outlined text-[11px]">verified</span> OCR Verified
+                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 text-label-caps font-mono font-bold border border-emerald-200/50">
+                          <span className="material-symbols-outlined text-label-caps">verified</span> OCR Verified
                         </span>
                       </div>
                       <p className="text-xs text-zinc-500 mt-0.5">Paid by you • Split 4 ways (Lisbon Tab)</p>
                       <div className="flex items-center gap-2 mt-1.5">
-                        <span className="text-[10px] font-mono text-zinc-400">11:42 AM</span>
+                        <span className="text-label-caps font-mono text-zinc-400">11:42 AM</span>
                         <span className="text-zinc-300">•</span>
-                        <button className="text-[11px] font-bold text-emerald-700 hover:underline inline-flex items-center gap-0.5">
-                          <span className="material-symbols-outlined text-[13px]">receipt</span> View receipt PDF
+                        <button className="text-label-caps font-bold text-emerald-700 hover:underline inline-flex items-center gap-0.5">
+                          <span className="material-symbols-outlined text-body-sm">receipt</span> View receipt PDF
                         </button>
                       </div>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
                     <span className="text-sm font-extrabold font-mono text-emerald-700 block">+₹18.40</span>
-                    <span className="text-[10px] font-mono text-zinc-400">Total ₹73.60</span>
+                    <span className="text-label-caps font-mono text-zinc-400">Total ₹73.60</span>
                   </div>
                 </div>
 
@@ -425,21 +425,21 @@ export default function Dashboard() {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-[13.5px] text-zinc-900">Fiber Gigabit Restock</span>
-                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 text-[10px] font-mono font-bold">
+                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 text-label-caps font-mono font-bold">
                           Automated
                         </span>
                       </div>
                       <p className="text-xs text-zinc-500 mt-0.5">Rahul paid • You owe ₹0.00 (Brooklyn 4B)</p>
                       <div className="flex items-center gap-2 mt-1.5">
-                        <span className="text-[10px] font-mono text-zinc-400">Yesterday</span>
+                        <span className="text-label-caps font-mono text-zinc-400">Yesterday</span>
                         <span className="text-zinc-300">•</span>
-                        <span className="text-[11px] text-zinc-500 font-medium">Auto-deducted from pool</span>
+                        <span className="text-label-caps text-zinc-500 font-medium">Auto-deducted from pool</span>
                       </div>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
                     <span className="text-sm font-extrabold font-mono text-zinc-600 block">₹0.00</span>
-                    <span className="text-[10px] font-mono text-zinc-400">Settled</span>
+                    <span className="text-label-caps font-mono text-zinc-400">Settled</span>
                   </div>
                 </div>
 
@@ -451,15 +451,15 @@ export default function Dashboard() {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-[13.5px] text-zinc-900">Tokyo Shinkansen Nozomi</span>
-                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-rose-50 text-rose-800 text-[10px] font-mono font-bold border border-rose-200/50">
+                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-rose-50 text-rose-800 text-label-caps font-mono font-bold border border-rose-200/50">
                           Pending
                         </span>
                       </div>
                       <p className="text-xs text-zinc-500 mt-0.5">Vikram paid • Equal share (Tokyo Tab)</p>
                       <div className="flex items-center gap-2 mt-1.5">
-                        <span className="text-[10px] font-mono text-zinc-400">2 days ago</span>
+                        <span className="text-label-caps font-mono text-zinc-400">2 days ago</span>
                         <span className="text-zinc-300">•</span>
-                        <button className="text-[11px] font-bold text-rose-700 hover:underline">
+                        <button className="text-label-caps font-bold text-rose-700 hover:underline">
                           1-tap settle
                         </button>
                       </div>
@@ -467,7 +467,7 @@ export default function Dashboard() {
                   </div>
                   <div className="text-right shrink-0">
                     <span className="text-sm font-extrabold font-mono text-rose-600 block">-₹68.00</span>
-                    <span className="text-[10px] font-mono text-zinc-400">Your Share</span>
+                    <span className="text-label-caps font-mono text-zinc-400">Your Share</span>
                   </div>
                 </div>
 
@@ -479,21 +479,21 @@ export default function Dashboard() {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-[13.5px] text-zinc-900">Trader Joe's Essentials</span>
-                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 text-[10px] font-mono font-bold border border-emerald-200/50">
-                          <span className="material-symbols-outlined text-[11px]">verified</span> Scanned
+                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 text-label-caps font-mono font-bold border border-emerald-200/50">
+                          <span className="material-symbols-outlined text-label-caps">verified</span> Scanned
                         </span>
                       </div>
                       <p className="text-xs text-zinc-500 mt-0.5">Paid by you • Roommates split 3-ways</p>
                       <div className="flex items-center gap-2 mt-1.5">
-                        <span className="text-[10px] font-mono text-zinc-400">3 days ago</span>
+                        <span className="text-label-caps font-mono text-zinc-400">3 days ago</span>
                         <span className="text-zinc-300">•</span>
-                        <span className="text-[11px] text-zinc-500 font-medium">All approved</span>
+                        <span className="text-label-caps text-zinc-500 font-medium">All approved</span>
                       </div>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
                     <span className="text-sm font-extrabold font-mono text-emerald-700 block">+₹42.10</span>
-                    <span className="text-[10px] font-mono text-zinc-400">Owed to you</span>
+                    <span className="text-label-caps font-mono text-zinc-400">Owed to you</span>
                   </div>
                 </div>
               </div>
@@ -508,3 +508,4 @@ export default function Dashboard() {
     </AppLayout>
   );
 }
+

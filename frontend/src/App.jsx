@@ -11,6 +11,11 @@ import ProfileSetupPreferences from "./pages/ProfileSetupPreferences";
 import Dashboard from "./pages/Dashboard";
 import Activity from "./pages/Activity";
 import Balances from "./pages/Balances";
+import Groups from "./pages/Groups";
+import CreateGroup from "./pages/CreateGroup";
+import GroupDetails from "./pages/GroupDetails";
+import GroupExpenses from "./pages/GroupExpenses";
+import Notifications from "./pages/Notifications";
 import QuickActions from "./pages/QuickActions";
 
 function App() {
@@ -36,6 +41,11 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/balances" element={<Balances />} />
+        <Route path="/groups" element={<Groups />} />
+        <Route path="/create-group" element={<CreateGroup />} />
+<Route path="/group-details" element={<GroupDetails />} />
+<Route path="/group-expenses" element={<GroupExpenses />} />
+        <Route path="/notifications" element={<Notifications />} />
         <Route path="/quick-actions" element={<QuickActions />} />
       </Routes>
     </BrowserRouter>

@@ -100,7 +100,35 @@
   --color-bento-purple-border: #CE93D8;
   --color-bento-peach: #FFF3E0;
   --color-bento-peach-border: #FFCC80;
-  --color-macaron-mint: #e6f8f0;
+  --color-matcha-50: #ecfdf5;
+  --color-matcha-100: #d1fae5;
+  --color-matcha-200: #a7f3d0;
+  --color-matcha-600: #059669;
+  --color-matcha-700: #047857;
+  --color-matcha-800: #065f46;
+
+  --color-lilac-50: #faf5ff;
+  --color-lilac-100: #ede9fe;
+  --color-lilac-200: #ddd6fe;
+  --color-lilac-600: #7c3aed;
+  --color-lilac-700: #6d28d9;
+
+  --color-buttercup-50: #fffbeb;
+  --color-buttercup-100: #fef3c7;
+  --color-buttercup-200: #fde68a;
+  --color-buttercup-700: #b45309;
+
+  --color-sky-50: #f0f9ff;
+  --color-sky-100: #e0f2fe;
+  --color-sky-200: #bae6fd;
+  --color-sky-600: #0284c7;
+  --color-sky-700: #0369a1;
+
+  --color-peach-50: #fff1f2;
+  --color-peach-100: #ffe4e6;
+  --color-peach-200: #fecdd3;
+  --color-peach-600: #e11d48;
+  --color-peach-700: #be123c;
   --color-macaron-mint-border: #c3ecd8;
   --color-macaron-sky: #e8f2ff;
   --color-macaron-sky-border: #cde2fd;
@@ -206,7 +234,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow: auto;
+    overflow: visible;
   }
   body {
     margin: 0;
@@ -214,7 +242,7 @@
     background-color: #FAF8F5;
     color: #18181B;
     font-family: "Plus Jakarta Sans", sans-serif;
-    overflow: auto;
+    overflow: visible;
   }
 }
 

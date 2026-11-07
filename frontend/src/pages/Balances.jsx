@@ -1,4 +1,4 @@
-import AppLayout from "../components/layout/AppLayout";
+﻿import AppLayout from "../components/layout/AppLayout";
 
 export default function Balances() {
   return (
@@ -25,7 +25,7 @@ export default function Balances() {
               </button>
               <button className="px-5 py-2.5 rounded-full bg-primary-container hover:bg-primary text-on-primary font-title-md text-title-md transition-all flex items-center gap-2 shadow-sm" type="button">
                 <span className="material-symbols-outlined text-[18px]">bolt</span>
-                <span>Settle All Net (₹165.20)</span>
+                <span>Settle All Net (â‚¹165.20)</span>
               </button>
             </div>
           </div>
@@ -57,9 +57,9 @@ export default function Balances() {
                     Net Standing
                   </span>
                   <div className="font-numeric-balance-lg text-numeric-balance-lg text-primary tracking-tight font-extrabold mt-0.5">
-                    +₹317.30
+                    +â‚¹317.30
                   </div>
-                  <span className="inline-flex items-center gap-1 mt-1 px-2.5 py-0.5 rounded-full bg-macaron-mint/20 text-primary font-title-md text-[13px] font-semibold">
+                  <span className="inline-flex items-center gap-1 mt-1 px-2.5 py-0.5 rounded-full bg-macaron-mint/20 text-primary font-title-md text-body-sm font-semibold">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
                     Surplus Balance
                   </span>
@@ -70,14 +70,14 @@ export default function Balances() {
                   <div className="w-3.5 h-3.5 rounded-full bg-primary-container shrink-0" />
                   <div>
                     <p className="font-body-sm text-body-sm text-on-surface-variant leading-none">Owed To You</p>
-                    <p className="font-numeric-balance-md text-numeric-balance-md text-on-surface font-bold mt-1">₹482.50</p>
+                    <p className="font-numeric-balance-md text-numeric-balance-md text-on-surface font-bold mt-1">â‚¹482.50</p>
                   </div>
                 </div>
                 <div className="p-3 bg-macaron-peach/40 rounded-2xl flex items-center gap-3">
                   <div className="w-3.5 h-3.5 rounded-full bg-tertiary-container shrink-0" />
                   <div>
                     <p className="font-body-sm text-body-sm text-macaron-peach-dark leading-none">You Owe</p>
-                    <p className="font-numeric-balance-md text-numeric-balance-md text-tertiary font-bold mt-1">₹165.20</p>
+                    <p className="font-numeric-balance-md text-numeric-balance-md text-tertiary font-bold mt-1">â‚¹165.20</p>
                   </div>
                 </div>
               </div>
@@ -96,18 +96,18 @@ export default function Balances() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {[
-                    { name: "Goa Trip", icon: "flight", net: "+₹180.00", color: "text-primary" },
-                    { name: "Mumbai Flat 4B", icon: "home", net: "-₹65.50", color: "text-tertiary" },
-                    { name: "Weekend Cabin", icon: "cabin", net: "+₹150.00", color: "text-primary" },
+                    { name: "Goa Trip", icon: "flight", net: "+â‚¹180.00", color: "text-primary" },
+                    { name: "Mumbai Flat 4B", icon: "home", net: "-â‚¹65.50", color: "text-tertiary" },
+                    { name: "Weekend Cabin", icon: "cabin", net: "+â‚¹150.00", color: "text-primary" },
                   ].map((p) => (
                     <div key={p.name} className="p-3.5 bg-white/90 rounded-2xl flex flex-col justify-between shadow-xs">
                       <div className="flex items-center justify-between">
-                        <span className="font-title-md text-[13px] text-on-surface font-semibold truncate">{p.name}</span>
-                        <span className={`material-symbols-outlined text-[15px] ${p.color}`}>{p.icon}</span>
+                        <span className="font-title-md text-body-sm text-on-surface font-semibold truncate">{p.name}</span>
+                        <span className={`material-symbols-outlined text-body-md ${p.color}`}>{p.icon}</span>
                       </div>
                       <div className="mt-2 flex items-baseline justify-between">
-                        <span className="font-body-sm text-[11px] text-on-surface-variant">Net Pool</span>
-                        <span className={`font-numeric-balance-md text-[15px] font-bold ${p.color}`}>{p.net}</span>
+                        <span className="font-body-sm text-label-caps text-on-surface-variant">Net Pool</span>
+                        <span className={`font-numeric-balance-md text-body-md font-bold ${p.color}`}>{p.net}</span>
                       </div>
                     </div>
                   ))}
@@ -130,14 +130,14 @@ export default function Balances() {
                   </p>
                   <div className="flex items-center justify-between pt-2">
                     <div className="flex -space-x-1.5">
-                      <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-[11px] font-bold text-macaron-yellow-dark shadow-xs border border-yellow-200">
+                      <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-label-caps font-bold text-macaron-yellow-dark shadow-xs border border-yellow-200">
                         SM
                       </div>
-                      <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-[11px] font-bold text-macaron-yellow-dark shadow-xs border border-yellow-200">
+                      <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-label-caps font-bold text-macaron-yellow-dark shadow-xs border border-yellow-200">
                         LK
                       </div>
                     </div>
-                    <button className="px-3 py-1.5 rounded-full bg-white hover:bg-yellow-50 text-macaron-yellow-dark font-title-md text-[13px] font-bold transition-colors shadow-xs" type="button">
+                    <button className="px-3 py-1.5 rounded-full bg-white hover:bg-yellow-50 text-macaron-yellow-dark font-title-md text-body-sm font-bold transition-colors shadow-xs" type="button">
                       Send Now
                     </button>
                   </div>
@@ -150,12 +150,12 @@ export default function Balances() {
                       <h3 className="font-title-md text-title-md text-on-surface font-bold">Algorithm Savings</h3>
                     </div>
                     <span className="px-2.5 py-0.5 rounded-full bg-white/80 text-macaron-lilac-dark font-label-caps text-label-caps font-bold">
-                      Saved ₹15
+                      Saved â‚¹15
                     </span>
                   </div>
                   <div className="my-2">
                     <div className="font-numeric-balance-lg text-[22px] text-macaron-lilac-dark font-extrabold tracking-tight">
-                      ₹15.00 fees avoided
+                      â‚¹15.00 fees avoided
                     </div>
                     <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
                       4 intermediate wire hops bypassed via bipartite matrix graph reduction.
@@ -199,8 +199,8 @@ export default function Balances() {
                     You owe these peers. Instant zero-fee settlement available.
                   </p>
                   {[
-                    { initials: "MP", name: "Marco P.", sub: "Ski Lodge Deposit", amount: "₹105.20", color: "text-macaron-peach-dark" },
-                    { initials: "ER", name: "Emily R.", sub: "Concert Tickets", amount: "₹60.00", color: "text-on-surface" },
+                    { initials: "MP", name: "Marco P.", sub: "Ski Lodge Deposit", amount: "â‚¹105.20", color: "text-macaron-peach-dark" },
+                    { initials: "ER", name: "Emily R.", sub: "Concert Tickets", amount: "â‚¹60.00", color: "text-on-surface" },
                   ].map((p) => (
                     <div key={p.name} className="p-4 bg-surface-container-low rounded-2xl space-y-3 hover:bg-surface-container transition-colors">
                       <div className="flex items-center justify-between">
@@ -209,9 +209,9 @@ export default function Balances() {
                             {p.initials}
                           </div>
                           <div>
-                            <h4 className="font-title-md text-[14px] text-on-surface font-bold">{p.name}</h4>
+                            <h4 className="font-title-md text-body-md text-on-surface font-bold">{p.name}</h4>
                             <div className="flex items-center gap-1 text-on-surface-variant text-[12px]">
-                              <span className="material-symbols-outlined text-[13px]">cabin</span>
+                              <span className="material-symbols-outlined text-body-sm">cabin</span>
                               <span>{p.sub}</span>
                             </div>
                           </div>
@@ -220,7 +220,7 @@ export default function Balances() {
                           -{p.amount}
                         </span>
                       </div>
-                      <button className="w-full py-2 px-3 rounded-full bg-tertiary text-on-tertiary hover:opacity-95 font-title-md text-[13px] flex items-center justify-center gap-1.5 transition-all shadow-xs" type="button">
+                      <button className="w-full py-2 px-3 rounded-full bg-tertiary text-on-tertiary hover:opacity-95 font-title-md text-body-sm flex items-center justify-center gap-1.5 transition-all shadow-xs" type="button">
                         <span className="material-symbols-outlined text-[16px]">credit_card</span>
                         <span>1-Tap Settle {p.amount}</span>
                       </button>
@@ -229,7 +229,7 @@ export default function Balances() {
                 </div>
                 <div className="mt-4 pt-3 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant">
                   <span>Total Payable</span>
-                  <span className="font-numeric-balance-md text-tertiary font-bold">₹165.20</span>
+                  <span className="font-numeric-balance-md text-tertiary font-bold">â‚¹165.20</span>
                 </div>
               </div>
 
@@ -248,8 +248,8 @@ export default function Balances() {
                     Peers who owe you. Gentle reminder ping cards with direct pay links.
                   </p>
                   {[
-                    { initials: "SM", name: "Sarah M.", sub: "Lisbon Roadtrip", amount: "₹124.00", bg: "bg-primary-container/20", text: "text-primary" },
-                    { initials: "LK", name: "Leo K.", sub: "Tokyo Flights", amount: "₹218.50", bg: "bg-secondary-fixed", text: "text-secondary" },
+                    { initials: "SM", name: "Sarah M.", sub: "Lisbon Roadtrip", amount: "â‚¹124.00", bg: "bg-primary-container/20", text: "text-primary" },
+                    { initials: "LK", name: "Leo K.", sub: "Tokyo Flights", amount: "â‚¹218.50", bg: "bg-secondary-fixed", text: "text-secondary" },
                   ].map((p) => (
                     <div key={p.name} className="p-4 bg-surface-container-low rounded-2xl space-y-3 hover:bg-surface-container transition-colors">
                       <div className="flex items-center justify-between">
@@ -258,9 +258,9 @@ export default function Balances() {
                             {p.initials}
                           </div>
                           <div>
-                            <h4 className="font-title-md text-[14px] text-on-surface font-bold">{p.name}</h4>
+                            <h4 className="font-title-md text-body-md text-on-surface font-bold">{p.name}</h4>
                             <div className="flex items-center gap-1 text-on-surface-variant text-[12px]">
-                              <span className="material-symbols-outlined text-[13px]">flight_takeoff</span>
+                              <span className="material-symbols-outlined text-body-sm">flight_takeoff</span>
                               <span>{p.sub}</span>
                             </div>
                           </div>
@@ -269,7 +269,7 @@ export default function Balances() {
                           +{p.amount}
                         </span>
                       </div>
-                      <button className="w-full py-2 px-3 rounded-full bg-primary-container text-on-primary hover:bg-primary font-title-md text-[13px] flex items-center justify-center gap-1.5 transition-all shadow-xs" type="button">
+                      <button className="w-full py-2 px-3 rounded-full bg-primary-container text-on-primary hover:bg-primary font-title-md text-body-sm flex items-center justify-center gap-1.5 transition-all shadow-xs" type="button">
                         <span className="material-symbols-outlined text-[16px]">notifications_active</span>
                         <span>Trigger Polite Reminder</span>
                       </button>
@@ -278,7 +278,7 @@ export default function Balances() {
                 </div>
                 <div className="mt-4 pt-3 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant">
                   <span>Total Receivable</span>
-                  <span className="font-numeric-balance-md text-primary font-bold">+₹342.50</span>
+                  <span className="font-numeric-balance-md text-primary font-bold">+â‚¹342.50</span>
                 </div>
               </div>
 
@@ -297,9 +297,9 @@ export default function Balances() {
                     Recently reconciled tabs and zero-drift active members.
                   </p>
                   {[
-                    { initials: "TY", name: "Tyler Y.", sub: "Friday Tapas", amount: "₹85.00", color: "bg-surface-variant text-on-surface" },
-                    { initials: "SW", name: "Samantha W.", sub: "Groceries", amount: "₹55.00", color: "bg-macaron-yellow text-macaron-yellow-dark" },
-                    { initials: "LV", name: "Liam V.", sub: "Equilibrium reached", amount: "₹0.00", color: "bg-macaron-lilac text-macaron-lilac-dark", balanced: true },
+                    { initials: "TY", name: "Tyler Y.", sub: "Friday Tapas", amount: "â‚¹85.00", color: "bg-surface-variant text-on-surface" },
+                    { initials: "SW", name: "Samantha W.", sub: "Groceries", amount: "â‚¹55.00", color: "bg-macaron-yellow text-macaron-yellow-dark" },
+                    { initials: "LV", name: "Liam V.", sub: "Equilibrium reached", amount: "â‚¹0.00", color: "bg-macaron-lilac text-macaron-lilac-dark", balanced: true },
                   ].map((p) => (
                     <div key={p.name} className="p-3.5 bg-surface-container-low rounded-2xl flex items-center justify-between hover:bg-surface-container transition-colors min-h-[60px]">
                       <div className="flex items-center gap-3">
@@ -307,16 +307,16 @@ export default function Balances() {
                           {p.initials}
                         </div>
                         <div>
-                          <h4 className="font-title-md text-[13px] text-on-surface font-bold">{p.name}</h4>
-                          <span className="text-on-surface-variant text-[11px]">{p.sub}</span>
+                          <h4 className="font-title-md text-body-sm text-on-surface font-bold">{p.name}</h4>
+                          <span className="text-on-surface-variant text-label-caps">{p.sub}</span>
                         </div>
                       </div>
                       <div className="text-right min-w-[72px] flex flex-col items-end justify-center">
-                        <span className={`font-numeric-balance-md text-[14px] font-bold ${p.balanced ? "text-on-surface-variant" : "text-primary"}`}>
-                          {p.balanced ? "₹0.00" : `+${p.amount}`}
+                        <span className={`font-numeric-balance-md text-body-md font-bold ${p.balanced ? "text-on-surface-variant" : "text-primary"}`}>
+                          {p.balanced ? "â‚¹0.00" : `+${p.amount}`}
                         </span>
                         {p.balanced && (
-                          <span className="block text-[10px] text-primary inline-flex items-center gap-0.5">
+                          <span className="block text-label-caps text-primary inline-flex items-center gap-0.5">
                             <span className="material-symbols-outlined text-[12px]">check_circle</span> Balanced
                           </span>
                         )}
@@ -338,9 +338,9 @@ export default function Balances() {
                 <span className="material-symbols-outlined text-[20px]">verified</span>
               </div>
               <div>
-                <span className="font-title-md text-[13px] text-on-surface font-bold block">Zero-Drift Cryptographic Balance Guarantee</span>
+                <span className="font-title-md text-body-sm text-on-surface font-bold block">Zero-Drift Cryptographic Balance Guarantee</span>
                 <span className="font-body-sm text-[12px] text-on-surface-variant">
-                  Tabsy enforces double-entry verification on each ledger delta. Sum total across all circles strictly evaluates to Σ(net) = ₹0.00.
+                  Tabsy enforces double-entry verification on each ledger delta. Sum total across all circles strictly evaluates to Î£(net) = â‚¹0.00.
                 </span>
               </div>
             </div>
@@ -357,10 +357,10 @@ export default function Balances() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-primary-container flex items-center justify-center">
-              <span className="material-symbols-outlined text-on-primary text-[14px]">receipt_long</span>
+              <span className="material-symbols-outlined text-on-primary text-body-md">receipt_long</span>
             </div>
             <span className="font-title-md text-title-md text-on-surface">Tabsy</span>
-            <span className="font-body-sm text-body-sm text-on-surface-variant ml-2">© 2025 All tabs settled effortlessly.</span>
+            <span className="font-body-sm text-body-sm text-on-surface-variant ml-2">Â© 2025 All tabs settled effortlessly.</span>
           </div>
           <div className="flex items-center gap-6">
             <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">

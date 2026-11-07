@@ -8,7 +8,7 @@ export default function Activity() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pt-2">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full bg-macaron-butter border border-macaron-butter-border text-[#7c5e10] font-label-caps text-[11px] font-bold">
+                <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full bg-macaron-butter border border-macaron-butter-border text-[#7c5e10] font-label-caps text-label-caps font-bold">
                   ⚡ LIVE FEED &amp; LEDGER
                 </span>
                 <span className="text-on-surface-variant text-body-sm">Synced 1 min ago</span>
@@ -93,7 +93,7 @@ export default function Activity() {
                   <span className="material-symbols-outlined text-primary text-[18px]">check_circle</span>
                   <span className="font-body-sm text-body-sm text-on-surface font-medium">12 transactions resolved</span>
                 </div>
-                <span className="font-label-caps text-[11px] font-bold text-primary">0 DISPUTES</span>
+                <span className="font-label-caps text-label-caps font-bold text-primary">0 DISPUTES</span>
               </div>
             </div>
 
@@ -145,7 +145,7 @@ export default function Activity() {
                   }`}
                 >
                   <span>{p.label}</span>
-                  <span className="px-2 py-0.5 rounded-full bg-surface-container text-[11px] font-bold">
+                  <span className="px-2 py-0.5 rounded-full bg-surface-container text-label-caps font-bold">
                     {p.count}
                   </span>
                 </button>
@@ -172,7 +172,7 @@ export default function Activity() {
                 <div className="flex items-center justify-between px-1">
                   <div className="flex items-center gap-2.5">
                     <span className="font-title-md text-title-md text-on-surface font-extrabold">Today</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-macaron-mint border border-macaron-mint-border text-primary font-label-caps text-[10px] font-bold uppercase">
+                    <span className="px-2.5 py-0.5 rounded-full bg-macaron-mint border border-macaron-mint-border text-primary font-label-caps text-label-caps font-bold uppercase">
                       3 Events
                     </span>
                   </div>
@@ -197,11 +197,11 @@ export default function Activity() {
                         </p>
                         <div className="flex items-center gap-3 mt-2">
                           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-low text-body-sm text-on-surface font-medium border border-surface-container">
-                            <span className="material-symbols-outlined text-[15px] text-primary">navigation</span>
+                            <span className="material-symbols-outlined text-body-md text-primary">navigation</span>
                             Goa Trip 2025
                           </span>
                           <span className="text-on-surface-variant text-body-sm flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[14px]">schedule</span> 10:14 AM
+                            <span className="material-symbols-outlined text-body-md">schedule</span> 10:14 AM
                           </span>
                         </div>
                       </div>
@@ -256,11 +256,11 @@ export default function Activity() {
                         </p>
                         <div className="flex items-center gap-3 mt-2">
                           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-low text-body-sm text-on-surface font-medium border border-surface-container">
-                            <span className="material-symbols-outlined text-[15px] text-secondary">explore</span>
+                            <span className="material-symbols-outlined text-body-md text-secondary">explore</span>
                             Goa Trip 2025
                           </span>
                           <span className="text-on-surface-variant text-body-sm flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[14px]">schedule</span> 9:30 AM
+                            <span className="material-symbols-outlined text-body-md">schedule</span> 9:30 AM
                           </span>
                         </div>
                       </div>
@@ -288,7 +288,7 @@ export default function Activity() {
                           <span className="font-title-md text-body-md text-on-surface font-semibold">
                             Restaurante Ramiro
                           </span>
-                          <span className="px-2 py-0.5 rounded-full bg-macaron-mint border border-macaron-mint-border text-primary text-[10px] font-bold">
+                          <span className="px-2 py-0.5 rounded-full bg-macaron-mint border border-macaron-mint-border text-primary text-label-caps font-bold">
                             OCR VERIFIED
                           </span>
                         </div>
@@ -308,7 +308,7 @@ export default function Activity() {
                 <div className="flex items-center justify-between px-1">
                   <div className="flex items-center gap-2.5">
                     <span className="font-title-md text-title-md text-on-surface font-extrabold">Yesterday</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-macaron-lilac border border-macaron-lilac-border text-secondary font-label-caps text-[10px] font-bold uppercase">
+                    <span className="px-2.5 py-0.5 rounded-full bg-macaron-lilac border border-macaron-lilac-border text-secondary font-label-caps text-label-caps font-bold uppercase">
                       2 Events
                     </span>
                   </div>
@@ -345,7 +345,7 @@ export default function Activity() {
                             <div className="w-7 h-7 rounded-full overflow-hidden border-2 border-white shadow-xs">
                               <img className="w-full h-full object-cover" alt="Designer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqmh34AJ8-xMenUPuvxNcyGrcpYWx3nUmszx84LyBRQmm_nqYokSBttMDkcJ64aZdOGu8kqQL2p5jk4qSjbJUyKr6coBU1S84lhZtOZ9SEeosNF2VBC0sRZxV20YVTso9T1MWJe7V-BAHUp4n3OhaDaSDcGsdr2j2uK5gqhkFoSkoTPyBXwM4Pg2PrkmTEo2rPTLlzDsLFmgeUvJNLCsMUaFCqOp2xESTyP1kcR3k" />
                             </div>
-                            <div className="w-7 h-7 rounded-full bg-macaron-lilac border-2 border-white text-secondary flex items-center justify-center font-bold text-[11px]">
+                            <div className="w-7 h-7 rounded-full bg-macaron-lilac border-2 border-white text-secondary flex items-center justify-center font-bold text-label-caps">
                               +2
                             </div>
                           </div>
@@ -392,11 +392,11 @@ export default function Activity() {
                         </p>
                         <div className="flex items-center gap-3 mt-2">
                           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-low text-body-sm text-on-surface font-medium border border-surface-container">
-                            <span className="material-symbols-outlined text-[15px] text-tertiary">local_gas_station</span>
+                            <span className="material-symbols-outlined text-body-md text-tertiary">local_gas_station</span>
                             Goa Trip 2025
                           </span>
                           <span className="text-on-surface-variant text-body-sm flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[14px]">schedule</span> 1:12 PM
+                            <span className="material-symbols-outlined text-body-md">schedule</span> 1:12 PM
                           </span>
                         </div>
                       </div>
@@ -436,7 +436,7 @@ export default function Activity() {
                 <div className="flex items-center justify-between px-1">
                   <div className="flex items-center gap-2.5">
                     <span className="font-title-md text-title-md text-on-surface font-extrabold">Last Weekend</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-macaron-butter border border-macaron-butter-border text-[#7c5e10] font-label-caps text-[10px] font-bold uppercase">
+                    <span className="px-2.5 py-0.5 rounded-full bg-macaron-butter border border-macaron-butter-border text-[#7c5e10] font-label-caps text-label-caps font-bold uppercase">
                       1 Event
                     </span>
                   </div>
@@ -464,11 +464,11 @@ export default function Activity() {
                         </blockquote>
                         <div className="flex items-center gap-3 mt-3">
                           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-low text-body-sm text-on-surface font-medium border border-surface-container">
-                            <span className="material-symbols-outlined text-[15px] text-[#927014]">cottage</span>
+                            <span className="material-symbols-outlined text-body-md text-[#927014]">cottage</span>
                             Goa Trip 2025
                           </span>
                           <span className="text-on-surface-variant text-body-sm flex items-center gap-1">
-                            <span className="material-symbols-outlined text-[14px]">schedule</span> Oct 20, 6:45 PM
+                            <span className="material-symbols-outlined text-body-md">schedule</span> Oct 20, 6:45 PM
                           </span>
                         </div>
                       </div>
@@ -578,7 +578,7 @@ export default function Activity() {
                       </div>
                     </div>
                     <button className="px-3 py-1.5 rounded-xl bg-macaron-blush border border-macaron-blush-border hover:bg-macaron-blush/80 text-tertiary font-title-md text-body-sm transition-all flex items-center gap-1 shadow-xs">
-                      <span className="material-symbols-outlined text-[14px]">touch_app</span> Nudge
+                      <span className="material-symbols-outlined text-body-md">touch_app</span> Nudge
                     </button>
                   </div>
                   <div className="flex items-center justify-between p-2.5 rounded-2xl bg-surface-container-low border border-surface-container">
@@ -592,7 +592,7 @@ export default function Activity() {
                       </div>
                     </div>
                     <button className="px-3 py-1.5 rounded-xl bg-macaron-sky border border-macaron-sky-border hover:bg-macaron-sky/80 text-secondary font-title-md text-body-sm transition-all flex items-center gap-1 shadow-xs">
-                      <span className="material-symbols-outlined text-[14px]">send</span> Ping
+                      <span className="material-symbols-outlined text-body-md">send</span> Ping
                     </button>
                   </div>
                 </div>
@@ -620,7 +620,7 @@ export default function Activity() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <div className="w-6 h-6 rounded-lg bg-primary flex items-center justify-center text-white">
-              <span className="material-symbols-outlined text-[14px]">receipt_long</span>
+              <span className="material-symbols-outlined text-body-md">receipt_long</span>
             </div>
             <span className="font-title-md text-body-md text-on-surface font-bold">Tabsy</span>
             <span className="font-body-sm text-body-sm text-on-surface-variant ml-2">
@@ -643,3 +643,4 @@ export default function Activity() {
     </AppLayout>
   );
 }
+

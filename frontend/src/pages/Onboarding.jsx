@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+﻿import { useNavigate } from "react-router-dom";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -34,21 +34,21 @@ export default function Onboarding() {
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col items-center">
           <div className="flex items-center gap-3 bg-white border border-[#EFECE6] px-4 py-2 rounded-full mb-3 shadow-sm">
             <div className="flex items-center gap-1.5">
-              <span className="px-2.5 py-0.5 rounded-full bg-[#10B981] text-white text-[11px] font-bold tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#10B981] text-white text-label-caps font-bold tracking-wide">
                 1
               </span>
               <span className="w-6 h-1.5 rounded-full bg-[#10B981]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#EFECE6] border border-[#DCD8D0]" />
             </div>
             <div className="h-3 w-[1px] bg-[#EFECE6]" />
-            <span className="font-bold text-[11px] text-zinc-600 uppercase tracking-wider">
+            <span className="font-bold text-label-caps text-zinc-600 uppercase tracking-wider">
               Step 1 of 2 : <span className="text-zinc-900">How Tabsy Works</span>
             </span>
           </div>
 
           <div className="text-center max-w-3xl mx-auto mb-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF9C4] text-[#B45309] border border-[#FDE68A] text-xs font-bold mb-3">
-              <span>✨</span> Delightful Multi-Person Accounting
+              <span>âœ¨</span> Delightful Multi-Person Accounting
             </div>
             <h1 className="text-xl sm:text-2xl lg:text-[30px] font-extrabold text-[#18181B] tracking-tight leading-[1.15] mb-3">
               Split expenses in 3 simple steps
@@ -68,14 +68,14 @@ export default function Onboarding() {
                       link
                     </span>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-[#0284C7] text-white font-extrabold text-[11px] tracking-wider uppercase">
+                  <span className="px-3 py-1 rounded-full bg-[#0284C7] text-white font-extrabold text-label-caps tracking-wider uppercase">
                     STEP 01
                   </span>
                 </div>
                 <h2 className="text-base font-bold text-[#0D47A1] mb-3 leading-snug">
-                  1. Create a shared tab 🌴
+                  1. Create a shared tab ðŸŒ´
                 </h2>
-                <p className="text-[11px] text-[#0D47A1]/80 leading-relaxed font-medium">
+                <p className="text-label-caps text-[#0D47A1]/80 leading-relaxed font-medium">
                   Invite roommates, travel buddies, or dinner crews via a single
                   instant magic link. No app download required for guests.
                 </p>
@@ -95,22 +95,22 @@ export default function Onboarding() {
                     <div className="w-8 h-8 rounded-full bg-[#FCE4EC] border-2 border-white text-[#880E4F] font-bold text-xs flex items-center justify-center shadow-sm">
                       LO
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-[#18181B] border-2 border-white text-white font-bold text-[10px] flex items-center justify-center shadow-sm">
+                    <div className="w-8 h-8 rounded-full bg-[#18181B] border-2 border-white text-white font-bold text-label-caps flex items-center justify-center shadow-sm">
                       +4
                     </div>
                   </div>
                   <span className="px-2.5 py-1 rounded-full bg-[#E8F5E9] text-[#1B5E20] border border-[#C8E6C9] font-bold text-xs flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[15px]">
+                    <span className="material-symbols-outlined text-body-md">
                       check_circle
                     </span>
                     Active Tab
                   </span>
                 </div>
                 <div className="flex items-center justify-between pt-2 border-t border-[#EFECE6] text-xs">
-                  <span className="font-mono text-zinc-500 text-[11px] truncate max-w-[150px]">
+                  <span className="font-mono text-zinc-500 text-label-caps truncate max-w-[150px]">
                     tabsy.me/bali-retreat
                   </span>
-                  <span className="px-2 py-0.5 rounded-full bg-[#E3F2FD] text-[#0284C7] font-bold text-[10px] flex items-center gap-1">
+                  <span className="px-2 py-0.5 rounded-full bg-[#E3F2FD] text-[#0284C7] font-bold text-label-caps flex items-center gap-1">
                     <span className="material-symbols-outlined text-[12px]">
                       content_copy
                     </span>
@@ -128,14 +128,14 @@ export default function Onboarding() {
                       receipt_long
                     </span>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-[#D97706] text-white font-extrabold text-[11px] tracking-wider uppercase">
+                  <span className="px-3 py-1 rounded-full bg-[#D97706] text-white font-extrabold text-label-caps tracking-wider uppercase">
                     STEP 02
                   </span>
                 </div>
                 <h2 className="text-base font-bold text-[#B45309] mb-3 leading-snug">
-                  2. Snap receipts or log on the fly 🧾
+                  2. Snap receipts or log on the fly ðŸ§¾
                 </h2>
-                <p className="text-[11px] text-[#B45309]/85 leading-relaxed font-medium">
+                <p className="text-label-caps text-[#B45309]/85 leading-relaxed font-medium">
                   Multi-modal smart OCR instantly parses dishes, tax, and tips.
                   Assign drinks item-by-item or split the feast equally in
                   seconds.
@@ -151,7 +151,7 @@ export default function Onboarding() {
                       El Born Tapas Bar
                     </span>
                   </div>
-                  <span className="px-2 py-0.5 rounded-full bg-[#FFF9C4] text-[#B45309] font-bold text-[10px] border border-[#FDE68A]">
+                  <span className="px-2 py-0.5 rounded-full bg-[#FFF9C4] text-[#B45309] font-bold text-label-caps border border-[#FDE68A]">
                     OCR 100%
                   </span>
                 </div>
@@ -191,11 +191,11 @@ export default function Onboarding() {
                   </div>
                 </div>
                 <div className="pt-2 border-t border-[#EFECE6] flex items-center justify-between">
-                  <span className="text-[11px] font-semibold text-zinc-500">
+                  <span className="text-label-caps font-semibold text-zinc-500">
                     Total Bill:{" "}
                     <strong className="text-zinc-900 font-mono">$124.50</strong>
                   </span>
-                  <span className="px-2 py-0.5 rounded-full bg-[#FCE4EC] text-[#880E4F] font-bold text-[10px]">
+                  <span className="px-2 py-0.5 rounded-full bg-[#FCE4EC] text-[#880E4F] font-bold text-label-caps">
                     Split 4 ways
                   </span>
                 </div>
@@ -210,14 +210,14 @@ export default function Onboarding() {
                       hub
                     </span>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-[#7E22CE] text-white font-extrabold text-[11px] tracking-wider uppercase">
+                  <span className="px-3 py-1 rounded-full bg-[#7E22CE] text-white font-extrabold text-label-caps tracking-wider uppercase">
                     STEP 03
                   </span>
                 </div>
                 <h2 className="text-base font-bold text-[#4A148C] mb-3 leading-snug">
-                  3. Settle in one tap ⚡
+                  3. Settle in one tap âš¡
                 </h2>
-                <p className="text-[11px] text-[#4A148C]/85 leading-relaxed font-medium">
+                <p className="text-label-caps text-[#4A148C]/85 leading-relaxed font-medium">
                   Our bipartite graph engine consolidates tangled multi-person
                   debts into minimum direct settlements. Zero ping-pong
                   payments.
@@ -226,11 +226,11 @@ export default function Onboarding() {
               <div className="mt-2 bg-white border border-[#E9D5FF] rounded-2xl p-4 shadow-sm space-y-3">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wide block">
+                    <span className="text-label-caps font-semibold text-zinc-500 uppercase tracking-wide block">
                       Debt Graph Optimization
                     </span>
                     <span className="font-extrabold text-sm text-[#18181B]">
-                      12 debts → Only 2 payouts
+                      12 debts â†’ Only 2 payouts
                     </span>
                   </div>
                   <div className="w-8 h-8 rounded-full bg-[#E8F5E9] text-[#1B5E20] border border-[#C8E6C9] flex items-center justify-center">
@@ -243,7 +243,7 @@ export default function Onboarding() {
                   <div className="p-2 rounded-xl bg-[#FAF8F5] border border-[#EFECE6] flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1.5 font-medium text-zinc-700">
                       <span className="font-bold text-[#880E4F]">Alex</span>
-                      <span className="text-zinc-400">→</span>
+                      <span className="text-zinc-400">â†’</span>
                       <span className="font-bold text-[#1B5E20]">Sam</span>
                     </div>
                     <span className="font-mono font-bold text-emerald-700 bg-[#E8F5E9] px-2 py-0.5 rounded-full">
@@ -253,7 +253,7 @@ export default function Onboarding() {
                   <div className="p-2 rounded-xl bg-[#FAF8F5] border border-[#EFECE6] flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1.5 font-medium text-zinc-700">
                       <span className="font-bold text-[#B45309]">Maya</span>
-                      <span className="text-zinc-400">→</span>
+                      <span className="text-zinc-400">â†’</span>
                       <span className="font-bold text-[#0D47A1]">Sam</span>
                     </div>
                     <span className="font-mono font-bold text-emerald-700 bg-[#E8F5E9] px-2 py-0.5 rounded-full">
@@ -294,3 +294,4 @@ export default function Onboarding() {
     </div>
   );
 }
+

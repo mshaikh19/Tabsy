@@ -1,13 +1,13 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CHIPS = [
-  { label: "Vacations & Trips", emoji: "✈️", bg: "bg-[#E3F2FD]", text: "text-[#0369A1]", border: "border-[#BAE6FD]", hover: "hover:border-[#0284C7]" },
-  { label: "Roommate Rent & Utilities", emoji: "🏡", bg: "bg-[#E8F5E9]", text: "text-[#15803D]", border: "border-[#BBF7D0]", hover: "hover:border-[#10B981]" },
-  { label: "Dinners & Parties", emoji: "🍕", bg: "bg-[#FFF9C4]", text: "text-[#B45309]", border: "border-[#FDE68A]", hover: "hover:border-[#D97706]" },
-  { label: "Couple & Shared Home", emoji: "💼", bg: "bg-[#FCE4EC]", text: "text-[#BE185D]", border: "border-[#FBCFE8]", hover: "hover:border-[#EC4899]" },
-  { label: "Coffee Runs & Daily", emoji: "☕", bg: "bg-[#F3E5F5]", text: "text-[#7E22CE]", border: "border-[#E9D5FF]", hover: "hover:border-[#9333EA]" },
-  { label: "Road Trips & Festivals", emoji: "🚗", bg: "bg-[#FBE9E7]", text: "text-[#C2410C]", border: "border-[#FFEDD5]", hover: "hover:border-[#EA580C]" },
+  { label: "Vacations & Trips", emoji: "âœˆï¸", bg: "bg-[#E3F2FD]", text: "text-[#0369A1]", border: "border-[#BAE6FD]", hover: "hover:border-[#0284C7]" },
+  { label: "Roommate Rent & Utilities", emoji: "ðŸ¡", bg: "bg-[#E8F5E9]", text: "text-[#15803D]", border: "border-[#BBF7D0]", hover: "hover:border-[#10B981]" },
+  { label: "Dinners & Parties", emoji: "ðŸ•", bg: "bg-[#FFF9C4]", text: "text-[#B45309]", border: "border-[#FDE68A]", hover: "hover:border-[#D97706]" },
+  { label: "Couple & Shared Home", emoji: "ðŸ’¼", bg: "bg-[#FCE4EC]", text: "text-[#BE185D]", border: "border-[#FBCFE8]", hover: "hover:border-[#EC4899]" },
+  { label: "Coffee Runs & Daily", emoji: "â˜•", bg: "bg-[#F3E5F5]", text: "text-[#7E22CE]", border: "border-[#E9D5FF]", hover: "hover:border-[#9333EA]" },
+  { label: "Road Trips & Festivals", emoji: "ðŸš—", bg: "bg-[#FBE9E7]", text: "text-[#C2410C]", border: "border-[#FFEDD5]", hover: "hover:border-[#EA580C]" },
 ];
 
 export default function OnboardingPersonalize() {
@@ -53,19 +53,19 @@ export default function OnboardingPersonalize() {
             <div className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#EFECE6] border border-[#DCD8D0]" />
               <span className="w-6 h-1.5 rounded-full bg-[#10B981]" />
-              <span className="px-2.5 py-0.5 rounded-full bg-[#10B981] text-white text-[11px] font-bold tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#10B981] text-white text-label-caps font-bold tracking-wide">
                 2
               </span>
             </div>
             <div className="h-3 w-[1px] bg-[#EFECE6]" />
-            <span className="font-bold text-[11px] text-zinc-600 uppercase tracking-wider">
+            <span className="font-bold text-label-caps text-zinc-600 uppercase tracking-wider">
               Step 2 of 2 : <span className="text-zinc-900">Personalize Your Hub</span>
             </span>
           </div>
 
           <div className="w-full max-w-4xl bg-white border border-[#EFECE6] rounded-3xl p-6 sm:p-9 shadow-sm flex flex-col items-center mb-10 text-center">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F5E9] text-[#1B5E20] border border-[#C8E6C9] text-[11px] font-extrabold uppercase tracking-wider mb-2.5">
-              <span>🎯</span> Personalize Your Hub
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F5E9] text-[#1B5E20] border border-[#C8E6C9] text-label-caps font-extrabold uppercase tracking-wider mb-2.5">
+              <span>ðŸŽ¯</span> Personalize Your Hub
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[#18181B] tracking-tight mb-2">
               What will you use Tabsy for most?
