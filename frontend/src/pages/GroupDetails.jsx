@@ -1,52 +1,25 @@
 ﻿import { Link } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
+import GroupHeader from "../components/layout/GroupHeader";
 
 export default function GroupDetails() {
   return (
     <AppLayout>
       <main className="w-full pt-4 bg-surface min-h-screen">
-        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-6">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
-              <Link className="hover:text-on-surface transition-colors flex items-center gap-1" to="/groups">
-                <span className="material-symbols-outlined text-[16px]">grid_view</span>
-                Groups
-              </Link>
-              <span className="text-outline-variant">/</span>
-              <span className="text-on-surface font-semibold flex items-center gap-1">Tahoe Ski Weekend ❄️</span>
-              <span className="text-outline-variant">/</span>
-              <span className="text-outline font-normal">Group Details</span>
-            </nav>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-caps text-label-caps">
-              <span className="w-2 h-2 rounded-full bg-primary-container animate-pulse" />
-              REAL-TIME LEDGER ACTIVE
-            </span>
-          </div>
-
-          <div className="relative overflow-hidden rounded-2xl bg-surface-container-lowest shadow-sm p-4 md:p-6">
-            <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-surface-container-low blur-3xl pointer-events-none opacity-80" />
-            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-              <div className="flex flex-col gap-3">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-2 py-0.5 rounded-full bg-primary-fixed/40 text-on-primary-fixed-variant font-label-caps text-label-caps uppercase flex items-center gap-1">
-                    <span className="material-symbols-outlined text-body-sm">downhill_skiing</span>
-                    Trips &amp; Travel
-                  </span>
-                  <span className="px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-caps text-label-caps">FEB 14 – FEB 18, 2025</span>
-                  <span className="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-body-sm text-body-sm flex items-center gap-1">
-                    <span className="material-symbols-outlined text-body-md">pin_drop</span>
-                    South Lake Tahoe, CA basecamp
-                  </span>
-                </div>
-                <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">Tahoe Ski Weekend ❄️</h1>
-                <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl">
-                  6 friends shredding Heavenly &amp; Kirkwood. Cabin split, collective grocery pool, and simplified end-of-trip payouts.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center gap-2 self-start lg:self-center">
+        <div className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-4 flex flex-col gap-6">
+          <GroupHeader
+            title="Tahoe Ski Weekend ❄️"
+            subtitle="6 friends shredding Heavenly & Kirkwood. Cabin split, collective grocery pool, and simplified end-of-trip payouts."
+            currentLabel="Group Details"
+            actions={
+              <>
                 <Link className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-title-md text-title-md shadow-sm hover:opacity-95 active:scale-95 transition-all" to="/group-expenses">
                   <span className="material-symbols-outlined text-[18px]">receipt_long</span>
                   View Expenses
+                </Link>
+                <Link className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-title-md text-title-md shadow-sm hover:opacity-95 active:scale-95 transition-all" to="/group-members">
+                  <span className="material-symbols-outlined text-[18px]">group</span>
+                  View Members
                 </Link>
                 <button className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-title-md text-title-md shadow-sm hover:opacity-95 active:scale-95 transition-all" type="button">
                   <span className="material-symbols-outlined text-[18px]">bolt</span>
@@ -59,9 +32,9 @@ export default function GroupDetails() {
                 <button aria-label="Settings" className="w-10 h-10 rounded-xl bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors" type="button">
                   <span className="material-symbols-outlined text-[20px]">settings</span>
                 </button>
-              </div>
-            </div>
-          </div>
+              </>
+            }
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             <div className="rounded-2xl bg-surface-container-low p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">

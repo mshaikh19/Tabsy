@@ -15,6 +15,7 @@ import Groups from "./pages/Groups";
 import CreateGroup from "./pages/CreateGroup";
 import GroupDetails from "./pages/GroupDetails";
 import GroupExpenses from "./pages/GroupExpenses";
+import GroupMembers from "./pages/GroupMembers";
 import Notifications from "./pages/Notifications";
 import QuickActions from "./pages/QuickActions";
 
@@ -45,6 +46,7 @@ function App() {
         <Route path="/create-group" element={<CreateGroup />} />
 <Route path="/group-details" element={<GroupDetails />} />
 <Route path="/group-expenses" element={<GroupExpenses />} />
+        <Route path="/group-members" element={<GroupMembers />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/quick-actions" element={<QuickActions />} />
       </Routes>

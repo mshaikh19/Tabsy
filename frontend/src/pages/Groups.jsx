@@ -51,7 +51,7 @@ export default function Groups() {
                 </div>
                 <div>
                   <div className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Total Circulating</div>
-                  <div className="font-headline-sm text-lg font-bold text-on-surface">â‚¹1,845.20</div>
+                  <div className="font-headline-sm text-lg font-bold text-on-surface">₹1,845.20</div>
                 </div>
               </div>
               <span className="text-label-caps font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">This Month</span>
@@ -63,7 +63,7 @@ export default function Groups() {
                 </div>
                 <div>
                   <div className="font-label-caps text-label-caps text-emerald-800 uppercase tracking-wider font-semibold">Net Balance</div>
-                  <div className="font-headline-sm text-lg font-bold text-emerald-700">+â‚¹317.30</div>
+                  <div className="font-headline-sm text-lg font-bold text-emerald-700">+₹317.30</div>
                 </div>
               </div>
               <span className="inline-flex items-center gap-1 text-label-caps font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-200 px-2.5 py-1 rounded-full">
@@ -115,14 +115,14 @@ export default function Groups() {
                 updated: "Updated 2h ago",
                 status: "4 unsettled members",
                 statusColor: "bg-sky-200/70 text-sky-900",
-                title: "Tahoe Ski Weekend â„ï¸",
+                title: "Tahoe Ski Weekend ❄️",
                 sub: "Northstar Cabin & Lift Tickets Pool",
                 avatars: ["MK", "KJ", "SS", "+3"],
-                total: "â‚¹2,880.00",
-                share: "â‚¹480.00",
-                net: "+â‚¹140.00",
+                total: "₹2,880.00",
+                share: "₹480.00",
+                net: "+₹140.00",
                 netColor: "text-emerald-600",
-                feed: "Alex added Lift Tickets & Gear Rental (â‚¹640)",
+                feed: "Alex added Lift Tickets & Gear Rental (₹640)",
                 feedIcon: "receipt_long",
                 feedColor: "text-sky-700",
                 feedBg: "bg-sky-50/70 border-sky-100",
@@ -135,12 +135,12 @@ export default function Groups() {
                 updated: "Updated yesterday",
                 status: "Due in 2 days",
                 statusColor: "bg-rose-100 text-rose-800 border-rose-200",
-                title: "Apartment 4B Flatmates ðŸ ",
+                title: "Apartment 4B Flatmates 🏔️",
                 sub: "Rent, WiFi, Cleaning & Utilities",
                 avatars: ["AL", "LE", "SM"],
-                total: "â‚¹1,420.50",
-                share: "â‚¹473.50",
-                net: "-â‚¹65.50",
+                total: "₹1,420.50",
+                share: "₹473.50",
+                net: "-₹65.50",
                 netColor: "text-rose-600",
                 feed: "Leo paid Trader Joe's Supermarket Run",
                 feedIcon: "shopping_basket",
@@ -155,12 +155,12 @@ export default function Groups() {
                 updated: "Updated 3d ago",
                 status: "Locked Deposits",
                 statusColor: "bg-purple-200/70 text-purple-900",
-                title: "Tokyo Cherry Blossoms 2026 ðŸŒ¸",
+                title: "Tokyo Cherry Blossoms 2026 🌸",
                 sub: "Airbnbs, Shinkansen Passes & Food Tours",
                 avatars: ["YOU", "AX", "SR", "LO"],
-                total: "â‚¹3,640.00",
-                share: "â‚¹910.00",
-                net: "+â‚¹218.50",
+                total: "₹3,640.00",
+                share: "₹910.00",
+                net: "+₹218.50",
                 netColor: "text-emerald-600",
                 feed: "Flight deposits locked in & split 4-ways",
                 feedIcon: "flight_takeoff",
@@ -175,12 +175,12 @@ export default function Groups() {
                 updated: "Settled May 18",
                 status: "Fully balanced",
                 statusColor: "bg-emerald-200 text-emerald-900",
-                title: "Friday Tapas & Wine Club ðŸ·",
+                title: "Friday Tapas & Wine Club 🍷",
                 sub: "Bi-weekly dinners & tastings pool",
                 avatars: ["5p"],
-                total: "â‚¹340.00",
-                share: "â‚¹68.00",
-                net: "â‚¹0.00",
+                total: "₹340.00",
+                share: "₹68.00",
+                net: "₹0.00",
                 netColor: "text-slate-500",
                 feed: "All 5 members settled up via instant pay",
                 feedIcon: "task_alt",
@@ -257,9 +257,9 @@ export default function Groups() {
               <div>
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <div>
-                    <h2 className="font-headline-sm text-lg font-bold text-on-surface group-hover:text-emerald-700 transition-colors flex items-center gap-1.5">
-                      Friday Tapas &amp; Wine Club ðŸ·
-                    </h2>
+<h2 className="font-headline-sm text-lg font-bold text-on-surface group-hover:text-emerald-700 transition-colors flex items-center gap-1.5">
+                      Friday Tapas & Wine Club 🍷
+</h2>
                     <p className="text-xs text-on-surface-variant mt-0.5">Bi-weekly dinners &amp; tastings pool</p>
                   </div>
                   <div className="flex -space-x-2 shrink-0">
@@ -274,15 +274,15 @@ export default function Groups() {
                 <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200/70 mb-4">
                   <div>
                     <span className="font-label-caps text-label-caps text-slate-500 uppercase tracking-wider block">Total Spend</span>
-                    <div className="font-title-md text-sm font-bold text-slate-900 mt-0.5">â‚¹340.00</div>
+                    <div className="font-title-md text-sm font-bold text-slate-900 mt-0.5">₹340.00</div>
                   </div>
                   <div className="border-l border-slate-200 pl-2.5">
                     <span className="font-label-caps text-label-caps text-slate-500 uppercase tracking-wider block">Your Share</span>
-                    <div className="font-title-md text-sm font-bold text-slate-900 mt-0.5">â‚¹68.00</div>
+                    <div className="font-title-md text-sm font-bold text-slate-900 mt-0.5">₹68.00</div>
                   </div>
                   <div className="border-l border-slate-200 pl-2.5">
                     <span className="font-label-caps text-label-caps text-slate-500 uppercase tracking-wider block">Net Position</span>
-                    <div className="font-title-md text-sm font-bold text-slate-500 mt-0.5">â‚¹0.00</div>
+                    <div className="font-title-md text-sm font-bold text-slate-500 mt-0.5">₹0.00</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-emerald-700 bg-emerald-50/70 border border-emerald-100 px-3 py-2 rounded-lg">
@@ -362,7 +362,7 @@ export default function Groups() {
               <span className="material-symbols-outlined text-on-primary text-body-md">receipt_long</span>
             </div>
             <span className="font-title-md text-title-md text-on-surface">Tabsy</span>
-            <span className="font-body-sm text-body-sm text-on-surface-variant ml-2">Â© 2025 All tabs settled effortlessly.</span>
+            <span className="font-body-sm text-body-sm text-on-surface-variant ml-2">© 2025 All tabs settled effortlessly.</span>
           </div>
           <div className="flex items-center gap-6">
             <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">
