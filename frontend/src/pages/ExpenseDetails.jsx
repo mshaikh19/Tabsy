@@ -152,14 +152,25 @@ export default function ExpenseDetails() {
                 </div>
 
                 <div className="lg:col-span-3 flex flex-col justify-center gap-2">
-                  <button
-                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs font-bold transition-all border border-surface-container"
-                    type="button"
-                    onClick={() => showToast("Downloading PDF Statement…")}
-                  >
-                    <span className="material-symbols-outlined text-[17px] text-secondary">download</span>
-                    <span>Download PDF Statement</span>
-                  </button>
+                  <div className="flex items-stretch gap-2">
+                    <button
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs font-bold transition-all border border-surface-container"
+                      type="button"
+                      onClick={() => showToast("Downloading PDF Statement…")}
+                    >
+                      <span className="material-symbols-outlined text-[17px] text-secondary">download</span>
+                      <span>Download PDF</span>
+                    </button>
+                    <button
+                      className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-primary-fixed hover:bg-primary-fixed-dim text-on-primary-fixed-variant font-title-md text-xs font-bold transition-all border border-primary-fixed-dim/60"
+                      type="button"
+                      onClick={() => navigate("/expense-history")}
+                      title="View expense version history"
+                    >
+                      <span className="material-symbols-outlined text-[17px]">history</span>
+                      <span>History</span>
+                    </button>
+                  </div>
                   <div className="flex items-stretch gap-2">
                     <button
                       className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-2xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs font-semibold transition-all border border-surface-container"

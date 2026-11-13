@@ -177,27 +177,38 @@ export default function Expenses() {
               </div>
               <div className="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
                 <button
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs sm:text-sm font-semibold border border-slate-200 transition-colors"
+                  className="group inline-flex items-center justify-center h-11 w-11 hover:w-auto hover:px-4 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs sm:text-sm font-semibold border border-slate-200 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out active:scale-95"
+                  title="Feb 2025"
                   type="button"
                   onClick={() => showToast("Period Selector", "February 2025 ledger view — 28 transactions synced.")}
                 >
-                  <span className="material-symbols-outlined text-[18px] text-secondary">calendar_month</span>
-                  <span>Feb 2025</span>
+                  <span className="material-symbols-outlined text-[18px] text-secondary shrink-0">calendar_month</span>
+                  <span className="max-w-0 opacity-0 group-hover:max-w-[10rem] group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 ease-out overflow-hidden">Feb 2025</span>
                 </button>
                 <button
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs sm:text-sm font-semibold border border-slate-200 transition-colors"
+                  className="group inline-flex items-center justify-center h-11 w-11 hover:w-auto hover:px-4 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs sm:text-sm font-semibold border border-slate-200 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out active:scale-95"
+                  title="Export Audit"
                   type="button"
                   onClick={() => showToast("Audit Export Prepared", "Cryptographic audit bundle is ready for download.")}
                 >
-                  <span className="material-symbols-outlined text-[18px] text-secondary">ios_share</span>
-                  <span>Export Audit</span>
+                  <span className="material-symbols-outlined text-[18px] text-secondary shrink-0">ios_share</span>
+                  <span className="max-w-0 opacity-0 group-hover:max-w-[10rem] group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 ease-out overflow-hidden">Export Audit</span>
                 </button>
                 <Link
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-title-md text-xs sm:text-sm font-semibold shadow-sm transition-all active:scale-[0.98]"
-                  to="/group-expenses/add"
+                  className="group inline-flex items-center justify-center h-11 w-11 hover:w-auto hover:px-4 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs sm:text-sm font-semibold border border-slate-200 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out active:scale-95"
+                  to="/recurring-expenses"
+                  title="Recurring"
                 >
-                  <span className="material-symbols-outlined text-[18px]">add_circle</span>
-                  <span>Add Expense</span>
+                  <span className="material-symbols-outlined text-[18px] text-secondary shrink-0">autorenew</span>
+                  <span className="max-w-0 opacity-0 group-hover:max-w-[10rem] group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 ease-out overflow-hidden">Recurring</span>
+                </Link>
+                <Link
+                  className="group inline-flex items-center justify-center h-11 w-11 hover:w-auto hover:px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-title-md text-xs sm:text-sm font-semibold shadow-sm overflow-hidden whitespace-nowrap transition-all duration-300 ease-out active:scale-95"
+                  to="/group-expenses/add"
+                  title="Add Expense"
+                >
+                  <span className="material-symbols-outlined text-[18px] shrink-0">add_circle</span>
+                  <span className="max-w-0 opacity-0 group-hover:max-w-[10rem] group-hover:opacity-100 group-hover:ml-2 transition-all duration-300 ease-out overflow-hidden">Add Expense</span>
                 </Link>
               </div>
             </div>

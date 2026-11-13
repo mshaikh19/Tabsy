@@ -31,6 +31,9 @@ import SplitExpense from "./pages/SplitExpense";
 import ManageParticipants from "./pages/ManageParticipants";
 import EditExpense from "./pages/EditExpense";
 import DeleteExpense from "./pages/DeleteExpense";
+import RecurringExpenses from "./pages/RecurringExpenses";
+import ExpenseHistory from "./pages/ExpenseHistory";
+import Categories from "./pages/Categories";
 
 function App() {
   return (
@@ -75,6 +78,9 @@ function App() {
         <Route path="/group-members/manage" element={<ManageParticipants />} />
         <Route path="/expense-edit" element={<EditExpense />} />
         <Route path="/expense-delete" element={<DeleteExpense />} />
+        <Route path="/recurring-expenses" element={<RecurringExpenses />} />
+        <Route path="/expense-history" element={<ExpenseHistory />} />
+        <Route path="/categories" element={<Categories />} />
       </Routes>
     </BrowserRouter>
   );
