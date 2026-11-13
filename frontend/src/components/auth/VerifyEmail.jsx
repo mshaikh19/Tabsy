@@ -16,7 +16,7 @@ const formatTime = (s) =>
   `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
 export default function VerifyEmail({
-  email = "alex@tabsy.app",
+  email = "arjun@tabsy.app",
   sessionId = "#TB-8842",
   initialOtp = ["7", "3", "9", "", "", ""],
   initialSeconds = 42,

@@ -1,10 +1,10 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SPLIT_MODES = [
-  { key: "equal", emoji: "⚖️", title: "Split Equally (1/N)", text: "Quick & democratic. Everyone covers identical portions." },
-  { key: "itemized", emoji: "🧾", title: "Itemized Allocation", text: "Pay only what you ordered. Tailored dish by dish." },
-  { key: "round", emoji: "🪙", title: "Always Round Down", text: "Eliminates awkward pennies. Pool absorbs rounding." },
+  { key: "equal", emoji: "âš–ï¸", title: "Split Equally (1/N)", text: "Quick & democratic. Everyone covers identical portions." },
+  { key: "itemized", emoji: "ðŸ§¾", title: "Itemized Allocation", text: "Pay only what you ordered. Tailored dish by dish." },
+  { key: "round", emoji: "ðŸª™", title: "Always Round Down", text: "Eliminates awkward pennies. Pool absorbs rounding." },
 ];
 
 export default function ProfileSetupPreferences() {
@@ -23,7 +23,7 @@ export default function ProfileSetupPreferences() {
 
   const handleFinish = () => {
     setLaunching(true);
-    setTimeout(() => navigate("/"), 600);
+    setTimeout(() => navigate("/dashboard"), 600);
   };
 
   return (
@@ -119,7 +119,7 @@ export default function ProfileSetupPreferences() {
                 <label className="font-label-caps text-label-caps text-on-surface uppercase font-bold tracking-wider">
                   Notification Preferences
                 </label>
-                <span className="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-[10px] font-bold">
+                <span className="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps font-bold">
                   REAL-TIME
                 </span>
               </div>
@@ -190,7 +190,7 @@ export default function ProfileSetupPreferences() {
               >
                 <span>{launching ? "Launching..." : "Finish & Launch My First Tab"}</span>
                 <span className="w-7 h-7 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-sm">
-                  {launching ? "⚡" : "🚀"}
+                  {launching ? "âš¡" : "ðŸš€"}
                 </span>
               </button>
             </div>

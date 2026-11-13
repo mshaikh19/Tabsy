@@ -1,18 +1,18 @@
-import { useRef, useState } from "react";
+﻿import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const EMOJIS = ["🥑", "🌴", "🌸", "🐱", "⚡", "🍍"];
+const EMOJIS = ["ðŸ¥‘", "ðŸŒ´", "ðŸŒ¸", "ðŸ±", "âš¡", "ðŸ"];
 const CURRENCIES = [
-  { code: "INR", flag: "🇮🇳", label: "INR (₹)" },
-  { code: "EUR", flag: "🇪🇺", label: "EUR (€)" },
-  { code: "GBP", flag: "🇬🇧", label: "GBP (£)" },
-  { code: "CAD", flag: "🇨🇦", label: "CAD ($)" },
-  { code: "JPY", flag: "🇯🇵", label: "JPY (¥)" },
+  { code: "INR", flag: "ðŸ‡®ðŸ‡³", label: "INR (â‚¹)" },
+  { code: "EUR", flag: "ðŸ‡ªðŸ‡º", label: "EUR (â‚¬)" },
+  { code: "GBP", flag: "ðŸ‡¬ðŸ‡§", label: "GBP (Â£)" },
+  { code: "CAD", flag: "ðŸ‡¨ðŸ‡¦", label: "CAD ($)" },
+  { code: "JPY", flag: "ðŸ‡¯ðŸ‡µ", label: "JPY (Â¥)" },
 ];
 
 export default function ProfileSetup() {
   const navigate = useNavigate();
-  const [avatarEmoji, setAvatarEmoji] = useState("🥑");
+  const [avatarEmoji, setAvatarEmoji] = useState("ðŸ¥‘");
   const [avatarImage, setAvatarImage] = useState(null);
   const [displayName, setDisplayName] = useState("Arjun Sharma");
   const [handle, setHandle] = useState("arjun");
@@ -76,11 +76,11 @@ export default function ProfileSetup() {
 
           <div className="mb-space-lg">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-bento-purple border border-bento-purple-border text-purple-900 font-label-caps text-label-caps font-bold mb-2">
-              <span>✨ SETUP IN 60S</span>
+              <span>âœ¨ SETUP IN 60S</span>
             </div>
             <h1 className="font-headline-md text-headline-md sm:text-headline-lg font-bold text-on-surface tracking-tight flex items-center gap-2">
               <span>Set up your profile</span>
-              <span className="inline-block">👤</span>
+              <span className="inline-block">ðŸ‘¤</span>
             </h1>
             <p className="font-body-md text-body-md text-on-surface-variant mt-1">
               Add your photo, name, handle, and currency to get started.
@@ -111,7 +111,7 @@ export default function ProfileSetup() {
               <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-space-sm">
                 <div className="flex items-center gap-2">
                   <h2 className="font-title-md text-title-md text-on-surface font-bold">Your Group Avatar</h2>
-                  <span className="px-2 py-0.5 rounded-full bg-amber-100/80 text-amber-900 font-label-caps text-[10px] font-bold">
+                  <span className="px-2 py-0.5 rounded-full bg-amber-100/80 text-amber-900 font-label-caps text-label-caps font-bold">
                     PLAYFUL
                   </span>
                 </div>
@@ -141,7 +141,7 @@ export default function ProfileSetup() {
                     onClick={openFilePicker}
                     className="ml-1 px-3 py-2 rounded-2xl bg-surface-container-lowest border border-surface-container font-label-caps text-label-caps text-on-surface hover:bg-surface-container-low transition-colors flex items-center gap-1.5 shadow-sm font-semibold"
                   >
-                    <span className="material-symbols-outlined text-[14px] text-on-surface-variant">file_upload</span>
+                    <span className="material-symbols-outlined text-body-md text-on-surface-variant">file_upload</span>
                     <span>Upload</span>
                   </button>
                 </div>
@@ -152,7 +152,7 @@ export default function ProfileSetup() {
               <div className="p-space-md rounded-3xl bg-surface-container-low border border-surface-container flex flex-col gap-1.5">
                 <label className="font-label-caps text-label-caps text-on-surface-variant uppercase font-semibold flex items-center justify-between" htmlFor="display-name">
                   <span>Display Name</span>
-                  <span className="text-emerald-700 text-[10px] font-bold">REQUIRED</span>
+                  <span className="text-emerald-700 text-label-caps font-bold">REQUIRED</span>
                 </label>
                 <div className="relative flex items-center mt-1">
                   <input
@@ -172,7 +172,7 @@ export default function ProfileSetup() {
               <div className="p-space-md rounded-3xl bg-surface-container-low border border-surface-container flex flex-col gap-1.5">
                 <label className="font-label-caps text-label-caps text-on-surface-variant uppercase font-semibold flex items-center justify-between" htmlFor="handle">
                   <span>Tabsy Handle</span>
-                  <span className="text-secondary font-bold text-[10px]">UNIQUE ID</span>
+                  <span className="text-secondary font-bold text-label-caps">UNIQUE ID</span>
                 </label>
                 <div className="relative flex items-center mt-1">
                   <span className="absolute left-4 font-headline-sm text-headline-sm text-on-surface-variant font-bold">@</span>
@@ -197,7 +197,7 @@ export default function ProfileSetup() {
                   <label className="font-label-caps text-label-caps text-on-surface uppercase font-bold tracking-wider">
                     Default Group Currency
                   </label>
-                  <span className="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-[10px] font-bold">
+                  <span className="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps font-bold">
                     MULTI-CURRENCY
                   </span>
                 </div>
