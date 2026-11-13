@@ -13,25 +13,47 @@ export default function GroupDetails() {
             currentLabel="Group Details"
             actions={
               <>
-                <Link className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-title-md text-title-md shadow-sm hover:opacity-95 active:scale-95 transition-all" to="/group-expenses">
-                  <span className="material-symbols-outlined text-[18px]">receipt_long</span>
-                  View Expenses
+                <Link className="group/btn relative inline-flex items-center gap-0 px-2.5 py-2 text-on-surface font-title-md text-title-md hover:bg-surface-container-lowest rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-expenses">
+                  <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover/btn:text-primary transition-colors shrink-0">receipt_long</span>
+                  <span className="max-w-0 group-hover/btn:max-w-[120px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                    View Expenses
+                  </span>
                 </Link>
-                <Link className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-title-md text-title-md shadow-sm hover:opacity-95 active:scale-95 transition-all" to="/group-members">
-                  <span className="material-symbols-outlined text-[18px]">group</span>
-                  View Members
+                <div className="w-px h-5 bg-outline-variant/40 shrink-0 transition-all duration-300 group-hover/actions:bg-transparent" />
+                <Link className="group/btn relative inline-flex items-center gap-0 px-2.5 py-2 text-on-surface font-title-md text-title-md hover:bg-surface-container-lowest rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-members">
+                  <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover/btn:text-secondary transition-colors shrink-0">group</span>
+                  <span className="max-w-0 group-hover/btn:max-w-[120px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                    View Members
+                  </span>
                 </Link>
-                <button className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-title-md text-title-md shadow-sm hover:opacity-95 active:scale-95 transition-all" type="button">
-                  <span className="material-symbols-outlined text-[18px]">bolt</span>
-                  Settle Balances
+                <div className="w-px h-5 bg-outline-variant/40 shrink-0 transition-all duration-300 group-hover/actions:bg-transparent" />
+                <button className="group/btn inline-flex items-center gap-0 px-2.5 py-2 text-on-surface font-title-md text-title-md hover:bg-surface-container-lowest rounded-lg transition-all duration-300 ease-out overflow-hidden" type="button">
+                  <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover/btn:text-on-surface transition-colors shrink-0">bolt</span>
+                  <span className="max-w-0 group-hover/btn:max-w-[120px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                    Settle Balances
+                  </span>
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-container-high text-on-surface font-title-md text-title-md hover:bg-surface-variant active:scale-95 transition-all" type="button">
-                  <span className="material-symbols-outlined text-[18px]">group_add</span>
-                  Invite Friends
-                </button>
-                <button aria-label="Settings" className="w-10 h-10 rounded-xl bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors" type="button">
-                  <span className="material-symbols-outlined text-[20px]">settings</span>
-                </button>
+                <div className="w-px h-5 bg-outline-variant/40 shrink-0 transition-all duration-300 group-hover/actions:bg-transparent" />
+                <Link className="group/btn inline-flex items-center gap-0 px-2.5 py-2 bg-primary-container text-on-primary-container font-title-md text-title-md hover:opacity-95 rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-members/add">
+                  <span className="material-symbols-outlined text-[18px] shrink-0">group_add</span>
+                  <span className="max-w-0 group-hover/btn:max-w-[120px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                    Invite Friends
+                  </span>
+                </Link>
+                <div className="w-px h-5 bg-outline-variant/40 shrink-0 transition-all duration-300 group-hover/actions:bg-transparent" />
+                <Link aria-label="Edit group" className="group/btn relative inline-flex items-center gap-0 px-2.5 py-2 text-on-surface font-title-md text-title-md hover:bg-surface-container-lowest rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-edit">
+                  <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover/btn:text-primary transition-colors shrink-0">edit</span>
+                  <span className="max-w-0 group-hover/btn:max-w-[100px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                    Edit Group
+                  </span>
+                </Link>
+                <div className="w-px h-5 bg-outline-variant/40 shrink-0 transition-all duration-300 group-hover/actions:bg-transparent" />
+                <Link aria-label="Settings" className="group/btn relative inline-flex items-center gap-0 px-2.5 py-2 text-on-surface font-title-md text-title-md hover:bg-surface-container-lowest rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-settings">
+                  <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover/btn:text-on-surface transition-colors shrink-0">settings</span>
+                  <span className="max-w-0 group-hover/btn:max-w-[100px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                    Settings
+                  </span>
+                </Link>
               </>
             }
           />
@@ -114,43 +136,43 @@ export default function GroupDetails() {
                   100% synced • 0 disputed
                 </div>
               </div>
-              <div className="mt-3 pt-2 flex items-center justify-between">
-                <div className="flex -space-x-2 overflow-hidden">
-                  <div className="inline-block h-6 w-6 rounded-full bg-primary text-on-primary text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-lowest">AM</div>
-                  <div className="inline-block h-6 w-6 rounded-full bg-secondary text-on-secondary text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-lowest">MR</div>
-                  <div className="inline-block h-6 w-6 rounded-full bg-tertiary-container text-on-tertiary-container text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-lowest">SL</div>
-                  <div className="inline-block h-6 w-6 rounded-full bg-surface-container-high text-on-surface-variant text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-lowest">KS</div>
-                  <div className="inline-block h-6 w-6 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-lowest">+2</div>
+              <div className="mt-3 pt-2 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  <div className="inline-block h-7 w-7 rounded-full bg-primary text-on-primary text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-low shrink-0" title="Alex Morgan">AM</div>
+                  <div className="inline-block h-7 w-7 rounded-full bg-secondary text-on-secondary text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-low shrink-0" title="Marco Rossi">MR</div>
+                  <div className="inline-block h-7 w-7 rounded-full bg-tertiary-container text-on-tertiary-container text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-low shrink-0" title="Sarah Lin">SL</div>
+                  <div className="inline-block h-7 w-7 rounded-full bg-surface-container-high text-on-surface-variant text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-low shrink-0" title="Kim Sato">KS</div>
+                  <div className="inline-block h-7 w-7 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-caps font-bold flex items-center justify-center ring-2 ring-surface-container-low shrink-0" title="2 more members">+2</div>
                 </div>
-                <span className="font-label-caps text-label-caps text-secondary font-semibold">ALL AUDITED</span>
+                <span className="font-label-caps text-label-caps text-secondary font-semibold shrink-0">ALL AUDITED</span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-1">
+          <div className="flex flex-wrap items-center gap-2 pb-1">
             <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-surface-container text-on-surface font-title-md text-title-md font-semibold shadow-sm transition-all">
               <span className="material-symbols-outlined text-[18px] text-primary">dashboard</span>
               Overview
               <span className="w-1.5 h-1.5 rounded-full bg-primary-container ml-1" />
             </button>
-            <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-title-md text-title-md transition-all">
+            <Link className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-title-md text-title-md transition-all" to="/group-expenses">
               <span className="material-symbols-outlined text-[18px]">receipt</span>
               Expenses
               <span className="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface-variant text-label-caps font-label-caps">8</span>
-            </button>
-            <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-title-md text-title-md transition-all">
+            </Link>
+            <Link className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-title-md text-title-md transition-all" to="/group-members">
               <span className="material-symbols-outlined text-[18px]">people</span>
               Members
               <span className="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface-variant text-label-caps font-label-caps">6</span>
-            </button>
-            <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-title-md text-title-md transition-all">
+            </Link>
+            <Link className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-title-md text-title-md transition-all" to="/group-balances">
               <span className="material-symbols-outlined text-[18px]">alt_route</span>
               Balances &amp; Routing
-            </button>
-            <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-title-md text-title-md transition-all">
+            </Link>
+            <Link className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-title-md text-title-md transition-all" to="/group-activity">
               <span className="material-symbols-outlined text-[18px]">history</span>
               Activity Feed
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
@@ -161,10 +183,10 @@ export default function GroupDetails() {
                     <h2 className="font-headline-sm text-headline-sm text-on-surface tracking-tight">Recent Group Expenses</h2>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">Tap any expense to inspect receipt breakdowns or audit participant allocations.</p>
                   </div>
-                  <a className="inline-flex items-center gap-1 font-title-md text-title-md text-secondary hover:underline group" href="#">
+                  <Link className="inline-flex items-center gap-1 font-title-md text-title-md text-secondary hover:underline group" to="/group-expenses">
                     View all 8 in ledger
                     <span className="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
-                  </a>
+                  </Link>
                 </div>
                 <div className="flex flex-wrap items-center gap-1.5 pt-1">
                   <button className="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-caps text-label-caps">All (8)</button>

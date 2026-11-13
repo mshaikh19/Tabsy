@@ -1,4 +1,5 @@
-﻿import AppLayout from "../components/layout/AppLayout";
+﻿import { Link } from "react-router-dom";
+import AppLayout from "../components/layout/AppLayout";
 
 export default function QuickActions() {
   const [activeFlow, setActiveFlow] = useState(() => {
@@ -262,10 +263,10 @@ export default function QuickActions() {
                   </span>
                 </div>
 
-                <button className="w-full py-4 px-5 rounded-2xl bg-primary hover:bg-on-primary-container text-on-primary font-title-md text-title-md font-semibold shadow-sm transition-all flex items-center justify-center gap-2" type="button">
+                <Link className="w-full py-4 px-5 rounded-2xl bg-primary hover:bg-on-primary-container text-on-primary font-title-md text-title-md font-semibold shadow-sm transition-all flex items-center justify-center gap-2" to="/group-expenses">
                   <span>Record &amp; Split Expense</span>
                   <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-                </button>
+                </Link>
               </div>
               )}
               {activeFlow === "tab" && (

@@ -1,4 +1,5 @@
-﻿import AppLayout from "../components/layout/AppLayout";
+﻿import { Link } from "react-router-dom";
+import AppLayout from "../components/layout/AppLayout";
 
 export default function Dashboard() {
   return (
@@ -29,10 +30,10 @@ export default function Dashboard() {
                   ₹ INR
                 </button>
               </div>
-              <button className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-zinc-900 text-white font-semibold text-body-sm hover:bg-zinc-800 transition-all shadow-sm active:scale-95">
+              <Link className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-zinc-900 text-white font-semibold text-body-sm hover:bg-zinc-800 transition-all shadow-sm active:scale-95" to="/group-expenses/add">
                 <span className="material-symbols-outlined text-[18px] text-emerald-400">add</span>
                 <span>Log Expense</span>
-              </button>
+              </Link>
               <button className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-100 text-emerald-900 border border-emerald-200/70 font-semibold text-body-sm hover:bg-emerald-200/70 transition-all shadow-sm active:scale-95">
                 <span className="material-symbols-outlined text-[18px]">bolt</span>
                 <span>Settle Up</span>

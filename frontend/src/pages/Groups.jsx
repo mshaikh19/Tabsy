@@ -188,7 +188,7 @@ export default function Groups() {
                 feedBg: "bg-emerald-50/70 border-emerald-100",
               },
             ].map((g) => (
-              <Link key={g.title} to="/group-details" className="block">
+              <div key={g.title} className="block">
                 <div className="group bg-surface-container-lowest rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden">
                 <div>
                   <div className={`${g.header} px-5 py-3 flex items-center justify-between`}>
@@ -207,9 +207,11 @@ export default function Groups() {
                   <div className="p-5">
                     <div className="flex items-start justify-between gap-3 mb-4">
                       <div>
-                        <h2 className="font-headline-sm text-lg font-bold text-on-surface group-hover:text-emerald-700 transition-colors flex items-center gap-1.5">
-                          {g.title}
-                        </h2>
+                        <Link to="/group-details">
+                          <h2 className="font-headline-sm text-lg font-bold text-on-surface group-hover:text-emerald-700 transition-colors flex items-center gap-1.5">
+                            {g.title}
+                          </h2>
+                        </Link>
                         <p className="text-xs text-on-surface-variant mt-0.5">{g.sub}</p>
                       </div>
                       <div className="flex -space-x-2 shrink-0">
@@ -241,16 +243,16 @@ export default function Groups() {
                   </div>
                 </div>
                 <div className="px-5 pb-5 pt-0 flex items-center justify-between gap-2 border-t border-slate-100 pt-3.5">
-                  <button className="px-3.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-xs font-semibold transition-colors" type="button">
+                  <Link className="px-3.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-xs font-semibold transition-colors" to="/group-expenses">
                     View Ledger
-                  </button>
-                  <button className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-title-md text-xs font-semibold transition-colors" type="button">
+                  </Link>
+                  <Link className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-title-md text-xs font-semibold transition-colors" to="/group-expenses/add">
                     <span className="material-symbols-outlined text-[16px]">add</span>
                     <span>Add Expense</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
-              </Link>
+              </div>
             ))}
 
             <div className="bg-surface-container-lowest rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col justify-between">

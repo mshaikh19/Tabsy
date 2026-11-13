@@ -90,6 +90,17 @@ export default function AppLayout({ children }) {
             </Link>
             <Link
               className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-zinc-400 hover:text-white hover:bg-zinc-800/40 text-[13.5px] font-medium transition-all"
+              to="/expenses"
+            >
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-[20px]">
+                  receipt_long
+                </span>
+                <span>Expenses</span>
+              </div>
+            </Link>
+            <Link
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-zinc-400 hover:text-white hover:bg-zinc-800/40 text-[13.5px] font-medium transition-all"
               to="/activity"
             >
               <div className="flex items-center gap-3">

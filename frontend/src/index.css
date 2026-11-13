@@ -250,6 +250,23 @@
   display: none;
 }
 
+/* Leaflet map styling */
+.leaflet-tile-pane {
+  filter: saturate(0.7) contrast(0.92) brightness(1.03);
+}
+
+.leaflet-control-container .leaflet-top.leaflet-right {
+  margin-top: 46px;
+  margin-right: 10px;
+}
+
+.leaflet-control-container .leaflet-control-zoom {
+  border: 1px solid #bbcabf;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(19, 27, 46, 0.12);
+}
+
 /* Auth sliding panel */
 .auth-container {
   position: relative;
@@ -308,25 +325,46 @@
   body:not(.sign-up-mode) .form-signin { display: flex !important; opacity: 1 !important; }
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: #18181B;
-  border: 3px solid #FFFFFF;
-  box-shadow: 0 2px 6px rgba(24, 24, 27, 0.15);
-  cursor: pointer;
+/* Minimal slider styling */
+input[type="range"].accent-primary {
   -webkit-appearance: none;
-  margin-top: -7px;
+  appearance: none;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--color-surface-dim, #d2d9f4);
+  outline: none;
+}
+
+input[type="range"].accent-primary::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--color-primary, #006c49);
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
   transition: transform 0.15s ease;
 }
-input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.12);
+
+input[type="range"].accent-primary::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
 }
-input[type="range"]::-webkit-slider-runnable-track {
-  height: 6px;
-  background: transparent;
-  border-radius: 9999px;
+
+input[type="range"].accent-primary::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--color-primary, #006c49);
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+input[type="range"].accent-primary::-moz-range-thumb:hover {
+  transform: scale(1.1);
 }
 
 /* Group Expenses page theme tokens (MD3 extended) */

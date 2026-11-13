@@ -41,7 +41,6 @@ export default function CreateGroup() {
   const [budgetCap, setBudgetCap] = useState("3,500.00");
   const [simAmount, setSimAmount] = useState(1200);
   const [themeAccent, setThemeAccent] = useState("Matcha");
-  const [customColor, setCustomColor] = useState("#10b981");
 
   const themeLabel =
     themeAccent === "Matcha" ? "Matcha Mint" :

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
 import GroupHeader from "../components/layout/GroupHeader";
 
 export default function GroupExpenses() {
+  const navigate = useNavigate();
   const [activeView, setActiveView] = useState(() => {
     try {
       return localStorage.getItem("tabsy:groupExpensesView") || "ledger";
@@ -11,7 +12,7 @@ export default function GroupExpenses() {
       return "ledger";
     }
   });
-  let onlyMissingFilterActive = false;
+  const onlyMissingFilterRef = useRef(false);
 
   function switchView(view) {
     if (activeView === view) return;
@@ -34,7 +35,7 @@ export default function GroupExpenses() {
       const text = row.innerText.toLowerCase();
       const matchesQuery = text.includes(q);
       const isMissing = row.getAttribute("data-missing") === "true";
-      const matchesMissing = !onlyMissingFilterActive || isMissing;
+      const matchesMissing = !onlyMissingFilterRef.current || isMissing;
       if (matchesQuery && matchesMissing) {
         row.style.display = "";
         visible++;
@@ -79,8 +80,8 @@ export default function GroupExpenses() {
   }
 
   function toggleMissingFilter(btn) {
-    onlyMissingFilterActive = !onlyMissingFilterActive;
-    if (onlyMissingFilterActive) {
+    onlyMissingFilterRef.current = !onlyMissingFilterRef.current;
+    if (onlyMissingFilterRef.current) {
       btn.classList.remove("bg-surface-container-low", "text-on-surface-variant");
       btn.classList.add("bg-error-container", "text-on-error-container", "font-semibold");
     } else {
@@ -98,6 +99,11 @@ export default function GroupExpenses() {
     if (t) t.innerText = title;
     if (a) a.innerText = amt;
     if (m) m.classList.remove("hidden");
+  }
+
+  function openExpenseDetails(e) {
+    if (e) e.stopPropagation();
+    navigate("/expense-details");
   }
 
   function closeReceiptPreview() {
@@ -135,7 +141,7 @@ export default function GroupExpenses() {
     window.toggleMissingFilter = toggleMissingFilter;
     window.previewReceipt = previewReceipt;
     window.closeReceiptPreview = closeReceiptPreview;
-  }, []);
+  });
 
   return (
     <AppLayout>
@@ -162,18 +168,40 @@ export default function GroupExpenses() {
                 currentLabel="Group Expenses"
                 actions={
                   <>
-                    <Link className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-title-md text-title-md shadow-sm hover:opacity-95 active:scale-95 transition-all" to="/group-members">
-                      <span className="material-symbols-outlined text-[18px]">group</span>
-                      View Members
+                    <Link className="group/btn relative inline-flex items-center gap-0 px-2.5 py-2 text-on-surface font-title-md text-title-md hover:bg-surface-container-lowest rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-expenses/add">
+                      <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover/btn:text-primary transition-colors shrink-0">add</span>
+                      <span className="max-w-0 group-hover/btn:max-w-[120px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                        Add Expense
+                      </span>
                     </Link>
-                    <button className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-secondary text-on-secondary font-title-md text-title-md shadow-sm hover:opacity-95 active:scale-95 transition-all" type="button">
-                      <span className="material-symbols-outlined text-[18px]">bolt</span>
-                      Settle Balances
-                    </button>
-                    <button className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-container-high text-on-surface font-title-md text-title-md hover:bg-surface-variant active:scale-95 transition-all" type="button">
-                      <span className="material-symbols-outlined text-[18px]">group_add</span>
-                      Invite Friends
-                    </button>
+                    <div className="w-px h-5 bg-outline-variant/40 shrink-0 transition-all duration-300 group-hover/actions:bg-transparent" />
+                    <Link className="group/btn relative inline-flex items-center gap-0 px-2.5 py-2 text-on-surface font-title-md text-title-md hover:bg-surface-container-lowest rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-members">
+                      <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover/btn:text-secondary transition-colors shrink-0">group</span>
+                      <span className="max-w-0 group-hover/btn:max-w-[120px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                        View Members
+                      </span>
+                    </Link>
+                    <div className="w-px h-5 bg-outline-variant/40 shrink-0 transition-all duration-300 group-hover/actions:bg-transparent" />
+                    <Link className="group/btn inline-flex items-center gap-0 px-2.5 py-2 bg-primary-container text-on-primary-container font-title-md text-title-md hover:opacity-95 rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-balances">
+                      <span className="material-symbols-outlined text-[18px] shrink-0">bolt</span>
+                      <span className="max-w-0 group-hover/btn:max-w-[140px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                        Settle Balances
+                      </span>
+                    </Link>
+                    <div className="w-px h-5 bg-outline-variant/40 shrink-0 transition-all duration-300 group-hover/actions:bg-transparent" />
+                    <Link className="group/btn inline-flex items-center gap-0 px-2.5 py-2 text-on-surface font-title-md text-title-md hover:bg-surface-container-lowest rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-activity">
+                      <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover/btn:text-secondary transition-colors shrink-0">timeline</span>
+                      <span className="max-w-0 group-hover/btn:max-w-[120px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                        Activity Log
+                      </span>
+                    </Link>
+                    <div className="w-px h-5 bg-outline-variant/40 shrink-0 transition-all duration-300 group-hover/actions:bg-transparent" />
+                    <Link className="group/btn inline-flex items-center gap-0 px-2.5 py-2 text-on-surface font-title-md text-title-md hover:bg-surface-container-lowest rounded-lg transition-all duration-300 ease-out overflow-hidden" to="/group-members/add">
+                      <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover/btn:text-on-surface transition-colors shrink-0">group_add</span>
+                      <span className="max-w-0 group-hover/btn:max-w-[120px] group-hover/btn:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out opacity-0 group-hover/btn:opacity-100">
+                        Invite Friends
+                      </span>
+                    </Link>
                   </>
                 }
               />
@@ -329,6 +357,9 @@ export default function GroupExpenses() {
                               <div className="p-2 rounded-lg bg-surface-container-lowest text-body-sm">Elena Rostova: <strong>$240.00</strong></div>
                               <div className="p-2 rounded-lg bg-surface-container-lowest text-body-sm">Chloe Vance: <strong>$240.00</strong></div>
                             </div>
+                            <button className="mt-2 pt-2 w-full border-t border-outline-variant/40 text-secondary font-body-sm text-body-sm hover:underline flex items-center justify-center gap-1" onClick={openExpenseDetails} type="button">
+                              <span className="material-symbols-outlined text-[14px]">open_in_new</span> View Full Expense Details
+                            </button>
                           </div>
                         </div>
                         {/* Ledger Item 2 */}
@@ -365,6 +396,9 @@ export default function GroupExpenses() {
                               <div className="p-2 rounded-lg bg-surface-container-lowest">Elena R: <strong>$155.00</strong></div>
                               <div className="p-2 rounded-lg bg-surface-container-lowest">Jason P: <strong>$155.00</strong></div>
                             </div>
+                            <button className="mt-2 pt-2 w-full border-t border-outline-variant/40 text-secondary font-body-sm text-body-sm hover:underline flex items-center justify-center gap-1" onClick={openExpenseDetails} type="button">
+                              <span className="material-symbols-outlined text-[14px]">open_in_new</span> View Full Expense Details
+                            </button>
                           </div>
                         </div>
                         {/* Ledger Item 3 */}
@@ -390,6 +424,9 @@ export default function GroupExpenses() {
                           </div>
                           <div className="hidden mt-space-sm pt-space-sm bg-surface-container-low/70 p-space-sm rounded-xl" id="share-3">
                             <p className="font-body-sm text-body-sm text-on-surface mb-2">Split across all 6 chalet guests: $41.08/person</p>
+                            <button className="mt-1 pt-2 w-full border-t border-outline-variant/40 text-secondary font-body-sm text-body-sm hover:underline flex items-center justify-center gap-1" onClick={openExpenseDetails} type="button">
+                              <span className="material-symbols-outlined text-[14px]">open_in_new</span> View Full Expense Details
+                            </button>
                           </div>
                         </div>
                         {/* Ledger Item 4 */}
@@ -415,6 +452,9 @@ export default function GroupExpenses() {
                           </div>
                           <div className="hidden mt-space-sm pt-space-sm bg-surface-container-low/70 p-space-sm rounded-xl" id="share-4">
                             <p className="font-body-sm text-body-sm text-on-surface mb-2">Split across all 6 road trip passengers: $47.50/person</p>
+                            <button className="mt-1 pt-2 w-full border-t border-outline-variant/40 text-secondary font-body-sm text-body-sm hover:underline flex items-center justify-center gap-1" onClick={openExpenseDetails} type="button">
+                              <span className="material-symbols-outlined text-[14px]">open_in_new</span> View Full Expense Details
+                            </button>
                           </div>
                         </div>
                         {/* Ledger Item 5 (Missing Slip!) */}
@@ -447,6 +487,9 @@ export default function GroupExpenses() {
                               </span>
                               <button className="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm hover:bg-surface-container-high" onClick={(e) => { e.stopPropagation(); alert("Nudge sent to Jason Park on Telegram!"); }} type="button">Nudge Jason</button>
                             </div>
+                            <button className="mt-2 pt-2 w-full border-t border-outline-variant/40 text-secondary font-body-sm text-body-sm hover:underline flex items-center justify-center gap-1" onClick={openExpenseDetails} type="button">
+                              <span className="material-symbols-outlined text-[14px]">open_in_new</span> View Full Expense Details
+                            </button>
                           </div>
                         </div>
                         {/* Ledger Item 6 */}
@@ -472,6 +515,9 @@ export default function GroupExpenses() {
                           </div>
                           <div className="hidden mt-space-sm pt-space-sm bg-surface-container-low/70 p-space-sm rounded-xl" id="share-6">
                             <p className="font-body-sm text-body-sm text-on-surface">Split between Chloe Vance & Elena Rostova ($55.00 each).</p>
+                            <button className="mt-2 pt-2 w-full border-t border-outline-variant/40 text-secondary font-body-sm text-body-sm hover:underline flex items-center justify-center gap-1" onClick={openExpenseDetails} type="button">
+                              <span className="material-symbols-outlined text-[14px]">open_in_new</span> View Full Expense Details
+                            </button>
                           </div>
                         </div>
                         {/* Ledger Item 7 */}
@@ -497,6 +543,9 @@ export default function GroupExpenses() {
                           </div>
                           <div className="hidden mt-space-sm pt-space-sm bg-surface-container-low/70 p-space-sm rounded-xl" id="share-7">
                             <p className="font-body-sm text-body-sm text-on-surface">Equal split across 6 trip attendees ($12.42 each).</p>
+                            <button className="mt-2 pt-2 w-full border-t border-outline-variant/40 text-secondary font-body-sm text-body-sm hover:underline flex items-center justify-center gap-1" onClick={openExpenseDetails} type="button">
+                              <span className="material-symbols-outlined text-[14px]">open_in_new</span> View Full Expense Details
+                            </button>
                           </div>
                         </div>
                         {/* Ledger Item 8 */}
@@ -522,6 +571,9 @@ export default function GroupExpenses() {
                           </div>
                           <div className="hidden mt-space-sm pt-space-sm bg-surface-container-low/70 p-space-sm rounded-xl" id="share-8">
                             <p className="font-body-sm text-body-sm text-on-surface">Split among 5 participants ($19.00 each). Jason P was off hiking.</p>
+                            <button className="mt-2 pt-2 w-full border-t border-outline-variant/40 text-secondary font-body-sm text-body-sm hover:underline flex items-center justify-center gap-1" onClick={openExpenseDetails} type="button">
+                              <span className="material-symbols-outlined text-[14px]">open_in_new</span> View Full Expense Details
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -539,7 +591,7 @@ export default function GroupExpenses() {
                           </div>
                           <span className="font-label-caps text-label-caps px-2 py-0.5 rounded-full bg-surface-container-lowest text-on-surface-variant">$1,440.00</span>
                         </div>
-                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer" onClick={() => toggleLedgerShareDetails("share-1")}>
+                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer" onClick={openExpenseDetails}>
                           <div className="flex items-start justify-between gap-1">
                             <span className="font-title-md text-title-md text-on-surface leading-tight">Timberline Chalet AirBnb</span>
                             <span className="material-symbols-outlined text-[16px] text-primary">verified</span>
@@ -562,7 +614,7 @@ export default function GroupExpenses() {
                           </div>
                           <span className="font-label-caps text-label-caps px-2 py-0.5 rounded-full bg-surface-container-lowest text-on-surface-variant">$730.00</span>
                         </div>
-                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer" onClick={openExpenseDetails}>
                           <div className="flex items-start justify-between gap-1">
                             <span className="font-title-md text-title-md text-on-surface leading-tight">Palisades 2-Day Lift Passes</span>
                             <span className="material-symbols-outlined text-[16px] text-primary">verified</span>
@@ -576,7 +628,7 @@ export default function GroupExpenses() {
                             <span className="text-tertiary font-semibold text-xs">You owe $155.00</span>
                           </div>
                         </div>
-                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer" onClick={openExpenseDetails}>
                           <div className="flex items-start justify-between gap-1">
                             <span className="font-title-md text-title-md text-on-surface leading-tight">Demo Ski Gear Rentals</span>
                             <span className="material-symbols-outlined text-[16px] text-primary">verified</span>
@@ -599,7 +651,7 @@ export default function GroupExpenses() {
                           </div>
                           <span className="font-label-caps text-label-caps px-2 py-0.5 rounded-full bg-surface-container-lowest text-on-surface-variant">$341.50</span>
                         </div>
-                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer" onClick={openExpenseDetails}>
                           <div className="flex items-start justify-between gap-1">
                             <span className="font-title-md text-title-md text-on-surface leading-tight">Safeway Group Supplies</span>
                             <span className="material-symbols-outlined text-[16px] text-primary">verified</span>
@@ -613,7 +665,7 @@ export default function GroupExpenses() {
                             <span className="text-tertiary font-semibold text-xs">You owe $41.08</span>
                           </div>
                         </div>
-                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer" onClick={openExpenseDetails}>
                           <div className="flex items-start justify-between gap-1">
                             <span className="font-title-md text-title-md text-on-surface leading-tight">Cabin Craft Brews</span>
                             <span className="material-symbols-outlined text-[16px] text-primary">verified</span>
@@ -636,7 +688,7 @@ export default function GroupExpenses() {
                           </div>
                           <span className="font-label-caps text-label-caps px-2 py-0.5 rounded-full bg-surface-container-lowest text-on-surface-variant">$527.50</span>
                         </div>
-                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer" onClick={openExpenseDetails}>
                           <div className="flex items-start justify-between gap-1">
                             <span className="font-title-md text-title-md text-on-surface leading-tight">SUV Rental & Chains</span>
                             <span className="material-symbols-outlined text-[16px] text-primary">verified</span>
@@ -650,7 +702,7 @@ export default function GroupExpenses() {
                             <span className="text-tertiary font-semibold text-xs">You owe $47.50</span>
                           </div>
                         </div>
-                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer ring-1 ring-tertiary/20">
+                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer ring-1 ring-tertiary/20" onClick={openExpenseDetails}>
                           <div className="flex items-start justify-between gap-1">
                             <span className="font-title-md text-title-md text-on-surface leading-tight">Fireside Tavern Dinner</span>
                             <span className="material-symbols-outlined text-[16px] text-tertiary">warning</span>
@@ -667,7 +719,7 @@ export default function GroupExpenses() {
                             <span className="text-tertiary font-semibold text-xs">You owe $28.00</span>
                           </div>
                         </div>
-                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer" onClick={openExpenseDetails}>
                           <div className="flex items-start justify-between gap-1">
                             <span className="font-title-md text-title-md text-on-surface leading-tight">Highway Gas & Tolls</span>
                             <span className="material-symbols-outlined text-[16px] text-primary">verified</span>

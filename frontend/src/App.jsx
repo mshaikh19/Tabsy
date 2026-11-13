@@ -15,9 +15,22 @@ import Groups from "./pages/Groups";
 import CreateGroup from "./pages/CreateGroup";
 import GroupDetails from "./pages/GroupDetails";
 import GroupExpenses from "./pages/GroupExpenses";
+import AddExpense from "./pages/AddExpense";
 import GroupMembers from "./pages/GroupMembers";
+import GroupBalances from "./pages/GroupBalances";
+import GroupActivity from "./pages/GroupActivity";
+import GroupSettings from "./pages/GroupSettings";
+import LeaveGroup from "./pages/LeaveGroup";
+import EditGroup from "./pages/EditGroup";
+import AddMembers from "./pages/AddMembers";
 import Notifications from "./pages/Notifications";
 import QuickActions from "./pages/QuickActions";
+import Expenses from "./pages/Expenses";
+import ExpenseDetails from "./pages/ExpenseDetails";
+import SplitExpense from "./pages/SplitExpense";
+import ManageParticipants from "./pages/ManageParticipants";
+import EditExpense from "./pages/EditExpense";
+import DeleteExpense from "./pages/DeleteExpense";
 
 function App() {
   return (
@@ -46,9 +59,22 @@ function App() {
         <Route path="/create-group" element={<CreateGroup />} />
 <Route path="/group-details" element={<GroupDetails />} />
 <Route path="/group-expenses" element={<GroupExpenses />} />
+        <Route path="/group-expenses/add" element={<AddExpense />} />
         <Route path="/group-members" element={<GroupMembers />} />
+        <Route path="/group-balances" element={<GroupBalances />} />
+        <Route path="/group-activity" element={<GroupActivity />} />
+        <Route path="/group-settings" element={<GroupSettings />} />
+        <Route path="/group-edit" element={<EditGroup />} />
+        <Route path="/group-leave" element={<LeaveGroup />} />
+        <Route path="/group-members/add" element={<AddMembers />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/quick-actions" element={<QuickActions />} />
+        <Route path="/expenses" element={<Expenses />} />
+        <Route path="/expense-details" element={<ExpenseDetails />} />
+        <Route path="/split-expense" element={<SplitExpense />} />
+        <Route path="/group-members/manage" element={<ManageParticipants />} />
+        <Route path="/expense-edit" element={<EditExpense />} />
+        <Route path="/expense-delete" element={<DeleteExpense />} />
       </Routes>
     </BrowserRouter>
   );
