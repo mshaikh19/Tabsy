@@ -34,6 +34,14 @@ import DeleteExpense from "./pages/DeleteExpense";
 import RecurringExpenses from "./pages/RecurringExpenses";
 import ExpenseHistory from "./pages/ExpenseHistory";
 import Categories from "./pages/Categories";
+import Friends from "./pages/Friends";
+import AddFriend from "./pages/AddFriend";
+import FriendRequests from "./pages/FriendRequests";
+import FriendManage from "./pages/FriendManage";
+import FriendProfile from "./pages/FriendProfile";
+import FriendTransactions from "./pages/FriendTransactions";
+import FriendBalances from "./pages/FriendBalances";
+import FriendActivity from "./pages/FriendActivity";
 
 function App() {
   return (
@@ -81,6 +89,14 @@ function App() {
         <Route path="/recurring-expenses" element={<RecurringExpenses />} />
         <Route path="/expense-history" element={<ExpenseHistory />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/friends" element={<Friends />} />
+        <Route path="/add-friend" element={<AddFriend />} />
+        <Route path="/friend-requests" element={<FriendRequests />} />
+        <Route path="/friend-manage" element={<FriendManage />} />
+        <Route path="/friend-profile" element={<FriendProfile />} />
+        <Route path="/friend-transactions" element={<FriendTransactions />} />
+        <Route path="/friend-balances" element={<FriendBalances />} />
+        <Route path="/friend-activity" element={<FriendActivity />} />
       </Routes>
     </BrowserRouter>
   );
