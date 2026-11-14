@@ -226,9 +226,9 @@ export default function RecurringExpenses() {
 
   return (
     <AppLayout>
-      <div className={`bg-surface font-body-md text-body-md text-on-surface antialiased ${flashId ? "" : ""}`}>
-        <main className="w-full pt-4 pb-16 bg-surface min-h-screen">
-          <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 py-2">
+      <div className={`bg-[#FAF8F5] font-body-md text-body-md text-on-surface antialiased ${flashId ? "" : ""}`}>
+        <main className="w-full pt-4 pb-16 bg-[#FAF8F5] min-h-screen">
+          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 py-2">
             {/* Breadcrumbs & Studio Header */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-2 border-b border-surface-container-high/40">
               <div className="flex flex-col gap-1 min-w-0">

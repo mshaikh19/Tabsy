@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SPLIT_MODES = [
@@ -27,8 +27,8 @@ export default function ProfileSetupPreferences() {
   };
 
   return (
-    <div className="bg-surface font-body-md text-on-surface antialiased min-h-screen">
-      <header className="fixed top-0 left-0 right-0 w-full z-40 bg-surface/85 backdrop-blur-md border-b border-surface-container">
+    <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased min-h-screen">
+      <header className="fixed top-0 left-0 right-0 w-full z-40 bg-[#FAF8F5]/85 backdrop-blur-md border-b border-surface-container">
         <div className="max-w-7xl mx-auto px-gutter-desktop h-16 flex items-center justify-between">
           <div className="flex items-center gap-space-sm">
             <img alt="Tabsy" className="w-8 h-8 rounded-xl" src="./assets/logo.svg" />
@@ -53,7 +53,7 @@ export default function ProfileSetupPreferences() {
         </div>
       </header>
 
-      <main className="w-full h-screen pt-16 bg-surface overflow-y-auto">
+      <main className="w-full h-screen pt-16 bg-[#FAF8F5] overflow-y-auto">
         <div className="w-full max-w-4xl mx-auto px-margin sm:px-margin-tablet lg:px-margin-desktop py-space-xl">
           <div className="flex items-center gap-space-sm mb-space-lg">
             <div className="flex items-center gap-1.5">

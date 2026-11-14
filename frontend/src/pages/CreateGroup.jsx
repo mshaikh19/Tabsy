@@ -1,14 +1,14 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
 
 const CURRENCIES = [
-  { code: "USD", name: "United States Dollar", symbol: "$", flag: "ðŸ‡ºðŸ‡¸" },
-  { code: "EUR", name: "Euro", symbol: "â‚¬", flag: "ðŸ‡ªðŸ‡º" },
-  { code: "GBP", name: "British Pound", symbol: "Â£", flag: "ðŸ‡¬ðŸ‡§" },
-  { code: "CAD", name: "Canadian Dollar", symbol: "$", flag: "ðŸ‡¨ðŸ‡¦" },
-  { code: "JPY", name: "Japanese Yen", symbol: "Â¥", flag: "ðŸ‡¯ðŸ‡µ" },
-  { code: "CHF", name: "Swiss Franc", symbol: "Fr", flag: "ðŸ‡¨ðŸ‡­" },
+  { code: "USD", name: "United States Dollar", symbol: "$", flag: "🇺🇸" },
+  { code: "EUR", name: "Euro", symbol: "€", flag: "🇪🇺" },
+  { code: "GBP", name: "British Pound", symbol: "£", flag: "🇬🇧" },
+  { code: "CAD", name: "Canadian Dollar", symbol: "$", flag: "🇨🇦" },
+  { code: "JPY", name: "Japanese Yen", symbol: "¥", flag: "🇯🇵" },
+  { code: "CHF", name: "Swiss Franc", symbol: "Fr", flag: "🇨🇭" },
 ];
 
 const SPLIT_MODELS = [
@@ -101,8 +101,8 @@ export default function CreateGroup() {
 
   return (
     <AppLayout>
-      <main className="w-full pt-4 bg-surface">
-        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+      <main className="w-full pt-4 bg-[#FAF8F5]">
+        <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
           <div className="w-full bg-surface-container-lowest rounded-xl p-4 sm:p-6 shadow-sm flex flex-col gap-4 z-30">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div className="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
@@ -115,7 +115,7 @@ export default function CreateGroup() {
               <div className="flex items-center gap-2 self-start sm:self-auto">
                 <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container/20 text-primary font-label-caps text-label-caps uppercase tracking-wider font-bold">
                   <span className="w-2 h-2 rounded-full bg-primary mr-1.5 animate-pulse" />
-                  In Progress â€¢ Step {step} of 3 ({stepPct}%)
+                  In Progress • Step {step} of 3 ({stepPct}%)
                 </span>
                 <span className="text-on-surface-variant font-body-sm text-body-sm hidden md:inline">Auto-saving</span>
               </div>
@@ -144,7 +144,7 @@ export default function CreateGroup() {
                       <span className="font-label-caps text-label-caps text-outline">21 / 50</span>
                     </div>
                     <div className="flex items-center gap-2 bg-surface-container-low rounded-xl p-2 shadow-inner">
-                      <button className="w-12 h-12 rounded-xl bg-surface-container-lowest text-2xl flex items-center justify-center shrink-0 shadow-sm hover:scale-105 transition-transform" type="button">â„ï¸</button>
+                      <button className="w-12 h-12 rounded-xl bg-surface-container-lowest text-2xl flex items-center justify-center shrink-0 shadow-sm hover:scale-105 transition-transform" type="button">❄️</button>
                       <input className="w-full bg-transparent font-title-md text-title-md font-semibold text-on-surface placeholder:text-outline focus:outline-none px-2" id="group-name-input" maxLength={50} placeholder="e.g., Kyoto Cherry Blossom, Flat 4B, Friday Dinner" type="text" defaultValue="Tahoe Ski Chalet 2026" />
                     </div>
                   </div>
@@ -153,13 +153,13 @@ export default function CreateGroup() {
                     <span className="font-title-md text-title-md text-on-surface font-semibold">Select Preset Icon or Emoji</span>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                       {[
-                        { e: "â„ï¸", l: "Ski Chalet" },
-                        { e: "ðŸ ", l: "Apartment" },
-                        { e: "ðŸš—", l: "Road Trip" },
-                        { e: "ðŸ•", l: "Dining" },
-                        { e: "ðŸŽª", l: "Festival" },
-                        { e: "ðŸ’¼", l: "Project" },
-                        { e: "ðŸŒ´", l: "Getaway" },
+                        { e: "❄️", l: "Ski Chalet" },
+                        { e: "🏠", l: "Apartment" },
+                        { e: "🚗", l: "Road Trip" },
+                        { e: "🍕", l: "Dining" },
+                        { e: "🎪", l: "Festival" },
+                        { e: "💼", l: "Project" },
+                        { e: "🌴", l: "Getaway" },
                       ].map((icon) => (
                         <button key={icon.l} className="flex items-center gap-2 p-2 bg-surface-container-low rounded-xl text-left transition-all hover:bg-surface-container-high" data-emoji={icon.e} type="button">
                           <span className="text-xl">{icon.e}</span>
@@ -205,7 +205,7 @@ export default function CreateGroup() {
                         <span>Trip Basecamp / Location</span>
                         <span className="font-body-sm text-body-sm text-primary flex items-center gap-1 font-normal">
                           <span className="material-symbols-outlined text-[16px]">location_on</span>
-                          38.9399Â° N, 119.9772Â° W
+                          38.9399° N, 119.9772° W
                         </span>
                       </label>
                       <div className="flex items-center gap-2 bg-surface-container-low rounded-xl px-3 py-2">
@@ -526,12 +526,12 @@ export default function CreateGroup() {
                         <div className="flex items-center gap-3 min-w-0">
                           <div className="relative">
                             <div className="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-body-md shadow-sm">AM</div>
-                            <span className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-label-caps">â˜…</span>
+                            <span className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-label-caps">★</span>
                           </div>
                           <div className="flex flex-col min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
                               <span className="font-title-md text-title-md font-bold text-on-surface truncate">Alex Morgan</span>
-                              <span className="px-2 py-0.5 rounded-full bg-primary-container/20 text-on-primary-container font-label-caps text-label-caps uppercase font-bold tracking-wider">You â€¢ Host Admin</span>
+                              <span className="px-2 py-0.5 rounded-full bg-primary-container/20 text-on-primary-container font-label-caps text-label-caps uppercase font-bold tracking-wider">You • Host Admin</span>
                             </div>
                             <span className="font-body-sm text-body-sm text-on-surface-variant truncate">alex@tabsy.me</span>
                           </div>
@@ -632,12 +632,12 @@ export default function CreateGroup() {
                   <div className="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-4">
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center text-2xl shadow-inner">â„ï¸</div>
+                        <div className="w-12 h-12 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center text-2xl shadow-inner">❄️</div>
                         <div className="flex flex-col">
                           <span className="font-headline-sm text-headline-sm font-bold text-on-surface">Tahoe Ski Chalet 2026</span>
                           <div className="flex items-center gap-2 mt-0.5">
                             <span className="px-2 py-0.5 rounded-full bg-secondary-fixed/50 text-secondary font-label-caps text-label-caps font-bold">Trip &amp; Vacation</span>
-                            <span className="font-body-sm text-body-sm text-on-surface-variant">â€¢ 4 active</span>
+                            <span className="font-body-sm text-body-sm text-on-surface-variant">• 4 active</span>
                           </div>
                         </div>
                       </div>
@@ -685,7 +685,7 @@ export default function CreateGroup() {
                       <div className="p-3 rounded-xl bg-surface-container-low/70 flex flex-col gap-3">
                         <div className="flex items-center justify-between pb-1">
                           <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface text-body-md">ðŸŽ¿</div>
+                            <div className="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface text-body-md">🎿</div>
                             <div className="flex flex-col">
                               <span className="font-title-md text-title-md font-bold text-on-surface">Lodging &amp; Passes</span>
                               <span className="font-body-sm text-body-sm text-on-surface-variant">Paid by Marco Rossi</span>
@@ -716,7 +716,7 @@ export default function CreateGroup() {
                         </div>
                         <div className="p-2 rounded-lg bg-surface-container flex items-center justify-between font-body-sm text-body-sm">
                           <span className="text-on-surface-variant flex items-center gap-1"><span className="material-symbols-outlined text-[16px] text-primary">hub</span>Graph Efficiency:</span>
-                          <span className="font-semibold text-on-surface">3 direct hops â€¢ 0 circular debt</span>
+                          <span className="font-semibold text-on-surface">3 direct hops • 0 circular debt</span>
                         </div>
                       </div>
                     </div>
@@ -729,7 +729,7 @@ export default function CreateGroup() {
                     </div>
                   </div>
                   <div className="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex items-center gap-3">
-                    <span className="text-2xl">âš¡</span>
+                    <span className="text-2xl">⚡</span>
                     <div className="flex flex-col">
                       <span className="font-title-md text-title-md font-semibold text-on-surface">Zero Account Required to View</span>
                       <span className="font-body-sm text-body-sm text-on-surface-variant">Invited peers can audit splits and calculate dues on mobile web without downloading an app.</span>
@@ -741,7 +741,7 @@ export default function CreateGroup() {
                   <div className="bg-surface-container-lowest rounded-2xl p-5 shadow-md flex flex-col gap-4 transition-all duration-300">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center text-3xl shadow-sm">â„ï¸</div>
+                        <div className="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center text-3xl shadow-sm">❄️</div>
                         <div className="flex flex-col">
                           <span className="font-label-caps text-label-caps uppercase text-primary font-bold tracking-wider">Trips &amp; Vacation</span>
                           <h3 className="font-headline-sm text-headline-sm text-on-surface font-extrabold truncate max-w-[200px]">Tahoe Ski Chalet 2026</h3>
@@ -756,7 +756,7 @@ export default function CreateGroup() {
                       </div>
                       <div className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-on-surface">
                         <span className="material-symbols-outlined text-[16px] text-secondary">date_range</span>
-                        <span>Feb 14 â€“ Feb 18</span>
+                        <span>Feb 14 – Feb 18</span>
                       </div>
                     </div>
                     <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
@@ -860,7 +860,7 @@ export default function CreateGroup() {
                   <div className="bg-surface-container-lowest rounded-2xl p-5 shadow-md flex flex-col gap-4 transition-all duration-300">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center text-3xl shadow-sm">â„ï¸</div>
+                        <div className="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center text-3xl shadow-sm">❄️</div>
                         <div className="flex flex-col">
                           <span className="font-label-caps text-label-caps uppercase text-primary font-bold tracking-wider">Trips &amp; Vacation</span>
                           <h3 className="font-headline-sm text-headline-sm text-on-surface font-extrabold truncate max-w-[200px]">Tahoe Ski Chalet 2026</h3>
@@ -875,7 +875,7 @@ export default function CreateGroup() {
                       </div>
                       <div className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-on-surface">
                         <span className="material-symbols-outlined text-[16px] text-secondary">date_range</span>
-                        <span>Feb 14 â€“ Feb 18</span>
+                        <span>Feb 14 – Feb 18</span>
                       </div>
                     </div>
                     <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">

@@ -1,12 +1,12 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
 import GroupHeader from "../components/layout/GroupHeader";
 
 export default function GroupDetails() {
   return (
     <AppLayout>
-      <main className="w-full pt-4 bg-surface min-h-screen">
-        <div className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-4 flex flex-col gap-6">
+      <main className="w-full pt-4 bg-[#FAF8F5] min-h-screen">
+        <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-6">
           <GroupHeader
             title="Tahoe Ski Weekend ❄️"
             subtitle="6 friends shredding Heavenly & Kirkwood. Cabin split, collective grocery pool, and simplified end-of-trip payouts."
@@ -234,7 +234,7 @@ export default function GroupDetails() {
                     {["Chalet", "Passes", "Safeway", "Chains"].map((label) => (
                       <div key={label} className="relative h-20 rounded-xl overflow-hidden shadow-sm group">
                         <div className="w-full h-full bg-surface-container-low" />
-                        <span className="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-surface/80 backdrop-blur-sm text-label-caps font-label-caps font-semibold">{label}</span>
+                        <span className="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-[#FAF8F5]/80 backdrop-blur-sm text-label-caps font-label-caps font-semibold">{label}</span>
                       </div>
                     ))}
                   </div>

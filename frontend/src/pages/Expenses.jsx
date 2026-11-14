@@ -158,8 +158,8 @@ export default function Expenses() {
 
   return (
     <AppLayout>
-      <div className="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
-        <main className="w-full pt-4 bg-background min-h-screen">
+      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+        <main className="w-full pt-4 bg-[#FAF8F5] min-h-screen">
           <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
             {/* Studio Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-container-lowest p-5 rounded-2xl border border-slate-200/80 shadow-sm">

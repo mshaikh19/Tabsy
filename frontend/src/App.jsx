@@ -10,7 +10,6 @@ import ProfileSetup from "./pages/ProfileSetup";
 import ProfileSetupPreferences from "./pages/ProfileSetupPreferences";
 import Dashboard from "./pages/Dashboard";
 import Activity from "./pages/Activity";
-import Balances from "./pages/Balances";
 import Groups from "./pages/Groups";
 import CreateGroup from "./pages/CreateGroup";
 import GroupDetails from "./pages/GroupDetails";
@@ -42,6 +41,15 @@ import FriendProfile from "./pages/FriendProfile";
 import FriendTransactions from "./pages/FriendTransactions";
 import FriendBalances from "./pages/FriendBalances";
 import FriendActivity from "./pages/FriendActivity";
+import OverallBalances from "./pages/OverallBalances";
+import WhoOwesWhom from "./pages/WhoOwesWhom";
+import SettleUp from "./pages/SettleUp";
+import PaymentConfirmation from "./pages/PaymentConfirmation";
+import PendingSettlements from "./pages/PendingSettlements";
+import SettlementHistory from "./pages/SettlementHistory";
+import SettlementDetails from "./pages/SettlementDetails";
+import SimplifyDebts from "./pages/SimplifyDebts";
+import PaymentMethods from "./pages/PaymentMethods";
 
 function App() {
   return (
@@ -65,7 +73,15 @@ function App() {
         />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/activity" element={<Activity />} />
-        <Route path="/balances" element={<Balances />} />
+        <Route path="/balances" element={<OverallBalances />} />
+        <Route path="/who-owes-whom" element={<WhoOwesWhom />} />
+        <Route path="/settle-up" element={<SettleUp />} />
+        <Route path="/payment-confirmation" element={<PaymentConfirmation />} />
+        <Route path="/pending-settlements" element={<PendingSettlements />} />
+        <Route path="/settlement-history" element={<SettlementHistory />} />
+        <Route path="/settlement-details" element={<SettlementDetails />} />
+        <Route path="/simplify-debts" element={<SimplifyDebts />} />
+        <Route path="/payment-methods" element={<PaymentMethods />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/create-group" element={<CreateGroup />} />
 <Route path="/group-details" element={<GroupDetails />} />

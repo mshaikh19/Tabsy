@@ -55,9 +55,9 @@ export default function DeleteExpense() {
 
   return (
     <AppLayout>
-      <div className="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
-        <main className="w-full pt-4 pb-16 bg-background min-h-screen">
-          <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-2">
+      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+        <main className="w-full pt-4 pb-16 bg-[#FAF8F5] min-h-screen">
+          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-2">
             {/* Breadcrumbs & Quick Alternative */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5 pt-2">
               <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-outline flex-wrap">

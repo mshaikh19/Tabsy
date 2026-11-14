@@ -268,9 +268,9 @@ export default function GroupMembers() {
 
   return (
     <AppLayout>
-      <div className="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
-        <main className="w-full pt-0 pb-24 bg-background min-h-screen">
-          <div className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col gap-6">
+      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+        <main className="w-full pt-0 pb-24 bg-[#FAF8F5] min-h-screen">
+          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
             <GroupHeader
               title="Tahoe Ski Weekend ❄️"
               subtitle="6 friends shredding Heavenly & Kirkwood. Cabin split, collective grocery pool, and simplified end-of-trip payouts."
@@ -643,7 +643,7 @@ export default function GroupMembers() {
 
         {/* 5. Consistent Tabsy Footer */}
         <footer className="w-full bg-surface-container-low border-t border-surface-container-high py-6">
-          <div className="max-w-7xl mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant">
+          <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-md bg-primary-container text-on-primary-container flex items-center justify-center text-[12px]">
                 <span className="material-symbols-outlined text-[14px]">receipt_long</span>

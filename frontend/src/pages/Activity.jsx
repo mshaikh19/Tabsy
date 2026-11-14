@@ -1,10 +1,10 @@
-﻿import AppLayout from "../components/layout/AppLayout";
+import AppLayout from "../components/layout/AppLayout";
 
 export default function Activity() {
   return (
     <AppLayout>
       <main className="w-full pt-4 pb-16 bg-[#fcfbfe]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-8">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pt-2">
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -617,7 +617,7 @@ export default function Activity() {
       </main>
 
       <footer className="w-full bg-[#f6f5fb] border-t border-surface-container mt-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <div className="w-6 h-6 rounded-lg bg-primary flex items-center justify-center text-white">
               <span className="material-symbols-outlined text-body-md">receipt_long</span>

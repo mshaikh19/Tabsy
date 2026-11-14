@@ -325,9 +325,9 @@ export default function ManageParticipants() {
 
   return (
     <AppLayout>
-      <div className="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
-        <main className="w-full pt-4 pb-16 bg-background min-h-screen">
-          <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col gap-6">
+      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+        <main className="w-full pt-4 pb-16 bg-[#FAF8F5] min-h-screen">
+          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col gap-6">
             {/* Breadcrumbs & Live Audit Navigation */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
               <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-outline overflow-x-auto whitespace-nowrap">

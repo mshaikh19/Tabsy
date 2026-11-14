@@ -1,4 +1,4 @@
-﻿import { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
 
@@ -90,8 +90,8 @@ export default function Balances() {
 
   return (
     <AppLayout>
-      <main className="w-full pt-4 bg-background min-h-screen">
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+      <main className="w-full pt-4 bg-[#FAF8F5] min-h-screen">
+        <div className="max-w-[1536px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 space-y-8">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 border-b border-surface-container pb-6">
             <div>

@@ -145,7 +145,7 @@ export default function GroupExpenses() {
 
   return (
     <AppLayout>
-      <div className="bg-background font-body-md text-on-surface antialiased overflow-x-clip max-w-[100vw]">
+      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased overflow-x-clip max-w-[100vw]">
         <style>{`
           @layer base {
             html, body { margin: 0; padding: 0; }
@@ -159,9 +159,9 @@ export default function GroupExpenses() {
         `}</style>
 
         {/* Main Container */}
-        <main className="w-full bg-background">
+        <main className="w-full bg-[#FAF8F5]">
           <div className="flex flex-col w-full">
-              <div className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+              <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <GroupHeader
                 title="Tahoe Ski Weekend ❄️"
                 subtitle="6 friends shredding Heavenly & Kirkwood. Cabin split, collective grocery pool, and simplified end-of-trip payouts."
@@ -207,7 +207,7 @@ export default function GroupExpenses() {
               />
               </div>
             {/* Key Metrics Strip */}
-            <section className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop mt-space-md">
+            <section className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 mt-space-md">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm">
                 <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/60 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center justify-between">
@@ -267,7 +267,7 @@ export default function GroupExpenses() {
             </section>
 
             {/* Interactive Controls Toolbar */}
-            <section className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop mt-space-md">
+            <section className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 mt-space-md">
               <div className="p-space-sm rounded-2xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm sticky top-[9rem] z-10 backdrop-blur-sm">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-space-sm">
                   <div className="flex items-center flex-wrap gap-space-sm">
@@ -307,7 +307,7 @@ export default function GroupExpenses() {
             </section>
 
             {/* Main Content Stage: Ledger vs Kanban + Companion Rail */}
-            <section className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop mt-space-md mb-space-lg">
+            <section className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 mt-space-md mb-space-lg">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
                 {/* Primary Canvas */}
                 <div className="lg:col-span-8 min-w-0">
@@ -857,7 +857,7 @@ export default function GroupExpenses() {
 
         {/* Global Footer */}
         <footer className="w-full bg-surface-container-low py-space-lg border-t border-surface-container-high/60 mt-space-lg">
-          <div className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant">
+          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant">
             <div className="flex items-center gap-space-xs">
               <div className="w-6 h-6 rounded-md bg-primary-container text-on-primary-container flex items-center justify-center text-[12px]">
                 <span className="material-symbols-outlined text-[14px]">receipt_long</span>
