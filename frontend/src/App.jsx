@@ -50,6 +50,11 @@ import SettlementHistory from "./pages/SettlementHistory";
 import SettlementDetails from "./pages/SettlementDetails";
 import SimplifyDebts from "./pages/SimplifyDebts";
 import PaymentMethods from "./pages/PaymentMethods";
+import Analytics from "./pages/Analytics";
+import YearlyReport from "./pages/YearlyReport";
+import MonthlyReport from "./pages/MonthlyReport";
+import CategoryDrift from "./pages/CategoryDrift";
+import GroupAnalysis from "./pages/GroupAnalysis";
 
 function App() {
   return (
@@ -82,6 +87,11 @@ function App() {
         <Route path="/settlement-details" element={<SettlementDetails />} />
         <Route path="/simplify-debts" element={<SimplifyDebts />} />
         <Route path="/payment-methods" element={<PaymentMethods />} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/yearly-report" element={<YearlyReport />} />
+        <Route path="/monthly-report" element={<MonthlyReport />} />
+        <Route path="/category-drift" element={<CategoryDrift />} />
+        <Route path="/group-analysis" element={<GroupAnalysis />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/create-group" element={<CreateGroup />} />
 <Route path="/group-details" element={<GroupDetails />} />
