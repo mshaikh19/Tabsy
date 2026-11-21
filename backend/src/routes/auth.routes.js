@@ -72,9 +72,7 @@ router.post(
 );
 
 // Direct OAuth token exchange endpoints (for frontend SDKs)
-if (process.env.GOOGLE_CLIENT_ID) {
-  router.post("/google", authController.googleLogin);
-}
+router.post("/google", authController.googleLogin);
 
 // OAuth routes (full redirect flow)
 if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {

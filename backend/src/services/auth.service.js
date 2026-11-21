@@ -46,7 +46,7 @@ const loginWithGoogle = async (credential) => {
         email,
         "oauth.googleId": googleId,
         avatarUrl: picture,
-        isEmailVerified: true,
+        emailVerified: true,
       });
     }
   }

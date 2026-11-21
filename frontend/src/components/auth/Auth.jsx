@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../../context/AuthContext";
@@ -16,12 +16,7 @@ export default function Auth({ initialMode = "signup" }) {
   const [signupPassword, setSignupPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [googleClientId, setGoogleClientId] = useState("");
-
-  useEffect(() => {
-    const stored = localStorage.getItem("google_client_id");
-    if (stored) setGoogleClientId(stored);
-  }, []);
+  const [googleClientId] = useState(import.meta.env.VITE_GOOGLE_CLIENT_ID || "");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -299,7 +294,6 @@ export default function Auth({ initialMode = "signup" }) {
                       <span>Google</span>
                     </button>
                   )}
-                  </button>
                 </div>
                 <div className="relative flex items-center justify-center mb-4">
                   <div className="w-full h-px bg-[#eaedff]"></div>

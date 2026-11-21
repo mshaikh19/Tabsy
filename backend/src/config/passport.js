@@ -39,7 +39,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
                 name: profile.displayName,
                 email: profile.emails[0].value,
                 "oauth.googleId": profile.id,
-                isEmailVerified: true,
+                emailVerified: true,
               });
             }
           }
