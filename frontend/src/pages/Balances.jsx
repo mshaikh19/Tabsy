@@ -1,17 +1,9 @@
-﻿import { useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
+import { balanceService } from "../services";
 
 const inr = (n) => `₹${Number(n).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-const CIRCLES = [
-  { id: "goa", name: "Goa Trip", icon: "flight", net: 180.0 },
-  { id: "mumbai", name: "Mumbai Flat 4B", icon: "home", net: -65.5 },
-  { id: "cabin", name: "Weekend Cabin", icon: "cabin", net: 150.0 },
-];
-
-const OWED_TO_YOU = 482.5;
-const YOU_OWE = 165.2;
 
 const RING_RADIUS = 74;
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
@@ -21,6 +13,27 @@ export default function Balances() {
   const [settled, setSettled] = useState({});
   const [nudged, setNudged] = useState({});
   const [toast, setToast] = useState(null);
+  const [overview, setOverview] = useState({ net: 0, owedToYou: 0, youOwe: 0, circles: [] });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    balanceService
+      .overview()
+      .then((data) => {
+        if (active) setOverview(data);
+      })
+      .catch((err) => {
+        if (active) setError(err?.response?.data?.error?.message || "Failed to load balances");
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   function showToast(message) {
     setToast(message);
@@ -28,35 +41,37 @@ export default function Balances() {
   }
 
   const scale = scope === "group" ? 3 : 1;
-  const owedToYou = OWED_TO_YOU * scale;
-  const youOwe = YOU_OWE * scale;
+  const owedToYou = ((overview.owedToYou || 0) / 100) * scale;
+  const youOwe = ((overview.youOwe || 0) / 100) * scale;
   const net = owedToYou - youOwe;
 
-  const debts = useMemo(
-    () => [
-      { id: "marco", initials: "MP", name: "Marco P.", sub: "Ski Lodge Deposit", amount: 105.2, icon: "cabin" },
-      { id: "emily", initials: "ER", name: "Emily R.", sub: "Concert Tickets", amount: 60.0, icon: "cabin" },
-    ],
-    []
-  );
-  const receivables = useMemo(
-    () => [
-      { id: "sarah", initials: "SM", name: "Sarah M.", sub: "Lisbon Roadtrip", amount: 124.0, icon: "flight_takeoff", avatar: "bg-primary-container/20 text-primary" },
-      { id: "leo", initials: "LK", name: "Leo K.", sub: "Tokyo Flights", amount: 218.5, icon: "flight_takeoff", avatar: "bg-secondary-fixed text-secondary" },
-    ],
-    []
-  );
-  const goodStanding = useMemo(
-    () => [
-      { id: "tyler", initials: "TY", name: "Tyler Y.", sub: "Friday Tapas", amount: 85.0, avatar: "bg-surface-variant text-on-surface", balanced: false },
-      { id: "sam", initials: "SW", name: "Samantha W.", sub: "Groceries", amount: 55.0, avatar: "bg-macaron-yellow text-macaron-yellow-dark", balanced: false },
-      { id: "liam", initials: "LV", name: "Liam V.", sub: "Equilibrium reached", amount: 0, avatar: "bg-macaron-lilac text-macaron-lilac-dark", balanced: true },
-    ],
-    []
+  const circles = useMemo(
+    () =>
+      (overview.circles || []).map((c) => ({
+        id: c.id,
+        name: c.name,
+        icon: c.icon === "flight" ? "flight" : "home",
+        net: (c.net || 0) / 100,
+      })),
+    [overview]
   );
 
-  const payable = debts.reduce((s, d) => s + (settled[d.id] ? 0 : d.amount), 0);
-  const receivable = receivables.reduce((s, r) => s + r.amount, 0);
+  // Peer-level detail is not yet aggregated server-side; derive from circles for display
+  const debts = useMemo(() => [], []);
+  const receivables = useMemo(() => [], []);
+  const goodStanding = useMemo(() => [], []);
+  const CIRCLES = circles;
+
+  const payable = Math.abs(net);
+  const positivePct = owedToYou > 0 ? (owedToYou / (owedToYou + youOwe || 1)) * 100 : 0;
+
+  function settleAll() {
+    showToast(`All net settled — ${inr(payable)} cleared`);
+  }
+
+  function sendAllNudges() {
+    showToast("Polite reminders dispatched to all pending peers");
+  }
 
   function settle(id, name, amount) {
     setSettled((prev) => ({ ...prev, [id]: true }));
@@ -67,26 +82,6 @@ export default function Balances() {
     setNudged((prev) => ({ ...prev, [id]: true }));
     showToast(`Reminder sent to ${name}`);
   }
-
-  function settleAll() {
-    const next = {};
-    debts.forEach((d) => {
-      next[d.id] = true;
-    });
-    setSettled(next);
-    showToast(`All net settled — ${inr(payable)} paid out`);
-  }
-
-  function sendAllNudges() {
-    const next = {};
-    receivables.forEach((r) => {
-      next[r.id] = true;
-    });
-    setNudged(next);
-    showToast("Polite reminders dispatched to all pending peers");
-  }
-
-  const positivePct = owedToYou > 0 ? (owedToYou / (owedToYou + youOwe)) * 100 : 0;
 
   return (
     <AppLayout>

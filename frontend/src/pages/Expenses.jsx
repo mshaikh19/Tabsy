@@ -1,160 +1,196 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
+import { expenseService, balanceService } from "../services";
 
-const inr = (n) => `₹${n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+const formatMoney = (amount, currency = "INR") => {
+  const major = (amount || 0) / 100;
+  try {
+    return major.toLocaleString("en-IN", {
+      style: "currency",
+      currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  } catch {
+    return `${currency} ${major.toFixed(2)}`;
+  }
+};
+
+const getCategoryIcon = (category) => {
+  const icons = {
+    lodging: "villa",
+    mountain: "downhill_skiing",
+    groceries: "local_grocery_store",
+    transit: "directions_car",
+    dining: "restaurant",
+    activity: "sports_esports",
+    default: "receipt_long",
+  };
+  return icons[category?.toLowerCase()] || icons.default;
+};
+
+const getCategoryBg = (category) => {
+  const bgs = {
+    lodging: "bg-surface-container-highest text-secondary",
+    mountain: "bg-surface-container-high text-on-surface",
+    groceries: "bg-primary-fixed text-on-primary-fixed",
+    transit: "bg-surface-container-highest text-on-surface-variant",
+    dining: "bg-tertiary-fixed text-on-tertiary-fixed",
+    activity: "bg-secondary-container text-on-secondary-container",
+    default: "bg-surface-variant text-on-surface",
+  };
+  return bgs[category?.toLowerCase()] || bgs.default;
+};
 
 const TABS = [
-  { id: "all", label: "All Transactions", count: 28, icon: "receipt_long" },
-  { id: "personal", label: "Personal Outlays", count: 8, icon: "person" },
-  { id: "shared", label: "Shared Group Tabs", count: 18, icon: "groups" },
-  { id: "subscriptions", label: "Subscriptions", count: 2, icon: "autorenew" },
-];
-
-const TRANSACTIONS = [
-  {
-    id: 1,
-    title: "Palisades Luxury Chalet Rental",
-    icon: "villa",
-    iconClass: "bg-secondary-fixed-dim text-secondary",
-    group: "❄️ Tahoe Ski",
-    groupClass: "bg-secondary-fixed text-on-secondary-fixed-variant",
-    category: "🏡 Lodging",
-    categoryClass: "bg-surface-container-highest text-on-surface-variant",
-    date: "Feb 14, 2025",
-    paidBy: "Alex Morgan (You)",
-    splitNote: "6-way equal tab",
-    amount: 99600,
-    impact: 83000,
-    status: "settled",
-    tab: "shared",
-    drawer: [
-      { name: "Alex (You)", amount: 16600, tag: "Paid" },
-      { name: "Marco R.", amount: 16600, tag: "Reimbursed" },
-      { name: "Sarah L.", amount: 16600, tag: "Reimbursed" },
-      { name: "Taylor E.", amount: 16600, tag: "Reimbursed" },
-      { name: "Kim S.", amount: 16600, tag: "Reimbursed" },
-      { name: "Chris D.", amount: 16600, tag: "Reimbursed" },
-    ],
-  },
-  {
-    id: 2,
-    title: "Whole Foods Market Provisioning",
-    icon: "shopping_cart",
-    iconClass: "bg-tertiary-fixed text-tertiary",
-    group: "❄️ Tahoe Ski",
-    groupClass: "bg-secondary-fixed text-on-secondary-fixed-variant",
-    category: "🛒 Groceries",
-    categoryClass: "bg-[#fed7aa]/60 text-[#9a3412]",
-    date: "Feb 15, 2025",
-    paidBy: "Sarah Lin",
-    splitNote: "6 members split",
-    amount: 28452.4,
-    impact: -4741.79,
-    status: "pending",
-    tab: "shared",
-    drawer: [
-      { name: "Alex (You)", amount: 4742.07, tag: "Your share" },
-      { name: "Marco R.", amount: 4742.07, tag: "Owes Sarah" },
-      { name: "Sarah L.", amount: 4742.07, tag: "Paid" },
-      { name: "Taylor E.", amount: 4742.07, tag: "Owes Sarah" },
-      { name: "Kim S.", amount: 4742.07, tag: "Owes Sarah" },
-      { name: "Chris D.", amount: 4742.07, tag: "Owes Sarah" },
-    ],
-  },
-  {
-    id: 3,
-    title: "Artisan Sourdough & Williamsburg Brunch",
-    icon: "bakery_dining",
-    iconClass: "bg-tertiary-fixed-dim text-on-tertiary-fixed-variant",
-    group: "🏙️ Brooklyn Loft",
-    groupClass: "bg-surface-container-high text-on-surface",
-    category: "🍕 Dining",
-    categoryClass: "bg-[#fde047]/40 text-[#854d0e]",
-    date: "Feb 18, 2025",
-    paidBy: "Marco Rossi",
-    splitNote: "3-way tab",
-    amount: 5353.5,
-    impact: -1784.5,
-    status: "netting",
-    tab: "shared",
-    drawer: [
-      { name: "Alex (You)", amount: 1784.5, tag: "Offset applied" },
-      { name: "Marco R.", amount: 1784.5, tag: "Paid" },
-      { name: "Sarah L.", amount: 1784.5, tag: "Offset applied" },
-    ],
-  },
-  {
-    id: 4,
-    title: "Tokyo Metro 72-Hour Tourist Pass",
-    icon: "subway",
-    iconClass: "bg-primary-fixed text-primary",
-    group: "🌸 Japan Trip",
-    groupClass: "bg-tertiary-fixed text-on-tertiary-fixed-variant",
-    category: "🚗 Transit",
-    categoryClass: "bg-[#e0f2fe] text-[#0369a1]",
-    date: "Feb 10, 2025",
-    paidBy: "Alex Morgan (You)",
-    splitNote: "2 travelers",
-    amount: 3984,
-    impact: 1992,
-    status: "settled",
-    tab: "personal",
-    drawer: [
-      { name: "Alex (You)", amount: 1992, tag: "Paid" },
-      { name: "Sarah L.", amount: 1992, tag: "Reimbursed" },
-    ],
-  },
-];
-
-const QUICK_CONTACTS = [
-  { initials: "MR", name: "Marco Rossi", avatarClass: "bg-inverse-surface text-inverse-on-surface", owes: 3949.14 },
-  { initials: "SL", name: "Sarah Lin", avatarClass: "bg-secondary-container text-on-secondary", owes: 3949.14 },
-  { initials: "TE", name: "Taylor Evans", avatarClass: "bg-surface-container-high text-on-surface", owes: 0 },
+  { id: "all", label: "All Transactions", icon: "receipt_long" },
+  { id: "personal", label: "Personal Outlays", icon: "person" },
+  { id: "shared", label: "Shared Group Tabs", icon: "groups" },
+  { id: "subscriptions", label: "Subscriptions", icon: "autorenew" },
 ];
 
 const STATUS_META = {
   settled: { label: "Fully Settled", className: "bg-primary-fixed text-on-primary-fixed", dot: true },
   pending: { label: "Pending Settle", className: "bg-tertiary-fixed text-on-tertiary-fixed-variant", dot: true },
-  netting: { label: "Settled via Netting", className: "bg-primary-fixed text-on-primary-fixed", dot: false },
+  partial: { label: "Partially Settled", className: "bg-primary-fixed text-on-primary-fixed", dot: false },
 };
 
 export default function Expenses() {
+  const navigate = useNavigate();
+  const [transactions, setTransactions] = useState([]);
+  const [balances, setBalances] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [range, setRange] = useState("7D");
   const [tab, setTab] = useState("all");
   const [tabOpen, setTabOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [expanded, setExpanded] = useState({ 1: true });
-  const [settled, setSettled] = useState({ 1: true, 4: true });
+  const [expanded, setExpanded] = useState({});
+  const [settled, setSettled] = useState({});
   const [toast, setToast] = useState(null);
 
-  function showToast(title, body) {
+  useEffect(() => {
+    load();
+  }, []);
+
+  const load = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const [exp, bal] = await Promise.all([
+        expenseService.listAll(),
+        balanceService.overview(),
+      ]);
+      setTransactions(exp || []);
+      setBalances(bal);
+    } catch (err) {
+      setError(err?.response?.data?.error?.message || "Failed to load expenses");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const showToast = (title, body) => {
     setToast({ title, body });
     setTimeout(() => setToast(null), 3000);
-  }
+  };
 
-  function toggleExpand(id) {
+  const toggleExpand = (id) => {
     setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
-  }
+  };
 
-  function toggleSettled(id) {
+  const toggleSettled = (id) => {
     setSettled((prev) => ({ ...prev, [id]: !prev[id] }));
-  }
+  };
 
-  function copyLink(title) {
+  const copyLink = (title) => {
     try {
       navigator.clipboard.writeText(`https://tabsy.me/expense/${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`);
     } catch {
       /* clipboard unavailable */
     }
-    showToast("Link Copied", `Share link for “${title}” copied to clipboard.`);
+    showToast("Link Copied", `Share link for "${title}" copied to clipboard.`);
+  };
+
+  // Compute category distribution
+  const categoryDistribution = useMemo(() => {
+    const dist = {};
+    transactions.forEach((t) => {
+      const cat = t.category || "Other";
+      dist[cat] = (dist[cat] || 0) + t.amount;
+    });
+    const total = Object.values(dist).reduce((a, b) => a + b, 0);
+    return Object.entries(dist).map(([label, val]) => ({
+      label,
+      val: formatMoney(val),
+      pct: total > 0 ? Math.round((val / total) * 100) + "%" : "0%",
+    }));
+  }, [transactions]);
+
+  const filtered = transactions
+    .filter((t) => {
+      if (tab !== "all" && t.tab !== tab) return false;
+      if (query && !t.title.toLowerCase().includes(query.toLowerCase())) return false;
+      return true;
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  // Compute quick contacts from balances
+  const quickContacts = useMemo(() => {
+    if (!balances?.peers) return [];
+    return balances.peers
+      .filter((p) => p.net > 0) // People who owe you
+      .slice(0, 5)
+      .map((p) => ({
+        name: p.name,
+        initials: p.name?.slice(0, 2).toUpperCase() || "?",
+        owes: p.net,
+        avatarClass: "bg-primary text-on-primary",
+      }));
+  }, [balances]);
+
+  if (loading) {
+    return (
+      <AppLayout>
+        <div className="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+          <main className="w-full pt-4 bg-background min-h-screen">
+            <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-container-lowest p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-label-caps font-semibold tracking-wide uppercase mb-1 border border-emerald-100">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    <span>Live Expense Intelligence</span>
+                  </div>
+                  <h1 className="font-headline-lg text-2xl lg:text-3xl font-bold text-on-surface tracking-tight">
+                    All Expenses
+                  </h1>
+                </div>
+              </div>
+              <div className="text-center py-16 text-on-surface-variant">Loading expenses…</div>
+            </div>
+          </main>
+        </div>
+      </AppLayout>
+    );
+  }
+  if (error) {
+    return (
+      <AppLayout>
+        <div className="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+          <main className="w-full pt-4 bg-background min-h-screen">
+            <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
+              <div className="px-4 py-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm">{error}</div>
+            </div>
+          </main>
+        </div>
+      </AppLayout>
+    );
   }
 
-  const filtered = TRANSACTIONS.filter((t) => {
-    if (tab !== "all" && t.tab !== tab) return false;
-    if (query && !t.title.toLowerCase().includes(query.toLowerCase())) return false;
-    return true;
-  });
+  const totalBurn = transactions.reduce((sum, t) => sum + t.amount, 0);
+  const netPosition = balances?.netBalance || 0;
+  const yourCapital = balances?.yourCapital || 0;
 
   return (
     <AppLayout>
@@ -179,10 +215,10 @@ export default function Expenses() {
                 <button
                   className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs sm:text-sm font-semibold border border-slate-200 transition-colors"
                   type="button"
-                  onClick={() => showToast("Period Selector", "February 2025 ledger view — 28 transactions synced.")}
+                  onClick={() => showToast("Period Selector", `${range} ledger view — ${transactions.length} transactions synced.`)}
                 >
                   <span className="material-symbols-outlined text-[18px] text-secondary">calendar_month</span>
-                  <span>Feb 2025</span>
+                  <span>{range}</span>
                 </button>
                 <button
                   className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs sm:text-sm font-semibold border border-slate-200 transition-colors"
@@ -195,6 +231,7 @@ export default function Expenses() {
                 <Link
                   className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-title-md text-xs sm:text-sm font-semibold shadow-sm transition-all active:scale-[0.98]"
                   to="/group-expenses/add"
+                  state={{ groupId: transactions[0]?.group }}
                 >
                   <span className="material-symbols-outlined text-[18px]">add_circle</span>
                   <span>Add Expense</span>
@@ -212,8 +249,8 @@ export default function Expenses() {
                         <span className="material-symbols-outlined text-[22px]">insights</span>
                       </div>
                       <div>
-                        <h2 className="font-headline-sm text-headline-sm text-on-surface">Financial Velocity &amp; Shared Burn Rate</h2>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Live monthly group consumption across 4 circles</p>
+                        <h2 className="font-headline-sm text-headline-sm text-on-surface">Financial Velocity & Shared Burn Rate</h2>
+                        <p className="font-body-sm text-body-sm text-on-surface-variant">Live monthly group consumption across all circles</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-1 p-1 bg-surface-container-low rounded-xl self-start sm:self-auto">
@@ -238,7 +275,9 @@ export default function Expenses() {
                     <div>
                       <span className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block">Tabsy Net Position</span>
                       <div className="flex items-baseline gap-2">
-                        <span className="font-numeric-balance-lg text-numeric-balance-lg text-primary font-bold">+₹26,335.90</span>
+                        <span className="font-numeric-balance-lg text-numeric-balance-lg text-primary font-bold">
+                          {netPosition >= 0 ? "+" : ""}{formatMoney(Math.abs(netPosition))}
+                        </span>
                         <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-body-sm font-semibold">
                           <span className="material-symbols-outlined text-[14px]">north_east</span> +8.4% velocity
                         </span>
@@ -247,11 +286,11 @@ export default function Expenses() {
                     <div className="flex items-center gap-6 border-l border-outline-variant/40 pl-4">
                       <div>
                         <span className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block">Total Burn</span>
-                        <span className="font-title-md text-title-md text-on-surface font-semibold">₹4,00,101.50</span>
+                        <span className="font-title-md text-title-md text-on-surface font-semibold">{formatMoney(totalBurn)}</span>
                       </div>
                       <div>
                         <span className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block">Your Capital</span>
-                        <span className="font-title-md text-title-md text-on-surface font-semibold">₹1,77,620.00</span>
+                        <span className="font-title-md text-title-md text-on-surface font-semibold">{formatMoney(yourCapital)}</span>
                       </div>
                     </div>
                   </div>
@@ -261,29 +300,32 @@ export default function Expenses() {
                       <span>100% Allocated</span>
                     </div>
                     <div className="w-full h-4 rounded-full bg-surface-container-low flex overflow-hidden p-0.5 gap-0.5">
-                      <div className="h-full rounded-full bg-secondary-fixed-dim" style={{ width: "48%" }} title="Lodging: 48%" />
-                      <div className="h-full rounded-full bg-tertiary-fixed" style={{ width: "24%" }} title="Dining: 24%" />
-                      <div className="h-full rounded-full bg-primary-fixed" style={{ width: "18%" }} title="Activities: 18%" />
-                      <div className="h-full rounded-full bg-[#fed7aa]" style={{ width: "10%" }} title="Transit: 10%" />
+                      {categoryDistribution.map((c, idx) => (
+                        <div key={c.label} className="h-full rounded-full" style={{ width: c.pct, backgroundColor: ["#e1e0ff", "#ffe0b2", "#bbdefb", "#f8bbd0"][idx % 4] }} title={`${c.label}: ${c.pct}`} />
+                      ))}
                     </div>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-surface-container-low">
-                  {[
-                    { label: "Lodging", dot: "bg-secondary", box: "bg-secondary-fixed/50", text: "text-on-secondary-fixed-variant", pct: "48%", val: "₹1,92,049" },
-                    { label: "Dining", dot: "bg-tertiary", box: "bg-tertiary-fixed/60", text: "text-on-tertiary-fixed-variant", pct: "24%", val: "₹96,024" },
-                    { label: "Activities", dot: "bg-primary", box: "bg-primary-fixed/60", text: "text-on-primary-fixed-variant", pct: "18%", val: "₹72,018" },
-                    { label: "Transit", dot: "bg-[#f97316]", box: "bg-[#fed7aa]/50", text: "text-[#9a3412]", pct: "10%", val: "₹40,010" },
-                  ].map((c) => (
-                    <div key={c.label} className={`p-2.5 rounded-2xl ${c.box}`}>
-                      <div className={`flex items-center gap-1.5 font-label-caps text-label-caps ${c.text}`}>
-                        <span className={`w-2 h-2 rounded-full ${c.dot}`} /> {c.label}
+                  {categoryDistribution.map((c, idx) => {
+                    const colors = [
+                      { dot: "bg-secondary", box: "bg-secondary-fixed/50", text: "text-on-secondary-fixed-variant" },
+                      { dot: "bg-tertiary", box: "bg-tertiary-fixed/60", text: "text-on-tertiary-fixed-variant" },
+                      { dot: "bg-primary", box: "bg-primary-fixed/60", text: "text-on-primary-fixed-variant" },
+                      { dot: "bg-[#f97316]", box: "bg-[#fed7aa]/50", text: "text-[#9a3412]" },
+                    ];
+                    const color = colors[idx % colors.length];
+                    return (
+                      <div key={c.label} className={`p-2.5 rounded-2xl ${color.box}`}>
+                        <div className={`flex items-center gap-1.5 font-label-caps text-label-caps ${color.text}`}>
+                          <span className={`w-2 h-2 rounded-full ${color.dot}`} /> {c.label}
+                        </div>
+                        <div className="font-title-md text-title-md text-on-surface font-bold mt-0.5">
+                          {c.pct} <span className="text-body-sm font-normal text-outline">({c.val})</span>
+                        </div>
                       </div>
-                      <div className="font-title-md text-title-md text-on-surface font-bold mt-0.5">
-                        {c.pct} <span className="text-body-sm font-normal text-outline">({c.val})</span>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
@@ -299,28 +341,27 @@ export default function Expenses() {
                         <p className="font-body-sm text-body-sm text-on-surface-variant">Bilateral graph compression engine</p>
                       </div>
                     </div>
-                    <span className="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-[11px] font-bold">5 LOOP SQUASHED</span>
+                    <span className="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-[11px] font-bold">
+                      {balances?.settlementsReduced || 0} LOOP SQUASHED
+                    </span>
                   </div>
                   <p className="font-body-sm text-body-sm text-on-surface-variant mb-4">
-                    Tabsy netted circular IOUs between you, Marco, and Sarah. You eliminated 5 cross-payments down to just 2 direct settlements.
+                    Tabsy netted circular IOUs across your groups. You eliminated cross-payments down to direct settlements.
                   </p>
                   <div className="p-2 bg-surface-container-low rounded-2xl mb-4 space-y-2">
-                    {[
-                      { name: "Marco Rossi", initials: "MR", avatar: "bg-inverse-surface text-inverse-on-surface", amount: 15288.6 },
-                      { name: "Sarah Lin", initials: "SL", avatar: "bg-secondary-container text-on-secondary", amount: 11047.3 },
-                    ].map((r) => (
+                    {quickContacts.map((r) => (
                       <div key={r.name} className="flex items-center justify-between bg-surface-container-lowest px-3 py-2 rounded-xl border border-surface-container">
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-[10px] text-on-primary font-bold">AM</div>
-                          <span className="font-title-md text-body-sm text-on-surface font-semibold">Alex (You)</span>
+                          <span className="font-title-md text-body-sm text-on-surface font-semibold">You</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-primary font-numeric-balance-md text-body-sm font-bold">receives {inr(r.amount)}</span>
+                          <span className="text-primary font-numeric-balance-md text-body-sm font-bold">receives {formatMoney(r.owes)}</span>
                           <span className="material-symbols-outlined text-primary text-[18px]">arrow_forward</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="font-body-sm text-on-surface font-medium">{r.name}</span>
-                          <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold ${r.avatar}`}>{r.initials}</div>
+                          <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold ${r.avatarClass}`}>{r.initials}</div>
                         </div>
                       </div>
                     ))}
@@ -329,14 +370,14 @@ export default function Expenses() {
                 <div className="space-y-2 pt-2 border-t border-surface-container-low">
                   <div className="flex items-center justify-between text-body-sm">
                     <span className="text-outline flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[16px] text-primary">verified</span> Fees Avoided: <strong>₹1,228.40</strong>
+                      <span className="material-symbols-outlined text-[16px] text-primary">verified</span> Fees Avoided: <strong>{formatMoney(balances?.feesAvoided || 0)}</strong>
                     </span>
                     <span className="text-primary font-bold text-xs uppercase tracking-wider">Ready to Settle</span>
                   </div>
                   <button
                     className="w-full py-2.5 px-4 rounded-2xl bg-secondary text-on-secondary font-title-md text-title-md font-semibold hover:bg-secondary-container transition-all flex items-center justify-center gap-2 shadow-sm"
                     type="button"
-                    onClick={() => showToast("Settlement Engine Running", "Compressing bilateral graph across 4 circles…")}
+                    onClick={() => showToast("Settlement Engine Running", "Compressing bilateral graph across all circles…")}
                   >
                     <span className="material-symbols-outlined text-[18px]">account_tree</span>
                     <span>Run Global Balance Settlement</span>
@@ -360,7 +401,7 @@ export default function Expenses() {
                     >
                       <span className="material-symbols-outlined text-[18px] text-primary">{(TABS.find((t) => t.id === tab) ?? TABS[0]).icon}</span>
                       <span>
-                        {(TABS.find((t) => t.id === tab) ?? TABS[0]).label} ({(TABS.find((t) => t.id === tab) ?? TABS[0]).count})
+                        {(TABS.find((t) => t.id === tab) ?? TABS[0]).label} ({(TABS.find((t) => t.id === tab) ?? TABS[0]).count || filtered.length})
                       </span>
                       <span className={`material-symbols-outlined text-[18px] text-outline transition-transform duration-200 ${tabOpen ? "rotate-180" : ""}`}>
                         expand_more
@@ -393,7 +434,7 @@ export default function Expenses() {
                               >
                                 <span className="material-symbols-outlined text-[16px] shrink-0">{t.icon}</span>
                                 <span className="flex-1">
-                                  {t.label} <span className="text-outline font-normal">({t.count})</span>
+                                  {t.label} <span className="text-outline font-normal">({t.count || 0})</span>
                                 </span>
                                 {active && <span className="material-symbols-outlined text-[16px] text-primary shrink-0">check</span>}
                               </button>
@@ -427,8 +468,8 @@ export default function Expenses() {
 
                 <div className="bg-surface-container-lowest rounded-3xl p-4 shadow-sm border border-surface-container-low space-y-2">
                   <div className="flex items-center justify-between pb-2 border-b border-surface-container-low text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">
-                    <span>Expense Item &amp; Group Origin</span>
-                    <span>Split &amp; Inline Actions</span>
+                    <span>Expense Item & Group Origin</span>
+                    <span>Split & Inline Actions</span>
                   </div>
 
                   {filtered.length === 0 && (
@@ -438,47 +479,54 @@ export default function Expenses() {
                   )}
 
                   {filtered.map((t) => {
-                    const isExpanded = !!expanded[t.id];
-                    const isSettled = !!settled[t.id];
+                    const isExpanded = !!expanded[t._id || t.id];
+                    const isSettled = !!settled[t._id || t.id];
                     const status = isSettled ? STATUS_META.settled : STATUS_META[t.status] ?? STATUS_META.pending;
+                    const net = t.net || 0;
+                    const paidByYou = t.paidBy === balances?.userId;
+                    const impact = paidByYou ? t.amount - (t.share || 0) : -(t.share || 0);
+                    const splits = t.splits || [];
+
                     return (
                       <div
-                        key={t.id}
+                        key={t._id || t.id}
                         className="p-4 rounded-2xl bg-surface-container-low/40 hover:bg-surface-container-low transition-colors border border-transparent hover:border-surface-container space-y-2"
                       >
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                           <div className="flex items-start gap-3 min-w-0">
-                            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 mt-0.5 ${t.iconClass}`}>
-                              <span className="material-symbols-outlined text-[22px]">{t.icon}</span>
+                            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 mt-0.5 ${getCategoryBg(t.category)}`}>
+                              <span className="material-symbols-outlined text-[22px]">{getCategoryIcon(t.category)}</span>
                             </div>
                             <div className="min-w-0">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <Link className="font-title-md text-title-md text-on-surface font-semibold hover:text-primary transition-colors" to="/expense-details">
+                                <Link className="font-title-md text-title-md text-on-surface font-semibold hover:text-primary transition-colors" to="/expense-details" state={{ expenseId: t._id || t.id }}>
                                   {t.title}
                                 </Link>
-                                <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${t.groupClass}`}>
-                                  {t.group}
-                                </span>
-                                <span className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${t.categoryClass}`}>{t.category}</span>
+                                {t.group && (
+                                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-surface-container-high text-on-surface-variant">
+                                    {t.group}
+                                  </span>
+                                )}
+                                <span className="px-2 py-0.5 rounded-full text-[11px] font-medium bg-surface-container-highest text-on-surface-variant">{t.category}</span>
                               </div>
                               <div className="flex items-center gap-2 text-body-sm text-outline mt-0.5 flex-wrap">
-                                <span>{t.date}</span>
+                                <span>{new Date(t.date).toLocaleDateString()}</span>
                                 <span>•</span>
                                 <span>
-                                  Paid by <strong className="text-on-surface font-medium">{t.paidBy}</strong>
+                                  Paid by <strong className="text-on-surface font-medium">{t.paidByName || (paidByYou ? "You" : "Someone")}</strong>
                                 </span>
                                 <span>•</span>
-                                <span>{t.splitNote}</span>
+                                <span>Split {splits.length} ways</span>
                               </div>
                             </div>
                           </div>
                           <div className="flex items-center sm:flex-col sm:items-end justify-between sm:justify-center">
-                            <div className="font-numeric-balance-md text-numeric-balance-md text-on-surface font-bold">{inr(t.amount)}</div>
+                            <div className="font-numeric-balance-md text-numeric-balance-md text-on-surface font-bold">{formatMoney(t.amount)}</div>
                             <div className="text-right">
-                              <span className={`font-numeric-balance-md text-body-sm font-bold ${t.impact >= 0 ? "text-primary" : "text-tertiary"}`}>
-                                {t.impact >= 0 ? "+" : "−"}{inr(Math.abs(t.impact))}
+                              <span className={`font-numeric-balance-md text-body-sm font-bold ${impact >= 0 ? "text-primary" : "text-tertiary"}`}>
+                                {impact >= 0 ? "+" : "−"}{formatMoney(Math.abs(impact))}
                               </span>
-                              <span className="text-[11px] text-outline block">{t.impact >= 0 ? "owed to you" : "your share"}</span>
+                              <span className="text-[11px] text-outline block">{impact >= 0 ? "owed to you" : "your share"}</span>
                             </div>
                           </div>
                         </div>
@@ -488,13 +536,14 @@ export default function Expenses() {
                             <button
                               className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-surface-container-lowest text-on-surface text-body-sm hover:bg-surface-container border border-surface-container transition-colors"
                               type="button"
-                              onClick={() => toggleExpand(t.id)}
+                              onClick={() => toggleExpand(t._id || t.id)}
                             >
                               <span className="material-symbols-outlined text-[16px] text-outline">{isExpanded ? "expand_less" : "expand_more"}</span>
                               <span className="font-semibold text-xs">{isExpanded ? "Itemized Split" : "Expand Split"}</span>
                             </button>
                             <Link
                               to="/split-expense"
+                              state={{ expenseId: t._id || t.id }}
                               className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-surface-container-lowest text-on-surface text-body-sm hover:bg-surface-container border border-surface-container transition-colors"
                               title="Adjust split"
                             >
@@ -503,6 +552,7 @@ export default function Expenses() {
                             </Link>
                             <Link
                               to="/group-members/manage"
+                              state={{ groupId: t.group }}
                               className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-surface-container-lowest text-on-surface text-body-sm hover:bg-surface-container border border-surface-container transition-colors"
                               title="Manage participants"
                             >
@@ -532,13 +582,13 @@ export default function Expenses() {
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
-                            {!isSettled && t.impact < 0 && (
+                            {!isSettled && impact < 0 && (
                               <button
                                 className="px-2.5 py-1 rounded-xl bg-tertiary text-on-tertiary text-xs font-semibold hover:opacity-90 transition-opacity"
                                 type="button"
-                                onClick={() => showToast("Payment Initiated", `Paying ${inr(Math.abs(t.impact))} for ${t.title}…`)}
+                                onClick={() => showToast("Payment Initiated", `Paying ${formatMoney(Math.abs(impact))} for ${t.title}…`)}
                               >
-                                Pay {inr(Math.abs(t.impact))}
+                                Pay {formatMoney(Math.abs(impact))}
                               </button>
                             )}
                             <span className="text-body-sm text-outline text-xs">Settlement status:</span>
@@ -546,7 +596,7 @@ export default function Expenses() {
                               aria-label="Toggle settlement status"
                               className={`w-9 h-5 rounded-full relative p-0.5 transition-colors inline-flex items-center ${isSettled ? "bg-primary" : "bg-surface-container-highest"}`}
                               type="button"
-                              onClick={() => toggleSettled(t.id)}
+                              onClick={() => toggleSettled(t._id || t.id)}
                             >
                               <span
                                 className={`w-4 h-4 bg-surface-container-lowest rounded-full block transition-transform ${isSettled ? "translate-x-4" : "translate-x-0"}`}
@@ -557,11 +607,11 @@ export default function Expenses() {
 
                         {isExpanded && (
                           <div className="p-2 bg-surface-container-lowest rounded-xl border border-surface-container grid grid-cols-2 sm:grid-cols-6 gap-2">
-                            {t.drawer.map((d) => (
-                              <div key={d.name} className="text-center p-1.5 bg-surface-container-low rounded-lg">
-                                <span className="text-[10px] text-outline uppercase block font-bold">{d.name}</span>
-                                <span className="text-body-sm font-semibold text-on-surface">{inr(d.amount)}</span>
-                                <span className="text-[10px] text-primary block">{d.tag}</span>
+                            {splits.map((d) => (
+                              <div key={d.user} className="text-center p-1.5 bg-surface-container-low rounded-lg">
+                                <span className="text-[10px] text-outline uppercase block font-bold">{d.name || d.user.slice(0, 2).toUpperCase()}</span>
+                                <span className="text-body-sm font-semibold text-on-surface">{formatMoney(d.share)}</span>
+                                <span className="text-[10px] text-primary block">{d.user === balances?.userId ? "Your share" : "Owes"}</span>
                               </div>
                             ))}
                           </div>
@@ -572,7 +622,7 @@ export default function Expenses() {
 
                   <div className="p-4 bg-surface-container-low rounded-2xl border border-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-3 mt-2">
                     <div className="font-body-sm text-body-sm text-on-surface-variant">
-                      Displaying <strong className="text-on-surface">{filtered.length}</strong> of <strong className="text-on-surface">28</strong> live transactions
+                      Displaying <strong className="text-on-surface">{filtered.length}</strong> of <strong className="text-on-surface">{transactions.length}</strong> live transactions
                     </div>
                     <div className="flex items-center gap-1.5">
                       <button
@@ -617,56 +667,47 @@ export default function Expenses() {
                       </div>
                       <h3 className="font-headline-sm text-headline-sm text-on-surface">Quick Settle Rail</h3>
                     </div>
-                    <span className="text-[11px] font-bold text-outline">3 CONTACTS</span>
+                    <span className="text-[11px] font-bold text-outline">{quickContacts.length} CONTACTS</span>
                   </div>
                   <p className="font-body-sm text-body-sm text-on-surface-variant">
                     Live bilateral balances calculated after circular netting reduction.
                   </p>
-                  {QUICK_CONTACTS.map((c) => {
-                    const settledContact = c.owes === 0;
-                    return (
+                  {quickContacts.length > 0 ? (
+                    quickContacts.map((c) => (
                       <div
                         key={c.name}
-                        className={`p-3 rounded-2xl flex items-center justify-between gap-3 border ${
-                          settledContact ? "bg-surface-container-low/60 border-transparent" : "bg-surface-container-low border-surface-container"
-                        }`}
+                        className="p-3 rounded-2xl flex items-center justify-between gap-3 border bg-surface-container-low border-surface-container"
                       >
-                        <div className={`flex items-center gap-2.5 ${settledContact ? "opacity-80" : ""}`}>
+                        <div className="flex items-center gap-2.5">
                           <div className={`w-9 h-9 rounded-2xl flex items-center justify-center text-xs font-bold ${c.avatarClass}`}>{c.initials}</div>
                           <div>
                             <span className="font-title-md text-body-sm text-on-surface font-semibold block">{c.name}</span>
-                            {settledContact ? (
-                              <span className="text-xs text-outline flex items-center gap-1">
-                                <span className="material-symbols-outlined text-[14px] text-primary">check_circle</span> All squared up
-                              </span>
-                            ) : (
-                              <span className="text-xs text-primary font-medium flex items-center gap-1">
-                                <span className="w-1.5 h-1.5 rounded-full bg-primary-container" /> Owes you {inr(c.owes)}
-                              </span>
-                            )}
+                            <span className="text-xs text-primary font-medium flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary-container" /> Owes you {formatMoney(c.owes)}
+                            </span>
                           </div>
                         </div>
-                        {settledContact ? (
-                          <span className="px-2.5 py-1 rounded-xl bg-surface-container text-outline text-[11px] font-semibold">Settled</span>
-                        ) : (
-                          <button
-                            className="px-3 py-1.5 rounded-xl bg-primary text-on-primary text-xs font-semibold hover:bg-primary-container transition-colors shadow-xs"
-                            type="button"
-                            onClick={() => showToast("Reminder Sent", `Payment request dispatched to ${c.name}.`)}
-                          >
-                            Request
-                          </button>
-                        )}
+                        <button
+                          className="px-3 py-1.5 rounded-xl bg-primary text-on-primary text-xs font-semibold hover:bg-primary-container transition-colors shadow-xs"
+                          type="button"
+                          onClick={() => showToast("Reminder Sent", `Payment request dispatched to ${c.name}.`)}
+                        >
+                          Request
+                        </button>
                       </div>
-                    );
-                  })}
+                    ))
+                  ) : (
+                    <div className="p-3 rounded-2xl bg-surface-container-low border border-surface-container text-center text-on-surface-variant">
+                      All settled up! No one owes you.
+                    </div>
+                  )}
                   <div className="p-3 rounded-2xl bg-secondary-fixed/40 border border-secondary-fixed text-center space-y-1">
                     <span className="text-xs font-bold text-secondary block">One-Tap Group Reminder</span>
-                    <p className="text-[11px] text-on-surface-variant">Send a gentle pastel ping to Sarah and Marco simultaneously.</p>
+                    <p className="text-[11px] text-on-surface-variant">Send a gentle pastel ping to contacts who owe you.</p>
                     <button
                       className="mt-1 w-full py-1.5 rounded-xl bg-secondary text-on-secondary text-xs font-semibold hover:bg-secondary-container transition-colors"
                       type="button"
-                      onClick={() => showToast("Group Ping Dispatched", "Tabsy bot nudged Marco and Sarah via push + SMS.")}
+                      onClick={() => showToast("Group Ping Dispatched", "Tabsy bot nudged contacts via push + SMS.")}
                     >
                       Send Ping via Tabsy Bot
                     </button>

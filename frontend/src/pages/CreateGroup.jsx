@@ -1,14 +1,15 @@
 ﻿import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
+import { groupService } from "../services";
 
 const CURRENCIES = [
-  { code: "USD", name: "United States Dollar", symbol: "$", flag: "ðŸ‡ºðŸ‡¸" },
-  { code: "EUR", name: "Euro", symbol: "â‚¬", flag: "ðŸ‡ªðŸ‡º" },
-  { code: "GBP", name: "British Pound", symbol: "Â£", flag: "ðŸ‡¬ðŸ‡§" },
-  { code: "CAD", name: "Canadian Dollar", symbol: "$", flag: "ðŸ‡¨ðŸ‡¦" },
-  { code: "JPY", name: "Japanese Yen", symbol: "Â¥", flag: "ðŸ‡¯ðŸ‡µ" },
-  { code: "CHF", name: "Swiss Franc", symbol: "Fr", flag: "ðŸ‡¨ðŸ‡­" },
+  { code: "USD", name: "United States Dollar", symbol: "$", flag: "🇺🇸" },
+  { code: "EUR", name: "Euro", symbol: "€", flag: "🇪🇺" },
+  { code: "GBP", name: "British Pound", symbol: "£", flag: "🇬🇧" },
+  { code: "CAD", name: "Canadian Dollar", symbol: "$", flag: "🇨🇦" },
+  { code: "JPY", name: "Japanese Yen", symbol: "¥", flag: "🇯🇵" },
+  { code: "CHF", name: "Swiss Franc", symbol: "Fr", flag: "🇨🇭" },
 ];
 
 const SPLIT_MODELS = [
@@ -18,7 +19,25 @@ const SPLIT_MODELS = [
   { model: "Fixed Percentage (%)", icon: "percent", desc: "Preset custom percentage allocation totaling 100% across registered members." },
 ];
 
+const splitModelToKey = (label) => {
+  if (label.startsWith("Weighted")) return "weighted";
+  if (label.startsWith("Itemized")) return "itemized";
+  if (label.startsWith("Fixed")) return "percentage";
+  return "equal";
+};
+
 export default function CreateGroup() {
+  const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  const [groupName, setGroupName] = useState("");
+  const [groupIcon, setGroupIcon] = useState("🧾");
+  const [groupCategory, setGroupCategory] = useState("Trips & Vacation");
+  const [location, setLocation] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [description, setDescription] = useState("");
   const [step, setStepState] = useState(() => {
     const saved = typeof window !== "undefined" ? window.localStorage.getItem("createGroupStep") : null;
     const n = saved ? Number(saved) : 1;
@@ -52,6 +71,38 @@ export default function CreateGroup() {
     themeAccent === "Mint" ? "Fresh Mint" :
     themeAccent === "Lavender" ? "Lavender Haze" :
     "Custom Accent";
+
+  const handleCreate = async () => {
+    if (!groupName.trim()) {
+      setError("Please enter a group name in Step 1.");
+      setStep(1);
+      return;
+    }
+    setError("");
+    setSubmitting(true);
+    try {
+      const payload = {
+        name: groupName.trim(),
+        icon: groupIcon,
+        category: groupCategory,
+        description,
+        location,
+        startDate: startDate || null,
+        endDate: endDate || null,
+        currency,
+        splitModel: splitModelToKey(splitModel),
+        nettingEnabled: netting,
+        subsidiesEnabled: subsidies,
+        pennyPolicy: penny,
+        budgetCap: budgetCap ? Number(String(budgetCap).replace(/[^0-9.]/g, "")) : null,
+      };
+      const group = await groupService.create(payload);
+      navigate("/group-details", { state: { groupId: group._id } });
+    } catch (err) {
+      setError(err?.response?.data?.error?.message || "Failed to create group");
+      setSubmitting(false);
+    }
+  };
 
   const currencyInfo = CURRENCIES.find((c) => c.code === currency) || CURRENCIES[0];
   const stepTitle =
@@ -133,6 +184,9 @@ export default function CreateGroup() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6" style={{ alignItems: 'start' }}>
+            {error && (
+              <div className="lg:col-span-12 px-4 py-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm">{error}</div>
+            )}
             <section className="lg:col-span-7 flex flex-col gap-6 bg-surface-container-lowest p-4 sm:p-6 rounded-2xl shadow-sm">
               {step === 1 && (
                 <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
@@ -144,8 +198,8 @@ export default function CreateGroup() {
                       <span className="font-label-caps text-label-caps text-outline">21 / 50</span>
                     </div>
                     <div className="flex items-center gap-2 bg-surface-container-low rounded-xl p-2 shadow-inner">
-                      <button className="w-12 h-12 rounded-xl bg-surface-container-lowest text-2xl flex items-center justify-center shrink-0 shadow-sm hover:scale-105 transition-transform" type="button">â„ï¸</button>
-                      <input className="w-full bg-transparent font-title-md text-title-md font-semibold text-on-surface placeholder:text-outline focus:outline-none px-2" id="group-name-input" maxLength={50} placeholder="e.g., Kyoto Cherry Blossom, Flat 4B, Friday Dinner" type="text" defaultValue="Tahoe Ski Chalet 2026" />
+                      <button className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm hover:scale-105 transition-transform ${groupIcon === "❄"} ? "bg-primary-fixed/30" : "bg-surface-container-lowest"}`} type="button">{groupIcon}</button>
+                      <input className="w-full bg-transparent font-title-md text-title-md font-semibold text-on-surface placeholder:text-outline focus:outline-none px-2" id="group-name-input" maxLength={50} placeholder="e.g., Kyoto Cherry Blossom, Flat 4B, Friday Dinner" type="text" value={groupName} onChange={(e) => setGroupName(e.target.value)} />
                     </div>
                   </div>
 
@@ -153,15 +207,15 @@ export default function CreateGroup() {
                     <span className="font-title-md text-title-md text-on-surface font-semibold">Select Preset Icon or Emoji</span>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                       {[
-                        { e: "â„ï¸", l: "Ski Chalet" },
-                        { e: "ðŸ ", l: "Apartment" },
-                        { e: "ðŸš—", l: "Road Trip" },
-                        { e: "ðŸ•", l: "Dining" },
-                        { e: "ðŸŽª", l: "Festival" },
-                        { e: "ðŸ’¼", l: "Project" },
-                        { e: "ðŸŒ´", l: "Getaway" },
+                        { e: "❄️", l: "Ski Chalet" },
+                        { e: "🏠", l: "Apartment" },
+                        { e: "🚐", l: "Road Trip" },
+                        { e: "🍕", l: "Dining" },
+                        { e: "🎪", l: "Festival" },
+                        { e: "💼", l: "Project" },
+                        { e: "🌴", l: "Getaway" },
                       ].map((icon) => (
-                        <button key={icon.l} className="flex items-center gap-2 p-2 bg-surface-container-low rounded-xl text-left transition-all hover:bg-surface-container-high" data-emoji={icon.e} type="button">
+                        <button key={icon.l} className={`flex items-center gap-2 p-2 rounded-xl text-left transition-all ${groupIcon === icon.e ? "bg-primary-fixed/30" : "bg-surface-container-low hover:bg-surface-container-high"}`} data-emoji={icon.e} type="button" onClick={() => setGroupIcon(icon.e)}>
                           <span className="text-xl">{icon.e}</span>
                           <span className="font-body-sm text-body-sm text-on-surface font-medium">{icon.l}</span>
                         </button>
@@ -182,15 +236,15 @@ export default function CreateGroup() {
                         { icon: "restaurant", title: "Dining & Social", desc: "Dinners, rounds of drinks, brunch weekends", selected: false },
                         { icon: "celebration", title: "Events & Parties", desc: "Concerts, parties, festival passes, gifts", selected: false },
                       ].map((c) => (
-                        <label key={c.title} className={`cursor-pointer relative flex items-start gap-3 p-4 rounded-xl transition-all shadow-sm ${c.selected ? "bg-surface-container-low" : "bg-surface-container-lowest hover:bg-surface-container-low"}`}>
-                          <input className="sr-only" defaultChecked={c.selected} name="group-cat" type="radio" value={c.title} />
-                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${c.selected ? "bg-primary-container/20 text-primary" : "bg-surface-container text-on-surface-variant"}`}>
+                        <label key={c.title} onClick={() => setGroupCategory(c.title)} className={`cursor-pointer relative flex items-start gap-3 p-4 rounded-xl transition-all shadow-sm ${groupCategory === c.title ? "bg-surface-container-low" : "bg-surface-container-lowest hover:bg-surface-container-low"}`}>
+                          <input className="sr-only" checked={groupCategory === c.title} name="group-cat" type="radio" value={c.title} onChange={() => setGroupCategory(c.title)} />
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${groupCategory === c.title ? "bg-primary-container/20 text-primary" : "bg-surface-container text-on-surface-variant"}`}>
                             <span className="material-symbols-outlined text-[24px]">{c.icon}</span>
                           </div>
                           <div className="flex flex-col flex-1">
                             <div className="flex items-center justify-between">
                               <span className="font-title-md text-title-md font-bold text-on-surface">{c.title}</span>
-                              {c.selected && <span className="material-symbols-outlined text-primary text-[20px]">check_circle</span>}
+                              {groupCategory === c.title && <span className="material-symbols-outlined text-primary text-[20px]">check_circle</span>}
                             </div>
                             <span className="font-body-sm text-body-sm text-on-surface-variant">{c.desc}</span>
                           </div>
@@ -210,21 +264,21 @@ export default function CreateGroup() {
                       </label>
                       <div className="flex items-center gap-2 bg-surface-container-low rounded-xl px-3 py-2">
                         <span className="material-symbols-outlined text-outline text-[20px]">pin_drop</span>
-                        <input className="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none" id="location-input" placeholder="Where is this happening?" type="text" defaultValue="South Lake Tahoe, CA" />
+                        <input className="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none" id="location-input" placeholder="Where is this happening?" type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="font-title-md text-title-md text-on-surface font-semibold" htmlFor="start-date-input">Start Date</label>
                       <div className="flex items-center gap-2 bg-surface-container-low rounded-xl px-3 py-2">
                         <span className="material-symbols-outlined text-outline text-[20px]">calendar_today</span>
-                        <input className="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" id="start-date-input" type="date" defaultValue="2026-02-14" />
+                        <input className="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" id="start-date-input" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="font-title-md text-title-md text-on-surface font-semibold" htmlFor="end-date-input">End Date</label>
                       <div className="flex items-center gap-2 bg-surface-container-low rounded-xl px-3 py-2">
                         <span className="material-symbols-outlined text-outline text-[20px]">event</span>
-                        <input className="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" id="end-date-input" type="date" defaultValue="2026-02-18" />
+                        <input className="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" id="end-date-input" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
                       </div>
                     </div>
                   </div>
@@ -234,7 +288,7 @@ export default function CreateGroup() {
                       <span>Group Description &amp; Ground Rules</span>
                       <span className="font-body-sm text-body-sm text-outline">Optional</span>
                     </label>
-                    <textarea className="w-full bg-surface-container-low rounded-xl p-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none resize-none" id="desc-input" placeholder="What are the main shared tabs for this group?" rows={3} defaultValue="Shared groceries, cabin lodging, ski passes, and rental SUV fuel pool." />
+                    <textarea className="w-full bg-surface-container-low rounded-xl p-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none resize-none" id="desc-input" placeholder="What are the main shared tabs for this group?" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
@@ -616,8 +670,8 @@ export default function CreateGroup() {
                         Save as Draft
                       </button>
                     </div>
-                    <button className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary font-title-md text-title-md font-bold shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden group whitespace-nowrap" type="button">
-                      <span className="relative z-10">Create Group &amp; Launch Tab</span>
+                    <button className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary font-title-md text-title-md font-bold shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden group whitespace-nowrap disabled:opacity-60" type="button" disabled={submitting} onClick={handleCreate}>
+                      <span className="relative z-10">{submitting ? "Creating..." : "Create Group & Launch Tab"}</span>
                       <span className="material-symbols-outlined text-[18px] relative z-10 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5 shrink-0">rocket_launch</span>
                       <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </button>

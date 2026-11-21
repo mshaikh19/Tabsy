@@ -4,6 +4,7 @@ import Auth from "./components/auth/Auth";
 import ForgotPassword from "./components/auth/ForgotPassword";
 import SetNewPassword from "./components/auth/SetNewPassword";
 import VerifyEmail from "./components/auth/VerifyEmail";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Onboarding from "./pages/Onboarding";
 import OnboardingPersonalize from "./pages/OnboardingPersonalize";
 import ProfileSetup from "./pages/ProfileSetup";
@@ -42,39 +43,39 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/set-new-password" element={<SetNewPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
-        <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/onboarding" element={<ProtectedRoute><Onboarding /></ProtectedRoute>} />
         <Route
           path="/onboarding/personalize"
-          element={<OnboardingPersonalize />}
+          element={<ProtectedRoute><OnboardingPersonalize /></ProtectedRoute>}
         />
-        <Route path="/profile-setup" element={<ProfileSetup />} />
+        <Route path="/profile-setup" element={<ProtectedRoute><ProfileSetup /></ProtectedRoute>} />
         <Route
           path="/profile-setup/preferences"
-          element={<ProfileSetupPreferences />}
+          element={<ProtectedRoute><ProfileSetupPreferences /></ProtectedRoute>}
         />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/activity" element={<Activity />} />
-        <Route path="/balances" element={<Balances />} />
-        <Route path="/groups" element={<Groups />} />
-        <Route path="/create-group" element={<CreateGroup />} />
-<Route path="/group-details" element={<GroupDetails />} />
-<Route path="/group-expenses" element={<GroupExpenses />} />
-        <Route path="/group-expenses/add" element={<AddExpense />} />
-        <Route path="/group-members" element={<GroupMembers />} />
-        <Route path="/group-balances" element={<GroupBalances />} />
-        <Route path="/group-activity" element={<GroupActivity />} />
-        <Route path="/group-settings" element={<GroupSettings />} />
-        <Route path="/group-edit" element={<EditGroup />} />
-        <Route path="/group-leave" element={<LeaveGroup />} />
-        <Route path="/group-members/add" element={<AddMembers />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/quick-actions" element={<QuickActions />} />
-        <Route path="/expenses" element={<Expenses />} />
-        <Route path="/expense-details" element={<ExpenseDetails />} />
-        <Route path="/split-expense" element={<SplitExpense />} />
-        <Route path="/group-members/manage" element={<ManageParticipants />} />
-        <Route path="/expense-edit" element={<EditExpense />} />
-        <Route path="/expense-delete" element={<DeleteExpense />} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/activity" element={<ProtectedRoute><Activity /></ProtectedRoute>} />
+        <Route path="/balances" element={<ProtectedRoute><Balances /></ProtectedRoute>} />
+        <Route path="/groups" element={<ProtectedRoute><Groups /></ProtectedRoute>} />
+        <Route path="/create-group" element={<ProtectedRoute><CreateGroup /></ProtectedRoute>} />
+        <Route path="/group-details" element={<ProtectedRoute><GroupDetails /></ProtectedRoute>} />
+        <Route path="/group-expenses" element={<ProtectedRoute><GroupExpenses /></ProtectedRoute>} />
+        <Route path="/group-expenses/add" element={<ProtectedRoute><AddExpense /></ProtectedRoute>} />
+        <Route path="/group-members" element={<ProtectedRoute><GroupMembers /></ProtectedRoute>} />
+        <Route path="/group-balances" element={<ProtectedRoute><GroupBalances /></ProtectedRoute>} />
+        <Route path="/group-activity" element={<ProtectedRoute><GroupActivity /></ProtectedRoute>} />
+        <Route path="/group-settings" element={<ProtectedRoute><GroupSettings /></ProtectedRoute>} />
+        <Route path="/group-edit" element={<ProtectedRoute><EditGroup /></ProtectedRoute>} />
+        <Route path="/group-leave" element={<ProtectedRoute><LeaveGroup /></ProtectedRoute>} />
+        <Route path="/group-members/add" element={<ProtectedRoute><AddMembers /></ProtectedRoute>} />
+        <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+        <Route path="/quick-actions" element={<ProtectedRoute><QuickActions /></ProtectedRoute>} />
+        <Route path="/expenses" element={<ProtectedRoute><Expenses /></ProtectedRoute>} />
+        <Route path="/expense-details" element={<ProtectedRoute><ExpenseDetails /></ProtectedRoute>} />
+        <Route path="/split-expense" element={<ProtectedRoute><SplitExpense /></ProtectedRoute>} />
+        <Route path="/group-members/manage" element={<ProtectedRoute><ManageParticipants /></ProtectedRoute>} />
+        <Route path="/expense-edit" element={<ProtectedRoute><EditExpense /></ProtectedRoute>} />
+        <Route path="/expense-delete" element={<ProtectedRoute><DeleteExpense /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );
