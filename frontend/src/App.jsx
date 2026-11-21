@@ -67,17 +67,38 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/set-new-password" element={<SetNewPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
-        <Route path="/onboarding" element={<ProtectedRoute><Onboarding /></ProtectedRoute>} />
+        <Route
+          path="/onboarding"
+          element={
+            <ProtectedRoute>
+              <Onboarding />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/onboarding/personalize"
-          element={<ProtectedRoute><OnboardingPersonalize /></ProtectedRoute>}
+          element={
+            <ProtectedRoute>
+              <OnboardingPersonalize />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/profile-setup" element={<ProtectedRoute><ProfileSetup /></ProtectedRoute>} />
+        <Route
+          path="/profile-setup"
+          element={
+            <ProtectedRoute>
+              <ProfileSetup />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/profile-setup/preferences"
-          element={<ProtectedRoute><ProfileSetupPreferences /></ProtectedRoute>}
+          element={
+            <ProtectedRoute>
+              <ProfileSetupPreferences />
+            </ProtectedRoute>
+          }
         />
-<<<<<<< HEAD
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/balances" element={<OverallBalances />} />
@@ -96,8 +117,8 @@ function App() {
         <Route path="/group-analysis" element={<GroupAnalysis />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/create-group" element={<CreateGroup />} />
-<Route path="/group-details" element={<GroupDetails />} />
-<Route path="/group-expenses" element={<GroupExpenses />} />
+        <Route path="/group-details" element={<GroupDetails />} />
+        <Route path="/group-expenses" element={<GroupExpenses />} />
         <Route path="/group-expenses/add" element={<AddExpense />} />
         <Route path="/group-members" element={<GroupMembers />} />
         <Route path="/group-balances" element={<GroupBalances />} />
@@ -125,31 +146,182 @@ function App() {
         <Route path="/friend-transactions" element={<FriendTransactions />} />
         <Route path="/friend-balances" element={<FriendBalances />} />
         <Route path="/friend-activity" element={<FriendActivity />} />
-=======
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/activity" element={<ProtectedRoute><Activity /></ProtectedRoute>} />
-        <Route path="/balances" element={<ProtectedRoute><Balances /></ProtectedRoute>} />
-        <Route path="/groups" element={<ProtectedRoute><Groups /></ProtectedRoute>} />
-        <Route path="/create-group" element={<ProtectedRoute><CreateGroup /></ProtectedRoute>} />
-        <Route path="/group-details" element={<ProtectedRoute><GroupDetails /></ProtectedRoute>} />
-        <Route path="/group-expenses" element={<ProtectedRoute><GroupExpenses /></ProtectedRoute>} />
-        <Route path="/group-expenses/add" element={<ProtectedRoute><AddExpense /></ProtectedRoute>} />
-        <Route path="/group-members" element={<ProtectedRoute><GroupMembers /></ProtectedRoute>} />
-        <Route path="/group-balances" element={<ProtectedRoute><GroupBalances /></ProtectedRoute>} />
-        <Route path="/group-activity" element={<ProtectedRoute><GroupActivity /></ProtectedRoute>} />
-        <Route path="/group-settings" element={<ProtectedRoute><GroupSettings /></ProtectedRoute>} />
-        <Route path="/group-edit" element={<ProtectedRoute><EditGroup /></ProtectedRoute>} />
-        <Route path="/group-leave" element={<ProtectedRoute><LeaveGroup /></ProtectedRoute>} />
-        <Route path="/group-members/add" element={<ProtectedRoute><AddMembers /></ProtectedRoute>} />
-        <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
-        <Route path="/quick-actions" element={<ProtectedRoute><QuickActions /></ProtectedRoute>} />
-        <Route path="/expenses" element={<ProtectedRoute><Expenses /></ProtectedRoute>} />
-        <Route path="/expense-details" element={<ProtectedRoute><ExpenseDetails /></ProtectedRoute>} />
-        <Route path="/split-expense" element={<ProtectedRoute><SplitExpense /></ProtectedRoute>} />
-        <Route path="/group-members/manage" element={<ProtectedRoute><ManageParticipants /></ProtectedRoute>} />
-        <Route path="/expense-edit" element={<ProtectedRoute><EditExpense /></ProtectedRoute>} />
-        <Route path="/expense-delete" element={<ProtectedRoute><DeleteExpense /></ProtectedRoute>} />
->>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/activity"
+          element={
+            <ProtectedRoute>
+              <Activity />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/groups"
+          element={
+            <ProtectedRoute>
+              <Groups />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create-group"
+          element={
+            <ProtectedRoute>
+              <CreateGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-details"
+          element={
+            <ProtectedRoute>
+              <GroupDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-expenses"
+          element={
+            <ProtectedRoute>
+              <GroupExpenses />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-expenses/add"
+          element={
+            <ProtectedRoute>
+              <AddExpense />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-members"
+          element={
+            <ProtectedRoute>
+              <GroupMembers />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-balances"
+          element={
+            <ProtectedRoute>
+              <GroupBalances />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-activity"
+          element={
+            <ProtectedRoute>
+              <GroupActivity />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-settings"
+          element={
+            <ProtectedRoute>
+              <GroupSettings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-edit"
+          element={
+            <ProtectedRoute>
+              <EditGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-leave"
+          element={
+            <ProtectedRoute>
+              <LeaveGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-members/add"
+          element={
+            <ProtectedRoute>
+              <AddMembers />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notifications />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/quick-actions"
+          element={
+            <ProtectedRoute>
+              <QuickActions />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/expenses"
+          element={
+            <ProtectedRoute>
+              <Expenses />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/expense-details"
+          element={
+            <ProtectedRoute>
+              <ExpenseDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/split-expense"
+          element={
+            <ProtectedRoute>
+              <SplitExpense />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-members/manage"
+          element={
+            <ProtectedRoute>
+              <ManageParticipants />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/expense-edit"
+          element={
+            <ProtectedRoute>
+              <EditExpense />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/expense-delete"
+          element={
+            <ProtectedRoute>
+              <DeleteExpense />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

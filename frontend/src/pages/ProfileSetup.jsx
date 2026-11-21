@@ -1,18 +1,18 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const EMOJIS = ["ðŸ¥‘", "ðŸŒ´", "ðŸŒ¸", "ðŸ±", "âš¡", "ðŸ"];
+const EMOJIS = ["🥑", "🌴", "🌸", "🐱", "⚡", "🍍"];
 const CURRENCIES = [
-  { code: "INR", flag: "ðŸ‡®ðŸ‡³", label: "INR (â‚¹)" },
-  { code: "EUR", flag: "ðŸ‡ªðŸ‡º", label: "EUR (â‚¬)" },
-  { code: "GBP", flag: "ðŸ‡¬ðŸ‡§", label: "GBP (Â£)" },
-  { code: "CAD", flag: "ðŸ‡¨ðŸ‡¦", label: "CAD ($)" },
-  { code: "JPY", flag: "ðŸ‡¯ðŸ‡µ", label: "JPY (Â¥)" },
+  { code: "INR", flag: "🇮🇳", label: "INR (₹)" },
+  { code: "EUR", flag: "🇪🇺", label: "EUR (€)" },
+  { code: "GBP", flag: "🇬🇧", label: "GBP (£)" },
+  { code: "CAD", flag: "🇨🇦", label: "CAD ($)" },
+  { code: "JPY", flag: "🇯🇵", label: "JPY (¥)" },
 ];
 
 export default function ProfileSetup() {
   const navigate = useNavigate();
-  const [avatarEmoji, setAvatarEmoji] = useState("ðŸ¥‘");
+  const [avatarEmoji, setAvatarEmoji] = useState("🥑");
   const [avatarImage, setAvatarImage] = useState(null);
   const [displayName, setDisplayName] = useState("Arjun Sharma");
   const [handle, setHandle] = useState("arjun");
@@ -76,11 +76,11 @@ export default function ProfileSetup() {
 
           <div className="mb-space-lg">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-bento-purple border border-bento-purple-border text-purple-900 font-label-caps text-label-caps font-bold mb-2">
-              <span>âœ¨ SETUP IN 60S</span>
+              <span>✨ SETUP IN 60S</span>
             </div>
             <h1 className="font-headline-md text-headline-md sm:text-headline-lg font-bold text-on-surface tracking-tight flex items-center gap-2">
               <span>Set up your profile</span>
-              <span className="inline-block">ðŸ‘¤</span>
+              <span className="inline-block">👤</span>
             </h1>
             <p className="font-body-md text-body-md text-on-surface-variant mt-1">
               Add your photo, name, handle, and currency to get started.

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { useMemo, useState } from "react";
-=======
-﻿import { useEffect, useMemo, useState } from "react";
->>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
 import { balanceService } from "../services";

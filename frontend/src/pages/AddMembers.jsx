@@ -100,9 +100,14 @@ export default function AddMembers() {
       let msg = "";
       if (added.length) msg += `${added.length} member(s) added. `;
       if (skipped.length) {
-        const notReg = skipped.filter((s) => s.status === "not_registered").length;
-        const already = skipped.filter((s) => s.status === "already_member").length;
-        if (notReg) msg += `${notReg} not registered (share invite link instead). `;
+        const notReg = skipped.filter(
+          (s) => s.status === "not_registered",
+        ).length;
+        const already = skipped.filter(
+          (s) => s.status === "already_member",
+        ).length;
+        if (notReg)
+          msg += `${notReg} not registered (share invite link instead). `;
         if (already) msg += `${already} already in group. `;
       }
       setSuccessMsg(msg.trim() || "No members added.");
@@ -130,7 +135,9 @@ export default function AddMembers() {
         <div className="w-full pt-4 bg-surface">
           <div className="max-w-[720px] w-full mx-auto px-4 sm:px-6 py-6">
             <div className="flex items-center justify-center py-20 text-on-surface-variant">
-              <span className="material-symbols-outlined text-[32px] animate-spin mr-2">progress_activity</span>
+              <span className="material-symbols-outlined text-[32px] animate-spin mr-2">
+                progress_activity
+              </span>
               Loading...
             </div>
           </div>
@@ -141,15 +148,9 @@ export default function AddMembers() {
 
   return (
     <AppLayout>
-<<<<<<< HEAD
-      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
-        <main className="w-full pt-0 pb-24 bg-[#FAF8F5] min-h-screen">
-          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
-=======
       <div className="bg-background font-body-md text-on-surface antialiased">
         <main className="w-full pt-0 pb-24 bg-background min-h-screen">
           <div className="max-w-[920px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
->>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
             <GroupHeader
               title={group?.name || "Group"}
               subtitle="Invite friends to split shared expenses. No download required to join the ledger."
@@ -186,10 +187,14 @@ export default function AddMembers() {
             />
 
             {error && (
-              <div className="px-4 py-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm">{error}</div>
+              <div className="px-4 py-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm">
+                {error}
+              </div>
             )}
             {successMsg && (
-              <div className="px-4 py-3 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm">{successMsg}</div>
+              <div className="px-4 py-3 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm">
+                {successMsg}
+              </div>
             )}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
@@ -197,9 +202,13 @@ export default function AddMembers() {
               <section className="bg-surface-container-lowest border border-surface-container-high rounded-2xl p-5 shadow-sm flex flex-col gap-4">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 rounded-lg bg-surface-container-high text-secondary flex items-center justify-center">
-                    <span className="material-symbols-outlined text-[16px]">group_add</span>
+                    <span className="material-symbols-outlined text-[16px]">
+                      group_add
+                    </span>
                   </div>
-                  <h2 className="font-bold text-sm text-on-surface">Add Members by Email</h2>
+                  <h2 className="font-bold text-sm text-on-surface">
+                    Add Members by Email
+                  </h2>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -227,7 +236,9 @@ export default function AddMembers() {
                             removeEmail(email);
                           }}
                         >
-                          <span className="material-symbols-outlined text-[14px]">close</span>
+                          <span className="material-symbols-outlined text-[14px]">
+                            close
+                          </span>
                         </button>
                       </span>
                     ))}
@@ -252,12 +263,16 @@ export default function AddMembers() {
                   <span className="material-symbols-outlined text-[18px]">
                     {submitting ? "progress_activity" : "person_add"}
                   </span>
-                  {submitting ? "Adding..." : `Add ${emailList.length || ""} Member${emailList.length !== 1 ? "s" : ""}`}
+                  {submitting
+                    ? "Adding..."
+                    : `Add ${emailList.length || ""} Member${emailList.length !== 1 ? "s" : ""}`}
                 </button>
 
                 <div className="pt-3 border-t border-surface-container">
                   <p className="text-xs text-on-surface-variant leading-relaxed">
-                    Members added by email will be notified. If they don't have a Tabsy account yet, share the invite link below so they can sign up and join.
+                    Members added by email will be notified. If they don't have
+                    a Tabsy account yet, share the invite link below so they can
+                    sign up and join.
                   </p>
                 </div>
               </section>
@@ -268,9 +283,13 @@ export default function AddMembers() {
                 <div className="bg-surface-container-lowest border border-surface-container-high rounded-2xl p-5 shadow-sm flex flex-col gap-3">
                   <div className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-lg bg-surface-container-high text-secondary flex items-center justify-center">
-                      <span className="material-symbols-outlined text-[16px]">link</span>
+                      <span className="material-symbols-outlined text-[16px]">
+                        link
+                      </span>
                     </div>
-                    <h2 className="font-bold text-sm text-on-surface">Invite Link</h2>
+                    <h2 className="font-bold text-sm text-on-surface">
+                      Invite Link
+                    </h2>
                   </div>
                   <div className="flex items-center bg-surface-container-low rounded-xl border border-surface-container p-1 pl-3 gap-2">
                     <span className="text-[12px] font-mono text-on-surface-variant truncate flex-1 select-all">
@@ -288,7 +307,8 @@ export default function AddMembers() {
                     </button>
                   </div>
                   <p className="text-[11px] text-on-surface-variant">
-                    Share this link with anyone to let them join the group directly.
+                    Share this link with anyone to let them join the group
+                    directly.
                   </p>
                 </div>
 
@@ -297,9 +317,13 @@ export default function AddMembers() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-7 h-7 rounded-lg bg-primary-fixed/40 text-primary flex items-center justify-center">
-                        <span className="material-symbols-outlined text-[16px]">diversity_3</span>
+                        <span className="material-symbols-outlined text-[16px]">
+                          diversity_3
+                        </span>
                       </div>
-                      <h2 className="font-bold text-sm text-on-surface">Current Members</h2>
+                      <h2 className="font-bold text-sm text-on-surface">
+                        Current Members
+                      </h2>
                     </div>
                     <span className="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps font-bold">
                       {members.length} member{members.length !== 1 ? "s" : ""}

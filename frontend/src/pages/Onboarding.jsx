@@ -1,4 +1,4 @@
-﻿import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export default function Onboarding() {
 
           <div className="text-center max-w-3xl mx-auto mb-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF9C4] text-[#B45309] border border-[#FDE68A] text-xs font-bold mb-3">
-              <span>âœ¨</span> Delightful Multi-Person Accounting
+              <span>✨</span> Delightful Multi-Person Accounting
             </div>
             <h1 className="text-xl sm:text-2xl lg:text-[30px] font-extrabold text-[#18181B] tracking-tight leading-[1.15] mb-3">
               Split expenses in 3 simple steps
@@ -73,7 +73,7 @@ export default function Onboarding() {
                   </span>
                 </div>
                 <h2 className="text-base font-bold text-[#0D47A1] mb-3 leading-snug">
-                  1. Create a shared tab ðŸŒ´
+                  1. Create a shared tab 🌴
                 </h2>
                 <p className="text-label-caps text-[#0D47A1]/80 leading-relaxed font-medium">
                   Invite roommates, travel buddies, or dinner crews via a single
@@ -133,7 +133,7 @@ export default function Onboarding() {
                   </span>
                 </div>
                 <h2 className="text-base font-bold text-[#B45309] mb-3 leading-snug">
-                  2. Snap receipts or log on the fly ðŸ§¾
+                  2. Snap receipts or log on the fly 🧾
                 </h2>
                 <p className="text-label-caps text-[#B45309]/85 leading-relaxed font-medium">
                   Multi-modal smart OCR instantly parses dishes, tax, and tips.
@@ -215,7 +215,7 @@ export default function Onboarding() {
                   </span>
                 </div>
                 <h2 className="text-base font-bold text-[#4A148C] mb-3 leading-snug">
-                  3. Settle in one tap âš¡
+                  3. Settle in one tap ⚡
                 </h2>
                 <p className="text-label-caps text-[#4A148C]/85 leading-relaxed font-medium">
                   Our bipartite graph engine consolidates tangled multi-person
@@ -230,7 +230,7 @@ export default function Onboarding() {
                       Debt Graph Optimization
                     </span>
                     <span className="font-extrabold text-sm text-[#18181B]">
-                      12 debts â†’ Only 2 payouts
+                      12 debts → Only 2 payouts
                     </span>
                   </div>
                   <div className="w-8 h-8 rounded-full bg-[#E8F5E9] text-[#1B5E20] border border-[#C8E6C9] flex items-center justify-center">
@@ -243,7 +243,7 @@ export default function Onboarding() {
                   <div className="p-2 rounded-xl bg-[#FAF8F5] border border-[#EFECE6] flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1.5 font-medium text-zinc-700">
                       <span className="font-bold text-[#880E4F]">Alex</span>
-                      <span className="text-zinc-400">â†’</span>
+                      <span className="text-zinc-400">→</span>
                       <span className="font-bold text-[#1B5E20]">Sam</span>
                     </div>
                     <span className="font-mono font-bold text-emerald-700 bg-[#E8F5E9] px-2 py-0.5 rounded-full">
@@ -253,7 +253,7 @@ export default function Onboarding() {
                   <div className="p-2 rounded-xl bg-[#FAF8F5] border border-[#EFECE6] flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1.5 font-medium text-zinc-700">
                       <span className="font-bold text-[#B45309]">Maya</span>
-                      <span className="text-zinc-400">â†’</span>
+                      <span className="text-zinc-400">→</span>
                       <span className="font-bold text-[#0D47A1]">Sam</span>
                     </div>
                     <span className="font-mono font-bold text-emerald-700 bg-[#E8F5E9] px-2 py-0.5 rounded-full">

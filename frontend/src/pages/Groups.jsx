@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-﻿import { useEffect, useState } from "react";
->>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
 import { groupService } from "../services";
@@ -291,7 +288,6 @@ export default function Groups() {
           )}
         </div>
       </main>
-<<<<<<< HEAD
 
       <footer className="w-full bg-surface-container-low mt-16 border-t border-slate-200/80">
         <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -318,8 +314,6 @@ export default function Groups() {
           </div>
         </div>
       </footer>
-=======
->>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
     </AppLayout>
   );
 }

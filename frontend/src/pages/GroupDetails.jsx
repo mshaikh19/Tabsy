@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-=======
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
->>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
 import AppLayout from "../components/layout/AppLayout";
 import GroupHeader from "../components/layout/GroupHeader";
 import { groupService, balanceService } from "../services";
@@ -317,7 +313,6 @@ export default function GroupDetails() {
                     </div>
                   ))}
                 </div>
-<<<<<<< HEAD
                 <div className="pt-3">
                   <span className="font-label-caps text-label-caps uppercase text-outline tracking-wider block mb-2">Attached Receipt Memories</span>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -329,8 +324,6 @@ export default function GroupDetails() {
                     ))}
                   </div>
                 </div>
-=======
->>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
               </div>
 
               <div className="rounded-2xl bg-surface-container-lowest p-4 md:p-6 shadow-sm flex flex-col gap-4">

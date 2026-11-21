@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SPLIT_MODES = [
-  { key: "equal", emoji: "âš–ï¸", title: "Split Equally (1/N)", text: "Quick & democratic. Everyone covers identical portions." },
-  { key: "itemized", emoji: "ðŸ§¾", title: "Itemized Allocation", text: "Pay only what you ordered. Tailored dish by dish." },
-  { key: "round", emoji: "ðŸª™", title: "Always Round Down", text: "Eliminates awkward pennies. Pool absorbs rounding." },
+  { key: "equal", emoji: "⚖️", title: "Split Equally (1/N)", text: "Quick & democratic. Everyone covers identical portions." },
+  { key: "itemized", emoji: "🧾", title: "Itemized Allocation", text: "Pay only what you ordered. Tailored dish by dish." },
+  { key: "round", emoji: "🪙", title: "Always Round Down", text: "Eliminates awkward pennies. Pool absorbs rounding." },
 ];
 
 export default function ProfileSetupPreferences() {
@@ -190,7 +190,7 @@ export default function ProfileSetupPreferences() {
               >
                 <span>{launching ? "Launching..." : "Finish & Launch My First Tab"}</span>
                 <span className="w-7 h-7 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-sm">
-                  {launching ? "âš¡" : "ðŸš€"}
+                  {launching ? "⚡" : "🚀"}
                 </span>
               </button>
             </div>
