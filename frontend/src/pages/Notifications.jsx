@@ -1,10 +1,10 @@
-﻿import AppLayout from "../components/layout/AppLayout";
+import AppLayout from "../components/layout/AppLayout";
 
 export default function Notifications() {
   return (
     <AppLayout>
       <main className="w-full pt-4 bg-[#f8fafc]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col gap-8">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pt-4 mb-6">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
@@ -63,7 +63,7 @@ export default function Notifications() {
               </div>
               <div className="mt-4">
                 <div className="text-2xl font-black text-slate-900">1 Trip Invite</div>
-                <div className="text-xs text-slate-600 font-medium">Tahoe Ski Weekend â„ï¸</div>
+                <div className="text-xs text-slate-600 font-medium">Tahoe Ski Weekend ❄️</div>
               </div>
               <div className="mt-3.5 flex items-center gap-1.5 py-1.5 px-3 rounded-2xl bg-white/70 text-sky-800 text-xs font-semibold">
                 <span className="material-symbols-outlined text-body-md">timer</span>
@@ -190,10 +190,10 @@ export default function Notifications() {
                           <span className="text-xs text-slate-400 font-medium">12m ago</span>
                         </div>
                         <h3 className="text-base font-bold text-slate-900">
-                          Marco invited you to join â€œTahoe Ski Weekend â„ï¸â€
+                          Marco invited you to join “Tahoe Ski Weekend ❄️”
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-500">
-                          6 friends already joined â€¢ Estimated shared tab is â‚¹480/person covering chalet rental &amp; lift tickets.
+                          6 friends already joined • Estimated shared tab is ₹480/person covering chalet rental &amp; lift tickets.
                         </p>
                       </div>
                     </div>
@@ -240,10 +240,10 @@ export default function Notifications() {
                           <span className="text-xs text-slate-400 font-medium">45m ago</span>
                         </div>
                         <h3 className="text-base font-bold text-slate-900">
-                          Gentle Nudge: Sarah requested settlement for â‚¹60.00
+                          Gentle Nudge: Sarah requested settlement for ₹60.00
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-500">
-                          Tab: <strong className="text-slate-700 font-semibold">Seafood Dinner at Pier 39</strong> â€¢ Total was â‚¹240.00 split equally among 4.
+                          Tab: <strong className="text-slate-700 font-semibold">Seafood Dinner at Pier 39</strong> • Total was ₹240.00 split equally among 4.
                         </p>
                       </div>
                     </div>
@@ -258,7 +258,7 @@ export default function Notifications() {
                         <span className="text-label-caps font-bold text-slate-500 uppercase tracking-wider font-mono">
                           Due to Sarah Lin
                         </span>
-                        <div className="text-base font-extrabold text-peach-600 font-mono">â‚¹60.00</div>
+                        <div className="text-base font-extrabold text-peach-600 font-mono">₹60.00</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
@@ -267,7 +267,7 @@ export default function Notifications() {
                       </button>
                       <button className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-xs" type="button">
                         <span className="material-symbols-outlined text-[17px]">bolt</span>
-                        <span>Pay Now â‚¹60.00</span>
+                        <span>Pay Now ₹60.00</span>
                       </button>
                     </div>
                   </div>
@@ -299,10 +299,10 @@ export default function Notifications() {
                           <span className="text-xs text-slate-400 font-medium">2h ago</span>
                         </div>
                         <h3 className="text-base font-bold text-slate-900">
-                          Alex added â€œSupermarket Runâ€ (â‚¹142.50) to Apartment 4B
+                          Alex added “Supermarket Run” (₹142.50) to Apartment 4B
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-500">
-                          Shared with 3 roommates. Your calculated share is <strong className="text-slate-800">â‚¹47.50</strong>.
+                          Shared with 3 roommates. Your calculated share is <strong className="text-slate-800">₹47.50</strong>.
                         </p>
                       </div>
                     </div>
@@ -311,7 +311,7 @@ export default function Notifications() {
                   <div className="mt-4 flex flex-wrap items-center justify-between gap-3 p-3.5 bg-slate-50 rounded-2xl">
                     <div className="flex items-center gap-2 text-slate-600 text-xs font-medium">
                       <span className="material-symbols-outlined text-[17px] text-emerald-600">receipt_long</span>
-                      <span>Split 33.3% evenly â€¢ Itemized receipt (6 grocery items)</span>
+                      <span>Split 33.3% evenly • Itemized receipt (6 grocery items)</span>
                     </div>
                     <button className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-bold text-xs transition shadow-2xs">
                       <span>View Breakdown</span>
@@ -334,10 +334,10 @@ export default function Notifications() {
                           <span className="text-xs text-slate-400 font-medium">Yesterday, 6:15 PM</span>
                         </div>
                         <h3 className="text-base font-bold text-slate-900">
-                          Leo settled â‚¹124.00 via Apple Pay. Balance updated.
+                          Leo settled ₹124.00 via Apple Pay. Balance updated.
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-500">
-                          Leo completed their share for <strong className="text-slate-800">Friday Omakase</strong> tab. Net balance is now â‚¹0.00.
+                          Leo completed their share for <strong className="text-slate-800">Friday Omakase</strong> tab. Net balance is now ₹0.00.
                         </p>
                       </div>
                     </div>
@@ -346,9 +346,9 @@ export default function Notifications() {
                   <div className="mt-4 flex items-center justify-between p-3.5 bg-matcha-50/70 border border-matcha-100 rounded-2xl">
                     <div className="flex items-center gap-2 text-xs text-slate-600 font-medium">
                       <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                      <span>Transaction ID #TAB-88392 â€¢ Direct Deposit to Apple Cash</span>
+                      <span>Transaction ID #TAB-88392 • Direct Deposit to Apple Cash</span>
                     </div>
-                    <span className="text-sm font-bold text-emerald-700 font-mono">+â‚¹124.00 Received</span>
+                    <span className="text-sm font-bold text-emerald-700 font-mono">+₹124.00 Received</span>
                   </div>
                 </div>
 
@@ -361,7 +361,7 @@ export default function Notifications() {
                       <div className="space-y-1">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="px-2.5 py-0.5 rounded-full bg-lilac-100 text-lilac-700 text-label-caps font-bold font-mono tracking-wider uppercase">
-                            TAB FINALIZED ðŸŽ‰
+                            TAB FINALIZED 🎉
                           </span>
                           <span className="text-xs text-slate-400 font-medium">May 18</span>
                         </div>
@@ -449,7 +449,7 @@ export default function Notifications() {
                 <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs">
-                      â„ï¸
+                      ❄️
                     </div>
                     <div>
                       <div className="text-xs font-bold text-slate-800">Tahoe Ski Weekend</div>
@@ -474,8 +474,8 @@ export default function Notifications() {
                 </p>
                 <div className="space-y-2.5">
                   {[
-                    { initial: "S", name: "Sarah Lin", tag: "#Pier39", color: "bg-peach-200 text-peach-700", btn: "bg-peach-100 hover:bg-peach-200 text-peach-700", emoji: "ðŸ‘‹ Ping" },
-                    { initial: "M", name: "Marco Rossi", tag: "#Tahoe", color: "bg-sky-200 text-sky-700", btn: "bg-sky-100 hover:bg-sky-200 text-sky-700", emoji: "ðŸŽ¿ Reply" },
+                    { initial: "S", name: "Sarah Lin", tag: "#Pier39", color: "bg-peach-200 text-peach-700", btn: "bg-peach-100 hover:bg-peach-200 text-peach-700", emoji: "👋 Ping" },
+                    { initial: "M", name: "Marco Rossi", tag: "#Tahoe", color: "bg-sky-200 text-sky-700", btn: "bg-sky-100 hover:bg-sky-200 text-sky-700", emoji: "🎿 Reply" },
                   ].map((n) => (
                     <div key={n.name} className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-100">
                       <div className="flex items-center gap-2.5">
@@ -510,13 +510,13 @@ export default function Notifications() {
       </main>
 
       <footer className="w-full bg-slate-100 border-t border-slate-200/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-xl bg-emerald-500 flex items-center justify-center shadow-xs">
               <span className="material-symbols-outlined text-white text-body-md">receipt_long</span>
             </div>
             <span className="font-bold text-sm text-slate-800">Tabsy</span>
-            <span className="text-xs text-slate-500 ml-2">Â© 2025 All tabs settled effortlessly.</span>
+            <span className="text-xs text-slate-500 ml-2">© 2025 All tabs settled effortlessly.</span>
           </div>
           <div className="flex items-center gap-6">
             <a className="text-xs font-medium text-slate-600 hover:text-slate-900 transition" href="#">

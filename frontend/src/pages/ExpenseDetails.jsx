@@ -74,9 +74,9 @@ export default function ExpenseDetails() {
 
   return (
     <AppLayout>
-      <div className="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
-        <main className="w-full pt-4 pb-16 bg-background min-h-screen">
-          <div className="max-w-[1360px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
+      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+        <main className="w-full pt-4 pb-16 bg-[#FAF8F5] min-h-screen">
+          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
             {/* Breadcrumbs & Meta Bar */}
             <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs">
@@ -152,14 +152,25 @@ export default function ExpenseDetails() {
                 </div>
 
                 <div className="lg:col-span-3 flex flex-col justify-center gap-2">
-                  <button
-                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs font-bold transition-all border border-surface-container"
-                    type="button"
-                    onClick={() => showToast("Downloading PDF Statement…")}
-                  >
-                    <span className="material-symbols-outlined text-[17px] text-secondary">download</span>
-                    <span>Download PDF Statement</span>
-                  </button>
+                  <div className="flex items-stretch gap-2">
+                    <button
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs font-bold transition-all border border-surface-container"
+                      type="button"
+                      onClick={() => showToast("Downloading PDF Statement…")}
+                    >
+                      <span className="material-symbols-outlined text-[17px] text-secondary">download</span>
+                      <span>Download PDF</span>
+                    </button>
+                    <button
+                      className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-primary-fixed hover:bg-primary-fixed-dim text-on-primary-fixed-variant font-title-md text-xs font-bold transition-all border border-primary-fixed-dim/60"
+                      type="button"
+                      onClick={() => navigate("/expense-history")}
+                      title="View expense version history"
+                    >
+                      <span className="material-symbols-outlined text-[17px]">history</span>
+                      <span>History</span>
+                    </button>
+                  </div>
                   <div className="flex items-stretch gap-2">
                     <button
                       className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-2xl bg-surface-container-low hover:bg-surface-container text-on-surface font-title-md text-xs font-semibold transition-all border border-surface-container"

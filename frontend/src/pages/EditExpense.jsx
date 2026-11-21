@@ -144,9 +144,9 @@ export default function EditExpense() {
 
   return (
     <AppLayout>
-      <div className="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
-        <main className="w-full pt-4 pb-28 bg-background min-h-screen">
-          <div className="max-w-[1100px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
+      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+        <main className="w-full pt-4 pb-28 bg-[#FAF8F5] min-h-screen">
+          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
             {/* Breadcrumbs */}
             <div className="flex items-center gap-1.5 text-xs text-outline pt-2 flex-wrap">
               <Link className="hover:text-primary transition-colors flex items-center gap-1" to="/expenses">

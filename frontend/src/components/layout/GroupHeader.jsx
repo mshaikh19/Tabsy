@@ -17,7 +17,7 @@ export default function GroupHeader({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl bg-surface-container-lowest shadow-sm shadow-zinc-900/5 border border-outline-variant/60 w-full px-4 py-3 sm:px-5 sm:py-3.5 sticky top-2 z-20 ${className || ""}`}
+      className={`relative overflow-hidden rounded-2xl bg-surface-container-lowest shadow-sm shadow-zinc-900/5 border border-outline-variant/60 w-full px-4 py-3 sm:px-5 sm:py-3.5 ${className || ""}`}
     >
       <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
         {/* LEFT — Main highlight: heading + description */}

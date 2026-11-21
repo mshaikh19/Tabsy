@@ -202,9 +202,19 @@ export default function AddExpense() {
 
   return (
     <AppLayout>
-      <div className="bg-background font-body-md text-on-surface antialiased min-h-screen">
-        <main className="w-full pb-24">
-          <div className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 pt-4">
+      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+        <main className="w-full pt-0 pb-24 bg-[#FAF8F5] min-h-screen">
+          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
+            <input
+              accept="image/*,application/pdf"
+              className="hidden"
+              type="file"
+              ref={fileInputRef}
+              onChange={(e) => {
+                handleReceiptFile(e.target.files?.[0]);
+                e.target.value = "";
+              }}
+            />
             <GroupHeader
               title="Add Group Expense"
               subtitle="Record an outlay, choose how to split it, and publish to the shared ledger."

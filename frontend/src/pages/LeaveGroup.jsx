@@ -156,9 +156,9 @@ export default function LeaveGroup() {
 
   return (
     <AppLayout>
-      <div className="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
-        <main className="w-full pt-0 pb-24 bg-background min-h-screen">
-          <div className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col gap-6">
+      <div className="bg-[#FAF8F5] font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+        <main className="w-full pt-0 pb-24 bg-[#FAF8F5] min-h-screen">
+          <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
             <GroupHeader
               title="Leave Tahoe Ski Weekend ❄️"
               subtitle="Guided exit protocol — reconcile your balance, transfer host admin, and detach cleanly with zero dangling balances."

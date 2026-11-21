@@ -11,7 +11,6 @@ import ProfileSetup from "./pages/ProfileSetup";
 import ProfileSetupPreferences from "./pages/ProfileSetupPreferences";
 import Dashboard from "./pages/Dashboard";
 import Activity from "./pages/Activity";
-import Balances from "./pages/Balances";
 import Groups from "./pages/Groups";
 import CreateGroup from "./pages/CreateGroup";
 import GroupDetails from "./pages/GroupDetails";
@@ -32,6 +31,31 @@ import SplitExpense from "./pages/SplitExpense";
 import ManageParticipants from "./pages/ManageParticipants";
 import EditExpense from "./pages/EditExpense";
 import DeleteExpense from "./pages/DeleteExpense";
+import RecurringExpenses from "./pages/RecurringExpenses";
+import ExpenseHistory from "./pages/ExpenseHistory";
+import Categories from "./pages/Categories";
+import Friends from "./pages/Friends";
+import AddFriend from "./pages/AddFriend";
+import FriendRequests from "./pages/FriendRequests";
+import FriendManage from "./pages/FriendManage";
+import FriendProfile from "./pages/FriendProfile";
+import FriendTransactions from "./pages/FriendTransactions";
+import FriendBalances from "./pages/FriendBalances";
+import FriendActivity from "./pages/FriendActivity";
+import OverallBalances from "./pages/OverallBalances";
+import WhoOwesWhom from "./pages/WhoOwesWhom";
+import SettleUp from "./pages/SettleUp";
+import PaymentConfirmation from "./pages/PaymentConfirmation";
+import PendingSettlements from "./pages/PendingSettlements";
+import SettlementHistory from "./pages/SettlementHistory";
+import SettlementDetails from "./pages/SettlementDetails";
+import SimplifyDebts from "./pages/SimplifyDebts";
+import PaymentMethods from "./pages/PaymentMethods";
+import Analytics from "./pages/Analytics";
+import YearlyReport from "./pages/YearlyReport";
+import MonthlyReport from "./pages/MonthlyReport";
+import CategoryDrift from "./pages/CategoryDrift";
+import GroupAnalysis from "./pages/GroupAnalysis";
 
 function App() {
   return (
@@ -43,39 +67,261 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/set-new-password" element={<SetNewPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
-        <Route path="/onboarding" element={<ProtectedRoute><Onboarding /></ProtectedRoute>} />
+        <Route
+          path="/onboarding"
+          element={
+            <ProtectedRoute>
+              <Onboarding />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/onboarding/personalize"
-          element={<ProtectedRoute><OnboardingPersonalize /></ProtectedRoute>}
+          element={
+            <ProtectedRoute>
+              <OnboardingPersonalize />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/profile-setup" element={<ProtectedRoute><ProfileSetup /></ProtectedRoute>} />
+        <Route
+          path="/profile-setup"
+          element={
+            <ProtectedRoute>
+              <ProfileSetup />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/profile-setup/preferences"
-          element={<ProtectedRoute><ProfileSetupPreferences /></ProtectedRoute>}
+          element={
+            <ProtectedRoute>
+              <ProfileSetupPreferences />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/activity" element={<ProtectedRoute><Activity /></ProtectedRoute>} />
-        <Route path="/balances" element={<ProtectedRoute><Balances /></ProtectedRoute>} />
-        <Route path="/groups" element={<ProtectedRoute><Groups /></ProtectedRoute>} />
-        <Route path="/create-group" element={<ProtectedRoute><CreateGroup /></ProtectedRoute>} />
-        <Route path="/group-details" element={<ProtectedRoute><GroupDetails /></ProtectedRoute>} />
-        <Route path="/group-expenses" element={<ProtectedRoute><GroupExpenses /></ProtectedRoute>} />
-        <Route path="/group-expenses/add" element={<ProtectedRoute><AddExpense /></ProtectedRoute>} />
-        <Route path="/group-members" element={<ProtectedRoute><GroupMembers /></ProtectedRoute>} />
-        <Route path="/group-balances" element={<ProtectedRoute><GroupBalances /></ProtectedRoute>} />
-        <Route path="/group-activity" element={<ProtectedRoute><GroupActivity /></ProtectedRoute>} />
-        <Route path="/group-settings" element={<ProtectedRoute><GroupSettings /></ProtectedRoute>} />
-        <Route path="/group-edit" element={<ProtectedRoute><EditGroup /></ProtectedRoute>} />
-        <Route path="/group-leave" element={<ProtectedRoute><LeaveGroup /></ProtectedRoute>} />
-        <Route path="/group-members/add" element={<ProtectedRoute><AddMembers /></ProtectedRoute>} />
-        <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
-        <Route path="/quick-actions" element={<ProtectedRoute><QuickActions /></ProtectedRoute>} />
-        <Route path="/expenses" element={<ProtectedRoute><Expenses /></ProtectedRoute>} />
-        <Route path="/expense-details" element={<ProtectedRoute><ExpenseDetails /></ProtectedRoute>} />
-        <Route path="/split-expense" element={<ProtectedRoute><SplitExpense /></ProtectedRoute>} />
-        <Route path="/group-members/manage" element={<ProtectedRoute><ManageParticipants /></ProtectedRoute>} />
-        <Route path="/expense-edit" element={<ProtectedRoute><EditExpense /></ProtectedRoute>} />
-        <Route path="/expense-delete" element={<ProtectedRoute><DeleteExpense /></ProtectedRoute>} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/activity" element={<Activity />} />
+        <Route path="/balances" element={<OverallBalances />} />
+        <Route path="/who-owes-whom" element={<WhoOwesWhom />} />
+        <Route path="/settle-up" element={<SettleUp />} />
+        <Route path="/payment-confirmation" element={<PaymentConfirmation />} />
+        <Route path="/pending-settlements" element={<PendingSettlements />} />
+        <Route path="/settlement-history" element={<SettlementHistory />} />
+        <Route path="/settlement-details" element={<SettlementDetails />} />
+        <Route path="/simplify-debts" element={<SimplifyDebts />} />
+        <Route path="/payment-methods" element={<PaymentMethods />} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/yearly-report" element={<YearlyReport />} />
+        <Route path="/monthly-report" element={<MonthlyReport />} />
+        <Route path="/category-drift" element={<CategoryDrift />} />
+        <Route path="/group-analysis" element={<GroupAnalysis />} />
+        <Route path="/groups" element={<Groups />} />
+        <Route path="/create-group" element={<CreateGroup />} />
+        <Route path="/group-details" element={<GroupDetails />} />
+        <Route path="/group-expenses" element={<GroupExpenses />} />
+        <Route path="/group-expenses/add" element={<AddExpense />} />
+        <Route path="/group-members" element={<GroupMembers />} />
+        <Route path="/group-balances" element={<GroupBalances />} />
+        <Route path="/group-activity" element={<GroupActivity />} />
+        <Route path="/group-settings" element={<GroupSettings />} />
+        <Route path="/group-edit" element={<EditGroup />} />
+        <Route path="/group-leave" element={<LeaveGroup />} />
+        <Route path="/group-members/add" element={<AddMembers />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/quick-actions" element={<QuickActions />} />
+        <Route path="/expenses" element={<Expenses />} />
+        <Route path="/expense-details" element={<ExpenseDetails />} />
+        <Route path="/split-expense" element={<SplitExpense />} />
+        <Route path="/group-members/manage" element={<ManageParticipants />} />
+        <Route path="/expense-edit" element={<EditExpense />} />
+        <Route path="/expense-delete" element={<DeleteExpense />} />
+        <Route path="/recurring-expenses" element={<RecurringExpenses />} />
+        <Route path="/expense-history" element={<ExpenseHistory />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/friends" element={<Friends />} />
+        <Route path="/add-friend" element={<AddFriend />} />
+        <Route path="/friend-requests" element={<FriendRequests />} />
+        <Route path="/friend-manage" element={<FriendManage />} />
+        <Route path="/friend-profile" element={<FriendProfile />} />
+        <Route path="/friend-transactions" element={<FriendTransactions />} />
+        <Route path="/friend-balances" element={<FriendBalances />} />
+        <Route path="/friend-activity" element={<FriendActivity />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/activity"
+          element={
+            <ProtectedRoute>
+              <Activity />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/groups"
+          element={
+            <ProtectedRoute>
+              <Groups />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create-group"
+          element={
+            <ProtectedRoute>
+              <CreateGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-details"
+          element={
+            <ProtectedRoute>
+              <GroupDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-expenses"
+          element={
+            <ProtectedRoute>
+              <GroupExpenses />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-expenses/add"
+          element={
+            <ProtectedRoute>
+              <AddExpense />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-members"
+          element={
+            <ProtectedRoute>
+              <GroupMembers />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-balances"
+          element={
+            <ProtectedRoute>
+              <GroupBalances />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-activity"
+          element={
+            <ProtectedRoute>
+              <GroupActivity />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-settings"
+          element={
+            <ProtectedRoute>
+              <GroupSettings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-edit"
+          element={
+            <ProtectedRoute>
+              <EditGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-leave"
+          element={
+            <ProtectedRoute>
+              <LeaveGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-members/add"
+          element={
+            <ProtectedRoute>
+              <AddMembers />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notifications />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/quick-actions"
+          element={
+            <ProtectedRoute>
+              <QuickActions />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/expenses"
+          element={
+            <ProtectedRoute>
+              <Expenses />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/expense-details"
+          element={
+            <ProtectedRoute>
+              <ExpenseDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/split-expense"
+          element={
+            <ProtectedRoute>
+              <SplitExpense />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-members/manage"
+          element={
+            <ProtectedRoute>
+              <ManageParticipants />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/expense-edit"
+          element={
+            <ProtectedRoute>
+              <EditExpense />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/expense-delete"
+          element={
+            <ProtectedRoute>
+              <DeleteExpense />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

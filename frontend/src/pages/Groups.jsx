@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
 import { groupService } from "../services";
@@ -68,7 +68,7 @@ export default function Groups() {
 
   return (
     <AppLayout>
-      <main className="w-full pt-4 bg-background min-h-screen">
+      <main className="w-full pt-4 bg-[#FAF8F5] min-h-screen">
         <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-container-lowest p-5 rounded-2xl border border-slate-200/80 shadow-sm">
             <div>
@@ -288,6 +288,32 @@ export default function Groups() {
           )}
         </div>
       </main>
+
+      <footer className="w-full bg-surface-container-low mt-16 border-t border-slate-200/80">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-lg bg-primary-container flex items-center justify-center">
+              <span className="material-symbols-outlined text-on-primary text-body-md">receipt_long</span>
+            </div>
+            <span className="font-title-md text-title-md text-on-surface">Tabsy</span>
+            <span className="font-body-sm text-body-sm text-on-surface-variant ml-2">© 2025 All tabs settled effortlessly.</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+              Overview
+            </a>
+            <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+              Consolidated Ledger
+            </a>
+            <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+              Terms of Service
+            </a>
+            <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+              Help &amp; Support
+            </a>
+          </div>
+        </div>
+      </footer>
     </AppLayout>
   );
 }

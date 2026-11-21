@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
 
 export default function QuickActions() {
@@ -13,8 +13,8 @@ export default function QuickActions() {
 
   return (
     <AppLayout>
-      <main className="w-full pt-4 bg-surface">
-        <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-8 flex flex-col gap-8">
+      <main className="w-full pt-4 bg-[#FAF8F5]">
+        <div className="max-w-[1536px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-1">
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2">
@@ -843,7 +843,7 @@ export default function QuickActions() {
       </main>
 
       <footer className="w-full bg-surface-container-low mt-16 border-t border-surface-container">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-primary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-on-primary text-body-md">receipt_long</span>
