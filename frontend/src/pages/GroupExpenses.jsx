@@ -51,6 +51,8 @@ export default function GroupExpenses() {
 
   const [expenses, setExpenses] = useState([]);
   const [balances, setBalances] = useState(null);
+  const [group, setGroup] = useState(null);
+  const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [activeView, setActiveView] = useState(() => {
@@ -78,12 +80,37 @@ export default function GroupExpenses() {
     setLoading(true);
     setError("");
     try {
-      const [exp, bal] = await Promise.all([
+      const [expData, bal, grp, mem] = await Promise.all([
         groupService.expenses(groupId),
         groupService.balances(groupId),
+        groupService.get(groupId),
+        groupService.members(groupId),
       ]);
-      setExpenses(exp?.expenses || exp || []);
+
+      const rawExpenses = expData?.expenses || [];
+
+      const normalized = rawExpenses.map((e) => {
+        const payerName = e.paidBy?.name || "Someone";
+        const hasReceipt = !!e.receipt?.url;
+        const splits = (e.participants || []).map((p) => ({
+          user: p.userId,
+          name: p.name || p.userId?.slice?.(0, 2).toUpperCase() || "?",
+          share: p.amount || 0,
+        }));
+        return {
+          ...e,
+          paidByName: payerName,
+          date: e.expenseDate,
+          splits,
+          missingReceipt: !hasReceipt,
+          receiptVerified: hasReceipt,
+        };
+      });
+
+      setExpenses(normalized);
       setBalances(bal);
+      setGroup(grp);
+      setMembers(mem);
     } catch (err) {
       setError(err?.response?.data?.error?.message || "Failed to load expenses");
     } finally {
@@ -165,12 +192,26 @@ export default function GroupExpenses() {
 
   // Compute net for current user per expense
   const getUserNetForExpense = (expense) => {
-    const userId = balances?.userId;
-    if (!userId) return 0;
-    const participant = expense.splits?.find((s) => s.user === userId);
+    const currentUserId = balances?.matrix ? getMyUserId() : null;
+    if (!currentUserId) return 0;
+    const participant = expense.splits?.find((s) => s.user === currentUserId);
     if (!participant) return 0;
-    const paid = expense.paidBy === userId ? expense.amount : 0;
+    const paid = expense.paidBy?._id === currentUserId ? expense.amount : 0;
     return paid - (participant.share || 0);
+  };
+
+  // The balances endpoint returns { position, plan, matrix } without userId.
+  // We derive current user from members (the one with admin role is often self,
+  // but we use the token's user via the members list matched to position.net).
+  const getMyUserId = () => {
+    if (balances?.userId) return balances.userId;
+    // Fallback: the member whose net matches position.net
+    if (balances?.position && members.length) {
+      const posNet = balances.position.net || 0;
+      const match = members.find((m) => (m.net || 0) === posNet);
+      if (match) return match.user;
+    }
+    return null;
   };
 
   // Filter expenses
@@ -178,7 +219,7 @@ export default function GroupExpenses() {
     .filter((e) => {
       if (categoryFilter !== "all" && e.category !== categoryFilter) return false;
       if (payerFilter !== "all") {
-        const isYou = e.paidBy === balances?.userId;
+        const isYou = e.paidBy?._id === myUserId;
         if (payerFilter === "you" && !isYou) return false;
         if (payerFilter === "others" && isYou) return false;
       }
@@ -194,10 +235,13 @@ export default function GroupExpenses() {
 
   const categories = Array.from(new Set(expenses.map((e) => e.category).filter(Boolean)));
 
-  const currency = balances?.currency || "INR";
-  const totalSpend = balances?.totalSpend || 0;
-  const myPaid = balances?.members?.find((m) => m.user === balances?.userId)?.paid || 0;
-  const myNet = balances?.members?.find((m) => m.user === balances?.userId)?.net || 0;
+  const myUserId = getMyUserId();
+  const currency = group?.currency || "INR";
+  const totalSpend = expenses.reduce((sum, e) => sum + (e.amount || 0), 0);
+  const myPaid = expenses
+    .filter((e) => e.paidBy?._id === myUserId)
+    .reduce((sum, e) => sum + (e.amount || 0), 0);
+  const myNet = balances?.position?.net || 0;
   const expenseCount = expenses.length;
   const missingCount = expenses.filter((e) => e.missingReceipt).length;
 
@@ -264,8 +308,8 @@ export default function GroupExpenses() {
           <div className="flex flex-col w-full">
             <div className="max-w-7xl w-full mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
               <GroupHeader
-                title={balances?.group?.name || "Group Expenses"}
-                subtitle={balances?.group?.description}
+                title={group?.name || "Group Expenses"}
+                subtitle={group?.description}
                 currentLabel="Group Expenses"
                 actions={
                   <>
@@ -436,7 +480,7 @@ export default function GroupExpenses() {
                         ) : (
                           filteredExpenses.map((expense, idx) => {
                             const net = getUserNetForExpense(expense);
-                            const isYou = expense.paidBy === balances?.userId;
+                            const isYou = expense.paidBy?._id === myUserId;
                             const statusText = net > 0 ? `You lent ${formatMoney(net, currency)}` : net < 0 ? `You owe ${formatMoney(Math.abs(net), currency)}` : "Settled";
                             const statusColor = net > 0 ? "text-primary" : net < 0 ? "text-tertiary" : "text-on-surface-variant";
                             const shareId = `share-${expense._id || idx}`;
@@ -479,8 +523,8 @@ export default function GroupExpenses() {
                                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                                     {expense.splits?.map((split) => (
                                       <div key={split.user} className="p-2 rounded-lg bg-surface-container-lowest text-body-sm">
-                                        {split.name || split.user.slice(0, 2).toUpperCase()}: <strong className={split.user === balances?.userId ? "text-primary" : ""}>{formatMoney(split.share, currency)}</strong>
-                                        {split.user === balances?.userId && <span className="text-primary ml-1">(Self)</span>}
+                                        {split.name || split.user?.slice?.(0, 2).toUpperCase() || "?"}: <strong className={split.user === myUserId ? "text-primary" : ""}>{formatMoney(split.share, currency)}</strong>
+                                        {split.user === myUserId && <span className="text-primary ml-1">(Self)</span>}
                                       </div>
                                     ))}
                                   </div>
@@ -513,7 +557,7 @@ export default function GroupExpenses() {
                             </div>
                             {catExpenses.map((expense, idx) => {
                               const net = getUserNetForExpense(expense);
-                              const isYou = expense.paidBy === balances?.userId;
+                              const isYou = expense.paidBy?._id === myUserId;
                               return (
                                 <div key={`${cat}-${idx}`} className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer" onClick={(e) => { e.stopPropagation(); openExpenseDetails(expense._id); }}>
                                   <div className="flex items-start justify-between gap-1">
@@ -588,17 +632,15 @@ export default function GroupExpenses() {
                     <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/60 shadow-sm">
                       <h3 className="font-title-md text-title-md text-on-surface mb-3">Payer Summary</h3>
                       <div className="flex flex-col gap-2">
-                        {balances?.members?.map((m) => {
-                          const paid = m.paid || 0;
-                          const share = m.share || 0;
+                        {members.map((m) => {
                           const net = m.net || 0;
                           return (
-                            <div key={m.user} className="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+                            <div key={m.user || m._id} className="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
                               <div className="flex items-center gap-2">
-                                <div className={`w-8 h-8 rounded-full ${m.avatarBg || "bg-primary"} text-on-primary font-bold flex items-center justify-center text-body-sm`}>
-                                  {m.avatarEmoji || m.name?.slice(0, 2).toUpperCase() || "?"}
+                                <div className="w-8 h-8 rounded-full bg-primary text-on-primary font-bold flex items-center justify-center text-body-sm">
+                                  {m.name?.slice(0, 2).toUpperCase() || "?"}
                                 </div>
-                                <span className="font-body-sm text-body-sm text-on-surface">{m.name}</span>
+                                <span className="font-body-sm text-body-sm text-on-surface">{m.name || "Member"}</span>
                               </div>
                               <div className="text-right">
                                 <span className={`font-body-sm font-bold ${net > 0 ? "text-primary" : net < 0 ? "text-error" : "text-on-surface"}`}>
