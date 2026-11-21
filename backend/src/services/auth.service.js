@@ -10,6 +10,62 @@ const {
   generateRefreshToken,
   verifyRefreshToken,
 } = require("../utils/token");
+const { OAuth2Client } = require("google-auth-library");
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+const verifyGoogleIdToken = async (idToken) => {
+  if (!process.env.GOOGLE_CLIENT_ID) {
+    throw new AppError("Google OAuth not configured", 500, "OAUTH_NOT_CONFIGURED");
+  }
+  const ticket = await googleClient.verifyIdToken({
+    idToken,
+    audience: process.env.GOOGLE_CLIENT_ID,
+  });
+  return ticket.getPayload();
+};
+
+const loginWithGoogle = async (credential) => {
+  const payload = await verifyGoogleIdToken(credential);
+  const googleId = payload.sub;
+  const email = payload.email;
+  const name = payload.name;
+  const picture = payload.picture;
+
+  let user = await User.findOne({ "oauth.googleId": googleId });
+
+  if (!user) {
+    user = await User.findOne({ email });
+    if (user) {
+      user.oauth.googleId = googleId;
+      if (picture && !user.avatarUrl) user.avatarUrl = picture;
+      await user.save();
+    } else {
+      user = await User.create({
+        name,
+        email,
+        "oauth.googleId": googleId,
+        avatarUrl: picture,
+        emailVerified: true,
+      });
+    }
+  }
+
+  const accessToken = generateAccessToken(user);
+  const refreshToken = generateRefreshToken(user);
+
+  if (user.refreshTokens.length >= 5) {
+    user.refreshTokens.shift();
+  }
+  user.refreshTokens.push({ token: refreshToken });
+  await user.save();
+
+  return {
+    user: user.toJSON(),
+    accessToken,
+    refreshToken,
+  };
+};
 
 const register = async ({ name, email, password, currency }) => {
   const existingUser = await User.findOne({ email });
@@ -142,15 +198,96 @@ const deleteAccount = async (userId) => {
   }
 
   // Delete all associated records as per PRD Privacy requirements
+  const GroupMember = require("../models/GroupMember");
   await Promise.all([
     Transaction.deleteMany({ userId }),
     Category.deleteMany({ userId }),
     Budget.deleteMany({ userId }),
     RecurringRule.deleteMany({ userId }),
+    GroupMember.deleteMany({ userId }),
     User.findByIdAndDelete(userId),
   ]);
 
   return { message: "Account and all associated data deleted successfully" };
+};
+
+const crypto = require("crypto");
+
+/**
+ * Initiate password reset. In a real deployment this would email a reset link.
+ * For this project we return the token in the response (dev-friendly).
+ */
+const forgotPassword = async ({ destination }) => {
+  const email = String(destination || "").toLowerCase().trim();
+  const user = await User.findOne({ email });
+  if (!user) {
+    // Do not reveal whether the email exists
+    return { message: "If an account exists, a reset link has been sent", devToken: null };
+  }
+
+  const token = crypto.randomBytes(24).toString("hex");
+  user.passwordReset = {
+    token,
+    expiresAt: new Date(Date.now() + 1000 * 60 * 30), // 30 minutes
+  };
+  await user.save();
+
+  return {
+    message: "Password reset initiated",
+    devToken: process.env.NODE_ENV !== "production" ? token : undefined,
+  };
+};
+
+const resetPassword = async ({ token, newPassword }) => {
+  if (!token) {
+    throw new AppError("Reset token is required", 400, "TOKEN_REQUIRED");
+  }
+  const user = await User.findOne({ "passwordReset.token": token });
+  if (!user || !user.passwordReset || user.passwordReset.expiresAt < new Date()) {
+    throw new AppError("Invalid or expired reset token", 400, "INVALID_RESET_TOKEN");
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  user.passwordHash = await bcrypt.hash(newPassword, salt);
+  user.passwordReset = { token: null, expiresAt: null };
+  // Revoke all existing sessions on password reset
+  user.refreshTokens = [];
+  await user.save();
+
+  return { message: "Password has been reset. Please log in again." };
+};
+
+/**
+ * Email verification: generates a 6-digit OTP (returned in dev).
+ */
+const sendEmailVerification = async (userId) => {
+  const user = await User.findById(userId);
+  if (!user) throw new AppError("User not found", 404, "USER_NOT_FOUND");
+  if (user.emailVerified) {
+    return { message: "Email already verified", devOtp: null };
+  }
+  const otp = String(Math.floor(100000 + Math.random() * 900000));
+  user.emailOtp = { code: otp, expiresAt: new Date(Date.now() + 1000 * 60 * 10) };
+  await user.save();
+  return {
+    message: "Verification code generated",
+    devOtp: process.env.NODE_ENV !== "production" ? otp : undefined,
+  };
+};
+
+const verifyEmail = async ({ email, otp }) => {
+  const user = await User.findOne({ email: String(email || "").toLowerCase().trim() });
+  if (!user) throw new AppError("User not found", 404, "USER_NOT_FOUND");
+  if (!user.emailOtp || !user.emailOtp.code || user.emailOtp.expiresAt < new Date()) {
+    throw new AppError("Invalid or expired verification code", 400, "INVALID_OTP");
+  }
+  if (String(otp) !== user.emailOtp.code) {
+    throw new AppError("Incorrect verification code", 400, "INVALID_OTP");
+  }
+  user.emailVerified = true;
+  user.emailOtp = { code: null, expiresAt: null };
+  await user.save();
+  return { message: "Email verified successfully", user: user.toJSON() };
 };
 
 module.exports = {
@@ -161,4 +298,9 @@ module.exports = {
   getProfile,
   updateProfile,
   deleteAccount,
+  forgotPassword,
+  resetPassword,
+  sendEmailVerification,
+  verifyEmail,
+  loginWithGoogle,
 };

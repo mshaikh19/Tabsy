@@ -20,13 +20,62 @@ const userSchema = new mongoose.Schema(
     },
     passwordHash: {
       type: String,
-      required: [true, "Password is required"],
+      required: false,
+    },
+    oauth: {
+      googleId: { type: String, default: null, sparse: true, index: true },
     },
     currency: {
       type: String,
       default: "INR",
       uppercase: true,
       trim: true,
+    },
+    avatarEmoji: {
+      type: String,
+      default: "🥑",
+      trim: true,
+    },
+    avatarUrl: {
+      type: String,
+      default: null,
+      trim: true,
+    },
+    handle: {
+      type: String,
+      trim: true,
+      default: "",
+      lowercase: true,
+    },
+    onboardingComplete: {
+      type: Boolean,
+      default: false,
+    },
+    useCases: {
+      type: [String],
+      default: [],
+    },
+    defaultSplitMode: {
+      type: String,
+      enum: ["equal", "itemized", "round"],
+      default: "equal",
+    },
+    notificationPreferences: {
+      expense: { type: Boolean, default: true },
+      settlement: { type: Boolean, default: true },
+      recap: { type: Boolean, default: true },
+    },
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
+    emailOtp: {
+      code: { type: String, default: null },
+      expiresAt: { type: Date, default: null },
+    },
+    passwordReset: {
+      token: { type: String, default: null },
+      expiresAt: { type: Date, default: null },
     },
     refreshTokens: [
       {
@@ -54,6 +103,8 @@ userSchema.methods.toJSON = function () {
   const user = this.toObject();
   delete user.passwordHash;
   delete user.refreshTokens;
+  delete user.emailOtp;
+  delete user.passwordReset;
   return user;
 };
 

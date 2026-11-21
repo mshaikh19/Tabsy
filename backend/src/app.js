@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
+const passport = require("passport");
+require("./config/passport");
 const { errorHandler, AppError } = require("./middleware/error.middleware");
 
 const app = express();
@@ -32,6 +34,9 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// Passport initialization
+app.use(passport.initialize());
 
 // Base health and welcome routes
 app.get("/", (req, res) => {

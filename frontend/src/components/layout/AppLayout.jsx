@@ -1,8 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+
+const getInitials = (name) => {
+  if (!name) return "?";
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+};
 
 export default function AppLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <div className="bg-[#FAF8F5] text-zinc-900 font-sans antialiased min-h-screen p-3 md:p-5 lg:p-6 selection:bg-emerald-100 selection:text-emerald-900">
@@ -216,14 +228,14 @@ export default function AppLayout({ children }) {
           <div className="p-3 bg-zinc-900/90 rounded-2xl border border-zinc-800/90 flex items-center justify-between">
             <div className="flex items-center gap-3 min-w-0">
               <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white font-bold text-[13px] flex items-center justify-center shrink-0 shadow-inner">
-                AM
+                {user?.avatarEmoji || getInitials(user?.name)}
               </div>
               <div className="min-w-0">
                 <p className="text-white text-[13px] font-bold truncate leading-tight">
-                  Arjun Sharma
+                  {user?.name || "User"}
                 </p>
                 <p className="text-zinc-400 text-[11px] font-mono truncate">
-                  arjun@tabsy.co
+                  {user?.email || ""}
                 </p>
               </div>
             </div>

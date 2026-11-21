@@ -1,106 +1,86 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import { Link } from "react-router-dom";
+=======
+﻿import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+>>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
 import AppLayout from "../components/layout/AppLayout";
+import { groupService } from "../services";
 
 const CURRENCIES = [
+<<<<<<< HEAD
   { code: "USD", name: "United States Dollar", symbol: "$", flag: "🇺🇸" },
   { code: "EUR", name: "Euro", symbol: "€", flag: "🇪🇺" },
   { code: "GBP", name: "British Pound", symbol: "£", flag: "🇬🇧" },
   { code: "CAD", name: "Canadian Dollar", symbol: "$", flag: "🇨🇦" },
   { code: "JPY", name: "Japanese Yen", symbol: "¥", flag: "🇯🇵" },
   { code: "CHF", name: "Swiss Franc", symbol: "Fr", flag: "🇨🇭" },
+=======
+  { code: "USD", name: "US Dollar", symbol: "$", flag: "🇺🇸" },
+  { code: "EUR", name: "Euro", symbol: "€", flag: "🇪🇺" },
+  { code: "GBP", name: "British Pound", symbol: "£", flag: "🇬🇧" },
+  { code: "INR", name: "Indian Rupee", symbol: "₹", flag: "🇮🇳" },
+  { code: "CAD", name: "Canadian Dollar", symbol: "$", flag: "🇨🇦" },
+  { code: "JPY", name: "Japanese Yen", symbol: "¥", flag: "🇯🇵" },
+>>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
 ];
 
-const SPLIT_MODELS = [
-  { model: "Equal (1/N)", icon: "equalizer", desc: "Even distribution among all active attendees. Remainder cents assigned via round-robin." },
-  { model: "Weighted Multipliers", icon: "tune", desc: "Ratio-based consumption shares (e.g. 1.5x for master bedroom, 0.5x half-stay)." },
-  { model: "Itemized & Receipt Lens", icon: "receipt_long", desc: "Direct line-item attribution parsed via AI receipt OCR and per-item tagging." },
-  { model: "Fixed Percentage (%)", icon: "percent", desc: "Preset custom percentage allocation totaling 100% across registered members." },
+const CATEGORIES = [
+  { icon: "flight_takeoff", title: "Trips & Vacation", desc: "Shared flights, hotels, road gas, excursions" },
+  { icon: "apartment", title: "Home & Roommates", desc: "Rent splits, WiFi, recurring utilities" },
+  { icon: "restaurant", title: "Dining & Social", desc: "Dinners, rounds of drinks, brunch weekends" },
+  { icon: "celebration", title: "Events & Parties", desc: "Concerts, parties, festival passes, gifts" },
+];
+
+const ICONS = [
+  { e: "❄️", l: "Ski Chalet" },
+  { e: "🏠", l: "Apartment" },
+  { e: "🚐", l: "Road Trip" },
+  { e: "🍕", l: "Dining" },
+  { e: "🎪", l: "Festival" },
+  { e: "💼", l: "Project" },
+  { e: "🌴", l: "Getaway" },
+  { e: "🧾", l: "General" },
 ];
 
 export default function CreateGroup() {
-  const [step, setStepState] = useState(() => {
-    const saved = typeof window !== "undefined" ? window.localStorage.getItem("createGroupStep") : null;
-    const n = saved ? Number(saved) : 1;
-    return n >= 1 && n <= 3 ? n : 1;
-  });
+  const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const setStep = (next) => {
-    setStepState(next);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("createGroupStep", String(next));
-    }
-  };
-
-  // Step 2 state
+  const [groupName, setGroupName] = useState("");
+  const [groupIcon, setGroupIcon] = useState("🧾");
+  const [groupCategory, setGroupCategory] = useState("Trips & Vacation");
   const [currency, setCurrency] = useState("USD");
-  const [splitModel, setSplitModel] = useState("Equal (1/N)");
-  const [netting, setNetting] = useState(true);
-  const [subsidies, setSubsidies] = useState(true);
-  const [penny, setPenny] = useState("highest");
-  const [budgetCap, setBudgetCap] = useState("3,500.00");
-  const [simAmount, setSimAmount] = useState(1200);
-  const [themeAccent, setThemeAccent] = useState("Matcha");
+  const [description, setDescription] = useState("");
 
-  const themeLabel =
-    themeAccent === "Matcha" ? "Matcha Mint" :
-    themeAccent === "Sky" ? "Sky Blue" :
-    themeAccent === "Lilac" ? "Lilac Dream" :
-    themeAccent === "Peach" ? "Peach Glow" :
-    themeAccent === "Rose" ? "Rose Blush" :
-    themeAccent === "Butter" ? "Buttercup" :
-    themeAccent === "Mint" ? "Fresh Mint" :
-    themeAccent === "Lavender" ? "Lavender Haze" :
-    "Custom Accent";
-
-  const currencyInfo = CURRENCIES.find((c) => c.code === currency) || CURRENCIES[0];
-  const stepTitle =
-    step === 1 ? "Step 1: Identity & Style" : step === 2 ? "Step 2: Split Rules & Currency" : "Step 3: Roster & Launch";
-  const stepPct = step === 1 ? 33 : step === 2 ? 66 : 100;
-  const progressWidth = step === 1 ? "w-1/3" : step === 2 ? "w-2/3" : "w-full";
-
-  const stepCard = (n, title, sub, doneSub) => {
-    const active = step === n;
-    const done = step > n;
-    return (
-      <div
-        className={`flex items-center gap-2 sm:gap-3 p-1.5 sm:px-4 sm:py-2 rounded-xl ${
-          active
-            ? "bg-primary-fixed/30 shadow-sm"
-            : done
-            ? "bg-surface-container-low"
-            : "bg-surface-container-low/70 opacity-70"
-        }`}
-      >
-        <div
-          className={`w-8 h-8 rounded-full flex items-center justify-center font-title-md text-title-md shrink-0 ${
-            active
-              ? "bg-primary-container text-on-primary-container"
-              : done
-              ? "bg-primary-fixed text-on-primary-fixed"
-              : "bg-surface-container text-on-surface-variant"
-          }`}
-        >
-          {done ? <span className="material-symbols-outlined text-[18px]">check</span> : n}
-        </div>
-        <div className="flex flex-col min-w-0">
-          <span
-            className={`font-title-md text-title-md truncate ${
-              active || done ? "text-on-surface font-bold" : "text-on-surface-variant font-medium"
-            }`}
-          >
-            {title}
-          </span>
-          <span className="font-body-sm text-body-sm text-on-surface-variant hidden sm:inline truncate">
-            {done ? doneSub : sub}
-          </span>
-        </div>
-      </div>
-    );
+  const handleCreate = async () => {
+    if (!groupName.trim()) {
+      setError("Please enter a group name.");
+      return;
+    }
+    setError("");
+    setSubmitting(true);
+    try {
+      const payload = {
+        name: groupName.trim(),
+        icon: groupIcon,
+        category: groupCategory,
+        description,
+        currency,
+      };
+      const group = await groupService.create(payload);
+      navigate("/group-details", { state: { groupId: group._id } });
+    } catch (err) {
+      setError(err?.response?.data?.error?.message || "Failed to create group");
+      setSubmitting(false);
+    }
   };
 
   return (
     <AppLayout>
+<<<<<<< HEAD
       <main className="w-full pt-4 bg-[#FAF8F5]">
         <div className="max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
           <div className="w-full bg-surface-container-lowest rounded-xl p-4 sm:p-6 shadow-sm flex flex-col gap-4 z-30">
@@ -129,9 +109,21 @@ export default function CreateGroup() {
                 {stepCard(2, "Split & Currency", "Ratios & Limits", "Rules configured")}
                 {stepCard(3, "Roster & Launch", "Invites", "Ready to launch")}
               </div>
+=======
+      <main className="w-full pt-4 bg-surface">
+        <div className="max-w-[720px] w-full mx-auto px-4 sm:px-6 py-6 flex flex-col gap-6">
+          <div className="w-full bg-surface-container-lowest rounded-xl p-4 sm:p-6 shadow-sm flex flex-col gap-2">
+            <div className="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+              <Link className="hover:text-on-surface" to="/groups">Groups</Link>
+              <span className="material-symbols-outlined text-body-md">chevron_right</span>
+              <span className="text-primary font-semibold">Create New Group</span>
+>>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
             </div>
+            <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">Create a new group</h1>
+            <p className="font-body-md text-body-md text-on-surface-variant">Start splitting expenses with zero drama.</p>
           </div>
 
+<<<<<<< HEAD
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6" style={{ alignItems: 'start' }}>
             <section className="lg:col-span-7 flex flex-col gap-6 bg-surface-container-lowest p-4 sm:p-6 rounded-2xl shadow-sm">
               {step === 1 && (
@@ -172,33 +164,52 @@ export default function CreateGroup() {
                       </button>
                     </div>
                   </div>
+=======
+          <section className="bg-surface-container-lowest p-4 sm:p-6 rounded-2xl shadow-sm flex flex-col gap-6">
+            {error && (
+              <div className="px-4 py-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm">{error}</div>
+            )}
 
-                  <div className="flex flex-col gap-2">
-                    <span className="font-title-md text-title-md text-on-surface font-semibold">Tab Category</span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {[
-                        { icon: "flight_takeoff", title: "Trips & Vacation", desc: "Shared flights, hotels, road gas, excursions", selected: true },
-                        { icon: "apartment", title: "Home & Roommates", desc: "Rent splits, WiFi, recurring utilities, pantry", selected: false },
-                        { icon: "restaurant", title: "Dining & Social", desc: "Dinners, rounds of drinks, brunch weekends", selected: false },
-                        { icon: "celebration", title: "Events & Parties", desc: "Concerts, parties, festival passes, gifts", selected: false },
-                      ].map((c) => (
-                        <label key={c.title} className={`cursor-pointer relative flex items-start gap-3 p-4 rounded-xl transition-all shadow-sm ${c.selected ? "bg-surface-container-low" : "bg-surface-container-lowest hover:bg-surface-container-low"}`}>
-                          <input className="sr-only" defaultChecked={c.selected} name="group-cat" type="radio" value={c.title} />
-                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${c.selected ? "bg-primary-container/20 text-primary" : "bg-surface-container text-on-surface-variant"}`}>
-                            <span className="material-symbols-outlined text-[24px]">{c.icon}</span>
-                          </div>
-                          <div className="flex flex-col flex-1">
-                            <div className="flex items-center justify-between">
-                              <span className="font-title-md text-title-md font-bold text-on-surface">{c.title}</span>
-                              {c.selected && <span className="material-symbols-outlined text-primary text-[20px]">check_circle</span>}
-                            </div>
-                            <span className="font-body-sm text-body-sm text-on-surface-variant">{c.desc}</span>
-                          </div>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center justify-between">
+                <label className="font-title-md text-title-md text-on-surface font-semibold" htmlFor="group-name-input">
+                  Group Name <span className="text-tertiary">*</span>
+                </label>
+                <span className="font-label-caps text-label-caps text-outline">{groupName.length} / 50</span>
+              </div>
+              <div className="flex items-center gap-2 bg-surface-container-low rounded-xl p-2 shadow-inner">
+                <span className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm bg-surface-container-lowest text-2xl">{groupIcon}</span>
+                <input
+                  className="w-full bg-transparent font-title-md text-title-md font-semibold text-on-surface placeholder:text-outline focus:outline-none px-2"
+                  id="group-name-input"
+                  maxLength={50}
+                  placeholder="e.g., Kyoto Cherry Blossom, Flat 4B, Friday Dinner"
+                  type="text"
+                  value={groupName}
+                  onChange={(e) => setGroupName(e.target.value)}
+                />
+              </div>
+            </div>
+>>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
 
+            <div className="flex flex-col gap-2">
+              <span className="font-title-md text-title-md text-on-surface font-semibold">Group Icon</span>
+              <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+                {ICONS.map((icon) => (
+                  <button
+                    key={icon.l}
+                    className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all ${groupIcon === icon.e ? "bg-primary-fixed/30 ring-2 ring-primary" : "bg-surface-container-low hover:bg-surface-container-high"}`}
+                    type="button"
+                    onClick={() => setGroupIcon(icon.e)}
+                  >
+                    <span className="text-xl">{icon.e}</span>
+                    <span className="font-body-sm text-body-sm text-on-surface font-medium text-center leading-tight">{icon.l}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+<<<<<<< HEAD
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-2 sm:col-span-2">
                       <label className="font-title-md text-title-md text-on-surface font-semibold flex items-center justify-between" htmlFor="location-input">
@@ -212,237 +223,41 @@ export default function CreateGroup() {
                         <span className="material-symbols-outlined text-outline text-[20px]">pin_drop</span>
                         <input className="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none" id="location-input" placeholder="Where is this happening?" type="text" defaultValue="South Lake Tahoe, CA" />
                       </div>
+=======
+            <div className="flex flex-col gap-2">
+              <span className="font-title-md text-title-md text-on-surface font-semibold">Category</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {CATEGORIES.map((c) => (
+                  <label
+                    key={c.title}
+                    onClick={() => setGroupCategory(c.title)}
+                    className={`cursor-pointer relative flex items-start gap-3 p-4 rounded-xl transition-all shadow-sm ${groupCategory === c.title ? "bg-surface-container-low" : "bg-surface-container-lowest hover:bg-surface-container-low"}`}
+                  >
+                    <input
+                      className="sr-only"
+                      checked={groupCategory === c.title}
+                      name="group-cat"
+                      type="radio"
+                      value={c.title}
+                      onChange={() => setGroupCategory(c.title)}
+                    />
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${groupCategory === c.title ? "bg-primary-container/20 text-primary" : "bg-surface-container text-on-surface-variant"}`}>
+                      <span className="material-symbols-outlined text-[24px]">{c.icon}</span>
+>>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
                     </div>
-                    <div className="flex flex-col gap-2">
-                      <label className="font-title-md text-title-md text-on-surface font-semibold" htmlFor="start-date-input">Start Date</label>
-                      <div className="flex items-center gap-2 bg-surface-container-low rounded-xl px-3 py-2">
-                        <span className="material-symbols-outlined text-outline text-[20px]">calendar_today</span>
-                        <input className="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" id="start-date-input" type="date" defaultValue="2026-02-14" />
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <label className="font-title-md text-title-md text-on-surface font-semibold" htmlFor="end-date-input">End Date</label>
-                      <div className="flex items-center gap-2 bg-surface-container-low rounded-xl px-3 py-2">
-                        <span className="material-symbols-outlined text-outline text-[20px]">event</span>
-                        <input className="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none" id="end-date-input" type="date" defaultValue="2026-02-18" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <label className="font-title-md text-title-md text-on-surface font-semibold flex items-center justify-between" htmlFor="desc-input">
-                      <span>Group Description &amp; Ground Rules</span>
-                      <span className="font-body-sm text-body-sm text-outline">Optional</span>
-                    </label>
-                    <textarea className="w-full bg-surface-container-low rounded-xl p-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none resize-none" id="desc-input" placeholder="What are the main shared tabs for this group?" rows={3} defaultValue="Shared groceries, cabin lodging, ski passes, and rental SUV fuel pool." />
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
-                    <div className="flex items-center gap-2 w-full sm:w-auto">
-                      <button className="w-1/2 sm:w-auto px-4 py-2.5 rounded-xl bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-title-md text-title-md font-semibold" type="button">Cancel</button>
-                      <button className="w-1/2 sm:w-auto px-4 py-2.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-title-md text-title-md font-semibold" type="button">Save Draft</button>
-                    </div>
-                    <button className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition-all shadow-md font-title-md text-title-md font-bold flex items-center justify-center gap-2 group" onClick={() => setStep(2)} type="button">
-                      <span>Continue to Step 2: Split Rules</span>
-                      <span className="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                    </button>
-                  </div>
-                </form>
-              )}
-
-              {step === 2 && (
-                <div className="flex flex-col gap-6">
-                  <div className="flex flex-col gap-2">
-                    <div className="inline-flex items-center gap-1.5 bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full w-fit">
-                      <span className="material-symbols-outlined text-[16px]">bolt</span>
-                      <span className="font-label-caps text-label-caps uppercase tracking-wider font-bold">Ledger Rules &amp; Settlement Engine</span>
-                    </div>
-                    <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">Configure how expenses are split and settled</h1>
-                    <p className="font-body-md text-body-md text-on-surface-variant">
-                      Set default split calculation logic, primary ledger currency, and bilateral debt compression rules for Tahoe Ski Chalet 2026.
-                    </p>
-                  </div>
-
-                  {/* Primary Ledger Currency */}
-                  <div className="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h2 className="font-title-md text-title-md text-on-surface">Primary Ledger Currency</h2>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Standardized base for balance calculation &amp; debt settlement</p>
-                      </div>
-                      <span className="font-label-caps text-label-caps px-2 py-1 rounded-full bg-surface-container text-on-surface-variant">Base Standard</span>
-                    </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3" id="currencyGrid">
-                      {CURRENCIES.map((c) => {
-                        const active = currency === c.code;
-                        return (
-                          <button
-                            key={c.code}
-                            className={`currency-btn flex flex-col p-4 rounded-xl text-left transition-all relative overflow-hidden ${
-                              active ? "bg-primary-fixed/20 shadow-sm" : "bg-surface-container-low hover:bg-surface-container"
-                            }`}
-                            data-code={c.code}
-                            data-name={c.name}
-                            data-symbol={c.symbol}
-                            type="button"
-                            onClick={() => setCurrency(c.code)}
-                          >
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-xl">{c.flag}</span>
-                              <span className={`material-symbols-outlined text-[20px] check-icon ${active ? "text-primary" : "text-transparent"}`}>check_circle</span>
-                            </div>
-                            <span className="font-title-md text-title-md text-on-surface">{c.code} ({c.symbol})</span>
-                            <span className="font-body-sm text-body-sm text-on-surface-variant">{c.name}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                    <div className="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
-                      <span className="material-symbols-outlined text-secondary text-[20px] shrink-0">currency_exchange</span>
-                      <span className="font-body-sm text-body-sm text-on-surface-variant">
-                        Multi-currency auto-conversion enabled via ECB live rates. Group members can log expenses in any local currency.
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Default Split Calculation Model */}
-                  <div className="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h2 className="font-title-md text-title-md text-on-surface">Default Split Calculation Model</h2>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Applied automatically when new charges are posted to the ledger</p>
-                      </div>
-                      <span className="font-label-caps text-label-caps px-2 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-bold">Recommended</span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" id="splitModelGrid">
-                      {SPLIT_MODELS.map((m) => {
-                        const active = splitModel === m.model;
-                        return (
-                          <button
-                            key={m.model}
-                            className={`split-model-card flex flex-col p-4 rounded-xl text-left transition-all relative ${
-                              active ? "bg-primary-fixed/20 shadow-sm" : "bg-surface-container-low hover:bg-surface-container"
-                            }`}
-                            data-model={m.model}
-                            type="button"
-                            onClick={() => setSplitModel(m.model)}
-                          >
-                            <div className="flex items-center justify-between mb-2">
-                              <div className="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
-                                <span className="material-symbols-outlined text-[18px]">{m.icon}</span>
-                              </div>
-                              <span className={`material-symbols-outlined text-[20px] check-icon ${active ? "text-primary" : "text-transparent"}`}>check_circle</span>
-                            </div>
-                            <span className="font-title-md text-title-md text-on-surface">{m.model}</span>
-                            <p className="font-body-sm text-body-sm text-on-surface-variant mt-2">{m.desc}</p>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Settlement & Debt Compression Rules */}
-                  <div className="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <h2 className="font-title-md text-title-md text-on-surface">Settlement &amp; Debt Compression Rules</h2>
-                      <span className="material-symbols-outlined text-on-surface-variant text-[20px]">hub</span>
-                    </div>
-
-                    {/* Min-Cost Flow */}
-                    <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-surface-container-low">
-                      <div className="flex gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
-                          <span className="material-symbols-outlined text-[20px]">compress</span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="font-title-md text-title-md text-on-surface">Min-Cost Debt Flow (Smart Netting)</span>
-                          <span className="font-body-sm text-body-sm text-on-surface-variant">
-                            Automatically compresses circular IOUs into minimal direct transfers (e.g. 6 hops reduced to 2).
-                          </span>
-                        </div>
-                      </div>
-                      <button
-                        aria-checked={netting}
-                        className={`w-12 h-6 rounded-full relative p-0.5 transition-colors focus:outline-none shrink-0 ${netting ? "bg-primary" : "bg-surface-container"}`}
-                        id="toggleNetting"
-                        role="switch"
-                        type="button"
-                        onClick={() => setNetting((v) => !v)}
-                      >
-                        <div className={`w-5 h-5 bg-on-primary rounded-full shadow-sm transform transition-transform ${netting ? "translate-x-6" : "translate-x-0"}`} />
-                      </button>
-                    </div>
-
-                    {/* Host Fronting */}
-                    <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-surface-container-low">
-                      <div className="flex gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
-                          <span className="material-symbols-outlined text-[20px]">volunteer_activism</span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="font-title-md text-title-md text-on-surface">Host Fronting &amp; Subsidies</span>
-                          <span className="font-body-sm text-body-sm text-on-surface-variant">
-                            Allow group organizers to absorb guest percentages or sponsor shared activities seamlessly.
-                          </span>
-                        </div>
-                      </div>
-                      <button
-                        aria-checked={subsidies}
-                        className={`w-12 h-6 rounded-full relative p-0.5 transition-colors focus:outline-none shrink-0 ${subsidies ? "bg-primary" : "bg-surface-container"}`}
-                        id="toggleSubsidies"
-                        role="switch"
-                        type="button"
-                        onClick={() => setSubsidies((v) => !v)}
-                      >
-                        <div className={`w-5 h-5 bg-on-primary rounded-full shadow-sm transform transition-transform ${subsidies ? "translate-x-6" : "translate-x-0"}`} />
-                      </button>
-                    </div>
-
-                    {/* Uneven Penny Reconciliation */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-surface-container-low">
-                      <div className="flex gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-surface-container text-on-surface-variant flex items-center justify-center shrink-0">
-                          <span className="material-symbols-outlined text-[20px]">toll</span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="font-title-md text-title-md text-on-surface">Uneven Penny Reconciliation</span>
-                          <span className="font-body-sm text-body-sm text-on-surface-variant">Route indivisible remainder cents automatically</span>
-                        </div>
-                      </div>
-                      <select
-                        className="bg-surface-container-lowest text-on-surface px-4 py-2 rounded-xl font-body-sm text-body-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                        value={penny}
-                        onChange={(e) => setPenny(e.target.value)}
-                      >
-                        <option value="highest">Highest Payer</option>
-                        <option value="roundrobin">Round-Robin Rotation</option>
-                        <option value="organizer">Trip Organizer</option>
-                        <option value="tipjar">Group Tip Jar</option>
-                      </select>
-                    </div>
-
-                    {/* Budget Cap */}
-                    <div className="p-4 rounded-xl bg-surface-container-low flex flex-col gap-2">
+                    <div className="flex flex-col flex-1">
                       <div className="flex items-center justify-between">
-                        <label className="font-title-md text-title-md text-on-surface" htmlFor="budgetCap">Group Estimated Outlay Cap ({currency})</label>
-                        <span className="font-label-caps text-label-caps text-on-surface-variant uppercase">Optional Guardrail</span>
+                        <span className="font-title-md text-title-md font-bold text-on-surface">{c.title}</span>
+                        {groupCategory === c.title && <span className="material-symbols-outlined text-primary text-[20px]">check_circle</span>}
                       </div>
-                      <div className="relative mt-1">
-                        <span className="absolute left-3.5 top-2.5 font-numeric-balance-md text-numeric-balance-md text-on-surface-variant">{currencyInfo.symbol}</span>
-                        <input
-                          className="w-full bg-surface-container-lowest text-on-surface pl-8 pr-4 py-2 rounded-xl font-numeric-balance-md text-numeric-balance-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                          id="budgetCap"
-                          type="text"
-                          value={budgetCap}
-                          onChange={(e) => setBudgetCap(e.target.value)}
-                        />
-                      </div>
-                      <span className="font-body-sm text-body-sm text-on-surface-variant mt-1">
-                        Alert members when total group spending approaches this threshold.
-                      </span>
+                      <span className="font-body-sm text-body-sm text-on-surface-variant">{c.desc}</span>
                     </div>
-                  </div>
+                  </label>
+                ))}
+              </div>
+            </div>
 
+<<<<<<< HEAD
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                     <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-title-md transition-colors shadow-sm" onClick={() => setStep(1)} type="button">
                       <span className="material-symbols-outlined text-[18px]">arrow_back</span>
@@ -730,10 +545,24 @@ export default function CreateGroup() {
                   </div>
                   <div className="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex items-center gap-3">
                     <span className="text-2xl">⚡</span>
+=======
+            <div className="flex flex-col gap-2">
+              <label className="font-title-md text-title-md text-on-surface font-semibold" htmlFor="currency-select">Default Currency</label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {CURRENCIES.map((c) => (
+                  <button
+                    key={c.code}
+                    className={`flex items-center gap-2 p-3 rounded-xl text-left transition-all ${currency === c.code ? "bg-primary-fixed/20 ring-2 ring-primary" : "bg-surface-container-low hover:bg-surface-container"}`}
+                    type="button"
+                    onClick={() => setCurrency(c.code)}
+                  >
+                    <span className="text-lg">{c.flag}</span>
+>>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
                     <div className="flex flex-col">
-                      <span className="font-title-md text-title-md font-semibold text-on-surface">Zero Account Required to View</span>
-                      <span className="font-body-sm text-body-sm text-on-surface-variant">Invited peers can audit splits and calculate dues on mobile web without downloading an app.</span>
+                      <span className="font-title-md text-title-md text-on-surface font-semibold">{c.code} ({c.symbol})</span>
+                      <span className="font-body-sm text-body-sm text-on-surface-variant">{c.name}</span>
                     </div>
+<<<<<<< HEAD
                   </div>
                 </>
               ) : step === 2 ? (
@@ -774,65 +603,29 @@ export default function CreateGroup() {
                       </div>
                     </div>
                   </div>
+=======
+                  </button>
+                ))}
+              </div>
+            </div>
+>>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
 
-                  <div className="bg-surface-container-lowest rounded-2xl p-5 shadow-md flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-primary text-[20px]">science</span>
-                        <span className="font-title-md text-title-md text-on-surface">Settlement Engine Sandbox</span>
-                      </div>
-                      <span className="font-label-caps text-label-caps bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full uppercase">Realtime Demo</span>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-body-sm text-body-sm text-on-surface-variant">Simulate Outlay</span>
-                        <span className="font-numeric-balance-md text-numeric-balance-md text-on-surface">
-                          {currencyInfo.symbol}
-                          {simAmount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </span>
-                      </div>
-                      <input
-                        className="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-primary"
-                        id="simSlider"
-                        max="4000"
-                        min="400"
-                        step="100"
-                        type="range"
-                        value={simAmount}
-                        onChange={(e) => setSimAmount(parseFloat(e.target.value))}
-                      />
-                      <div className="flex justify-between font-label-caps text-label-caps text-on-surface-variant">
-                        <span>{currencyInfo.symbol}400 Min</span>
-                        <span>{currencyInfo.symbol}4,000 Max</span>
-                      </div>
-                    </div>
-                    <div className="p-4 rounded-xl bg-surface-container-low flex flex-col gap-3">
-                      <div className="flex items-center justify-between">
-                        <span className="font-body-sm text-body-sm text-on-surface-variant">Hypothetical Lodging Share</span>
-                        <span className="font-numeric-balance-md text-numeric-balance-md text-primary">
-                          {currencyInfo.symbol}
-                          {(simAmount / 4).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / person
-                        </span>
-                      </div>
-                      <div className="w-full bg-surface-container rounded-full h-2.5 overflow-hidden flex">
-                        <div className="bg-primary h-2.5 w-1/4" title="Member 1" />
-                        <div className="bg-primary-container h-2.5 w-1/4" title="Member 2" />
-                        <div className="bg-secondary-container h-2.5 w-1/4" title="Member 3" />
-                        <div className="bg-secondary h-2.5 w-1/4" title="Member 4" />
-                      </div>
-                      <div className="flex items-center gap-2 text-on-primary-fixed bg-primary-fixed p-2 rounded-lg mt-1">
-                        <span className="material-symbols-outlined text-[16px] text-primary shrink-0">check_circle</span>
-                        <span className="font-body-sm text-body-sm text-on-primary-fixed leading-tight">
-                          Circular Debt Compression eliminates 2 transactions
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm px-1">
-                      <span>Algorithm Efficiency</span>
-                      <span className="font-bold text-on-surface">66.7% fewer settlements</span>
-                    </div>
-                  </div>
+            <div className="flex flex-col gap-2">
+              <label className="font-title-md text-title-md text-on-surface font-semibold flex items-center justify-between" htmlFor="desc-input">
+                <span>Description</span>
+                <span className="font-body-sm text-body-sm text-outline">Optional</span>
+              </label>
+              <textarea
+                className="w-full bg-surface-container-low rounded-xl p-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none resize-none"
+                id="desc-input"
+                placeholder="What is this group for?"
+                rows={3}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
 
+<<<<<<< HEAD
                   <div className="bg-surface-container-lowest rounded-2xl p-5 shadow-md flex flex-col gap-3">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-title-md text-title-md text-on-surface">Step 2 Calibration</span>
@@ -946,10 +739,28 @@ export default function CreateGroup() {
               )}
             </aside>
           </div>
+=======
+            <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-3 pt-2">
+              <Link
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-title-md text-title-md font-semibold text-center"
+                to="/groups"
+              >
+                Cancel
+              </Link>
+              <button
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition-all shadow-md font-title-md text-title-md font-bold disabled:opacity-60"
+                type="button"
+                disabled={submitting}
+                onClick={handleCreate}
+              >
+                <span>{submitting ? "Creating..." : "Create Group"}</span>
+                <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+              </button>
+            </div>
+          </section>
+>>>>>>> 7d94a7acf451afb31a2d657ed33b3d9084c6be7d
         </div>
       </main>
     </AppLayout>
   );
 }
-
-
