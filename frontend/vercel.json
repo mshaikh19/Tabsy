@@ -4,5 +4,11 @@
   "framework": "vite",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  ],
+  "build": {
+    "env": {
+      "VITE_API_URL": "https://tabsy-i1qo.onrender.com/api/v1",
+      "VITE_GOOGLE_CLIENT_ID": "366783253408-ogma4gml865idmv0o7oeqhfqv8l2hpv5.apps.googleusercontent.com"
+    }
+  }
 }
